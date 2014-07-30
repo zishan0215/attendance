@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin</title>
+    <title><?php echo $meta_title; ?></title>
 
     <link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">
 
