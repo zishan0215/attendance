@@ -8,3 +8,5 @@ class MY_Controller extends CI_Controller {
 			$this->data['site_name'] = config_item('site_name');
 		}
 }
+
+?>

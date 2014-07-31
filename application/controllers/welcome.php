@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends My_Controller {
+class Welcome extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,7 +19,6 @@ class Welcome extends My_Controller {
 	 */
 	public function index()
 	{
-		var_dump($this->data);
 		$this->load->view('welcome_message');
 	}
 }
