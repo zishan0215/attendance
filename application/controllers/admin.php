@@ -6,9 +6,12 @@ class Admin extends Admin_Controller {
 		parent::__construct();
 		$this->load->model('student_m');
 		$this->load->model('teacher_m');
+		$this->load->model('admin_m');
 	}
 
 	public function index() {
+		$data = $this->admin_m->get(1);
+		$this->data['name'] = $data->admin_name;
 		$this->load->view('admin/main_layout', $this->data);
 	}
 
@@ -27,10 +30,10 @@ class Admin extends Admin_Controller {
 
 	public function save() {
 		$data = array(
-			'teacher_name' => 'test3'
+			'admin_name' => 'Admin'
 		);
-		$teachers = $this->teacher_m->save($data, 3); // will update instead of insert because of the second argument
-		var_dump($teachers);
+		$admins = $this->admin_m->save($data, 1); // will update instead of insert because of the second argument
+		var_dump($admins);
 	}
 
 	public function delete() {

@@ -11,6 +11,16 @@
 				    <li><?php echo anchor('admin/', 'Techers'); ?></li>
 				    <li><?php echo anchor('admin/', 'Students'); ?></li>
 			    </ul>
+			    <ul class="nav navbar-nav pull-right">
+			    	<li class="dropdown pull-right">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $name ?> <span class="caret"></span></a>
+				        <ul class="dropdown-menu" role="menu">
+				            <li><?php echo anchor('admin/account', 'Account'); ?></li>
+				            <li class="divider"></li>
+				            <li><?php echo anchor('admin/logout', 'Logout'); ?></li>
+				        </ul>
+			        </li>
+			    </ul>
 			</div>
 	    </div>
     </nav>
@@ -18,16 +28,9 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="span9">
+			<div class="col-md-9">
 				<section>
-					<h2>Page name</h2>
-				</section>
-			</div>
-			<!-- Sidebar -->
-			<div class="span3">
-				<section>
-					<?php echo anchor('admin', '<i class="icon-user"></i> admin'); ?><br>
-					<?php echo anchor('admin/user/logout', '<i class="icon-off"></i> logout'); ?>
+					<h2>Welcome to Admin dashboard</h2>
 				</section>
 			</div>
 		</div>
