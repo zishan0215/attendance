@@ -4,9 +4,6 @@ class Admin extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('student_m');
-		$this->load->model('teacher_m');
-		$this->load->model('admin_m');
 	}
 
 	public function index() {
@@ -16,12 +13,30 @@ class Admin extends Admin_Controller {
 	}
 
 	public function login() {
+		$this->admin_m->loggedin() == FALSE || redirect('admin/');
+		$rules = $this->admin_m->rules;
+    	$this->form_validation->set_rules($rules);
+    	if ($this->form_validation->run() == TRUE) {
+    		if($this->admin_m->login() == TRUE) {
+    			redirect('admin/');
+    		} else {
+    			$this->session->set_flashdata('error', 'That email/password combination does not exist');
+    			redirect('admin/login', 'refresh');
+    		}
+    	}
 		$this->load->view('bootstrap/header_login', $this->data);
 		$this->load->view('admin/login');
 		$this->load->view('bootstrap/footer_login');
 	}
 
+	public function logout() {
+		$this->admin_m->logout();
+		redirect('admin/login');
+	}
+
 	public function show() {
+		$this->load->model('student_m');
+		$this->load->model('teacher_m');
 		$students = $this->student_m->get();
 		$teachers = $this->teacher_m->get(2);
 		var_dump($students);
