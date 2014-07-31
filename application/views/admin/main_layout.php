@@ -1,15 +1,19 @@
 <?php $this->load->view('admin/components/admin_header'); ?>
 <body>
-    <div class="navbar navbar-static-top navbar-inverse">
-	    <div class="navbar-inner">
-		    <a class="brand" href="<?php echo site_url('admin/dashboard'); ?>"><?php echo $meta_title; ?></a>
-		    <ul class="nav">
-			    <li class="active"><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-			    <li><?php echo anchor('admin/page', 'pages'); ?></li>
-			    <li><?php echo anchor('admin/user', 'users'); ?></li>
-		    </ul>
+    <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+	    <div class="container-fluid">
+		    <div class="navbar-header">
+		    	<a class="navbar-brand" href="<?php echo site_url('admin/'); ?>"><?php echo $meta_title; ?></a>
+		    </div>
+		    <div class="collapse navbar-collapse">
+			    <ul class="nav navbar-nav">
+				    <li class="active"><a href="<?php echo site_url('admin/'); ?>">Dashboard</a></li>
+				    <li><?php echo anchor('admin/', 'Techers'); ?></li>
+				    <li><?php echo anchor('admin/', 'Students'); ?></li>
+			    </ul>
+			</div>
 	    </div>
-    </div>
+    </nav>
 
 	<div class="container">
 		<div class="row">

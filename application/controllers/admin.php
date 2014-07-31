@@ -27,13 +27,15 @@ class Admin extends Admin_Controller {
 
 	public function save() {
 		$data = array(
-			'teacher_name' => 'test3',
-			'username' => 'test3',
-			'password' => 'test3'
+			'teacher_name' => 'test3'
 		);
-		$teachers = $this->teacher_m->save($data);
+		$teachers = $this->teacher_m->save($data, 3); // will update instead of insert because of the second argument
 		var_dump($teachers);
 	}
+
+	public function delete() {
+    	$this->teacher_m->delete(3); // deletes an entry in the teacher table with the id 3 
+    }
 
 }
 
