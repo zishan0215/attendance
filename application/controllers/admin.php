@@ -2,6 +2,8 @@
 
 class Admin extends Admin_Controller {
 
+	public $admin_data = array();
+
 	public function __construct() {
 		parent::__construct();
 	}
@@ -26,6 +28,17 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/students_layout');
 	}	
+
+	public function account() {
+		$id = $this->session->userdata('id');
+		$admin_data = $this->admin_m->get($id);
+		$admin_data->site_name = config_item('site_name');
+		$admin_data->meta_title = 'Attendance Management System';
+		$admin_data->page = -1; // No highlights in the navigation bar
+		$admin_data->name = $admin_data->admin_name;
+		$this->load->view('admin/components/admin_header', $admin_data);
+		$this->load->view('admin/account_layout');
+	}
 
 	public function login() {
 		$this->admin_m->loggedin() == FALSE || redirect('admin/');
