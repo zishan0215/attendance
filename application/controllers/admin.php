@@ -7,9 +7,25 @@ class Admin extends Admin_Controller {
 	}
 
 	public function index() {
+		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
-		$this->load->view('admin/main_layout', $this->data);
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/main_layout');
 	}
+
+	public function teachers() {
+		$this->data['page'] = 1;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/teachers_layout');
+	}
+
+	public function students() {
+		$this->data['page'] = 2;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/students_layout');
+	}	
 
 	public function login() {
 		$this->admin_m->loggedin() == FALSE || redirect('admin/');

@@ -4,7 +4,7 @@
 			<!-- Main column -->
 			<div class="col-md-9">
 				<section>
-					<h2>Welcome to Admin dashboard</h2>
+					<h2>List of stdents</h2>
 				</section>
 			</div>
 		</div>
