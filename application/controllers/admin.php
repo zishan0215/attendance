@@ -7,8 +7,7 @@ class Admin extends Admin_Controller {
 	}
 
 	public function index() {
-		$data = $this->admin_m->get(1);
-		$this->data['name'] = $data->admin_name;
+		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/main_layout', $this->data);
 	}
 
