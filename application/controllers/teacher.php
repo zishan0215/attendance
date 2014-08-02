@@ -12,6 +12,10 @@ class Teacher extends Teacher_Controller {
 	public function index() {
 		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
+		$id = $this->session->userdata('id');
+		$array = array('teacher_id' => $id);
+		$this->load->model('subject_m');
+		$this->data['rows'] = $this->subject_m->get_by($array);
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/main_layout');
 	}
