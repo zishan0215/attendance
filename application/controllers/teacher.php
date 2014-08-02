@@ -50,6 +50,14 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/account_layout');
 	}
 
+	public function view_attendance() {
+		$code = $this->input->post('subject_code'); // Use this variable to fetch attendance from the database using subject_code
+		$this->data['page'] = 0;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/view_attendance_layout');		
+	}
+
 	public function login() {
 		$this->teacher_m->loggedin() == FALSE || redirect('teacher/');
 		$rules = $this->teacher_m->rules;
