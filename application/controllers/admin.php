@@ -11,16 +11,31 @@ class Admin extends Admin_Controller {
 	public function index() {
 		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
+		$this->data['rows'] = $this->attendance_m->get_distinct();
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/main_layout');
 	}
 
+	public function view_attendance() {
+		$code = $this->input->post('subject_code'); // Use this variable to fetch attendance from the database using subject_code
+		$array = array('subject_code' => $code);
+		$this->data['subject'] = $this->subject_m->get_by($array, TRUE);
+		$this->data['page'] = 0;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['from_date'] = $this->input->post('from_date');
+		$this->data['to_date'] = $this->input->post('to_date');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/view_attendance_layout');
+	}
+
 	public function teachers() {
+		$this->load->model('subject_m');
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->model('teacher_m');
 		$data['rows'] = $this->teacher_m->get();
+		$data['rows2'] = $this->subject_m->get();
 		$this->load->view('admin/teachers_layout',$data);
 	}
 

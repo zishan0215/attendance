@@ -8,6 +8,8 @@ class Admin_Controller extends MY_Controller
 		$this->load->model('admin_m');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->model('attendance_m');
+		$this->load->model('subject_m');
 
 		// Login check
 		$exception_uris = array(

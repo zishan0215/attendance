@@ -32,7 +32,7 @@ class MY_Model extends CI_Model {
 		}
 		return $this->db->get($this->_table_name)->$method();
 	}
-	
+
 	public function get_by($where, $single = FALSE){
 		$this->db->where($where);
 		return $this->get(NULL, $single);
