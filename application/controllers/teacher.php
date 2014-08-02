@@ -31,10 +31,12 @@ class Teacher extends Teacher_Controller {
 	}
 
 	public function teachers() {
+		$this->load->model('subject_m');
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$data['rows'] = $this->teacher_m->get();
+		$data['rows2'] = $this->subject_m->get();
 		$this->load->view('teachers/teachers_layout',$data);
 	}
 
