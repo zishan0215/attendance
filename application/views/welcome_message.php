@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+    <title>Attendance Management System</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">
