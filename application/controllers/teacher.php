@@ -65,7 +65,7 @@ class Teacher extends Teacher_Controller {
 
 	public function logout() {
 		$this->teacher_m->logout();
-		redirect('teacher/login');
+		redirect('welcome');
 	}
 
 	public function show() {

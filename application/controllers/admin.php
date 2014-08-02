@@ -19,9 +19,7 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/components/admin_header', $this->data);
-		//$this->load->view('admin/teachers_layout');
 		$this->load->model('teacher_m');
-		//$data['rows']=$this->teacher_m->getAll();
 		$data['rows'] = $this->teacher_m->get();
 		$this->load->view('admin/teachers_layout',$data);
 	}
@@ -30,7 +28,6 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/components/admin_header', $this->data);
-		//$this->load->view('admin/students_layout');
 		$this->load->model('student_m');
 		$data['rows']=$this->student_m->get();
 		$this->load->view('admin/students_layout',$data);
@@ -48,7 +45,6 @@ class Admin extends Admin_Controller {
 	}
 
 	public function login() {
-		echo "hello";
 		$this->admin_m->loggedin() == FALSE || redirect('admin/');
 		$rules = $this->admin_m->rules;
     	$this->form_validation->set_rules($rules);
@@ -67,7 +63,7 @@ class Admin extends Admin_Controller {
 
 	public function logout() {
 		$this->admin_m->logout();
-		redirect('admin/login');
+		redirect('welcome');
 	}
 
 	public function show() {
