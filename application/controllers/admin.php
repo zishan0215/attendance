@@ -14,7 +14,7 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/main_layout');
 	}
-
+/*
 	public function teachers() {
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
@@ -28,6 +28,27 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/students_layout');
 	}	
+*/
+	public function teachers() {
+		$this->data['page'] = 1;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('admin/components/admin_header', $this->data);
+		//$this->load->view('admin/teachers_layout');
+		$this->load->model('teacher_m');
+		//$data['rows']=$this->teacher_m->getAll();
+		$data['rows'] = $this->teacher_m->get();
+		$this->load->view('admin/teachers_layout',$data);
+	}
+
+	public function students() {
+		$this->data['page'] = 2;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('admin/components/admin_header', $this->data);
+		//$this->load->view('admin/students_layout');
+		$this->load->model('student_m');
+		$data['rows']=$this->student_m->get();
+		$this->load->view('admin/students_layout',$data);
+	}
 
 	public function account() {
 		$id = $this->session->userdata('id');
