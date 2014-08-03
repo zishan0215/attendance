@@ -27,7 +27,7 @@ class Admin_m extends MY_Model {
 	public function get_view_attendance($data) {
 		$query = 'SELECT * FROM attendance a, student s WHERE (a.student_id = s.student_id) AND (a.subject_code = ';
 		$query .= "'" . $data['subject_code'] . "'" . ') AND (a.from_date = ' . "'" . $data['from_date'] . "'";
-		$query .= ') AND (a.to_date = '. "'" . $data['to_date'] . "'" . ')';
+		$query .= ') AND (a.to_date = '. "'" . $data['to_date'] . "'" . ') ORDER BY s.roll_number';
 		//echo $query;
 		$q = $this->db->query($query);
 		return $q;

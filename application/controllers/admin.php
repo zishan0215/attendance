@@ -12,12 +12,19 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = $this->attendance_m->get_distinct();
-		$this->load->view('admin/components/admin_header', $this->data);
-		$this->load->view('admin/main_layout');
+		$this->data['period'] = $this->attendance_m->get_distinct_period();
+		$period = $this->input->post('period');
+		if($period) {
+			$temp = explode('#', $period);
+			$array = array('from_date' => $temp[0], 'to_date' => $temp[1]);
+			$this->data['rows2'] = $this->attendance_m->get_distinct_select($array);
+		}
+			$this->load->view('admin/components/admin_header', $this->data);
+			$this->load->view('admin/main_layout');	
 	}
 
 	public function view_attendance() {
-		$code = $this->input->post('subject_code'); // Use this variable to fetch attendance from the database using subject_code
+		$code = $this->input->post('subject_code'); 
 		$array = array('subject_code' => $code);
 		$this->data['subject'] = $this->subject_m->get_by($array, TRUE);
 		$this->data['page'] = 0;
@@ -25,11 +32,6 @@ class Admin extends Admin_Controller {
 		$this->data['from_date'] = $this->input->post('from_date');
 		$this->data['to_date'] = $this->input->post('to_date');
 		$this->data['subject_code'] = $code;
-		//unset($array);
-		//$array = array('subject_code' => $code, 'from_date' => $this->data['from_date'], 'to_date' => $this->data['to_date']);
-		//$this->attendance_m->get_by($array);
-		//$this->data['rows2'] = $this->student_m->get();
-		//var_dump($this->data);
 		$this->data['rows'] = $this->admin_m->get_view_attendance($this->data);
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/view_attendance_layout');

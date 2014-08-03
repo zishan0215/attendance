@@ -21,8 +21,8 @@
 						<?php
 							$counter = 1;
 							foreach($rows->result() as $r){
-								echo '<tr><td>' . $counter++ .'</td><td>' . $r->student_id;
-								echo '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name;
+								echo '<tr><td>' . $counter++ .'</td><td>' . $r->roll_number;
+								echo '</td><td>' . $r->student_id . '</td><td>' . $r->student_name;
 								echo '</td><td>' . $r->semester;
 								echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
 								echo '</td></tr>';		
