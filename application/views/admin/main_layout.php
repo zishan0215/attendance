@@ -17,9 +17,13 @@
 									}
 								 ?>
 							</select>&nbsp;&nbsp;
-							<input type="submit" name="submit" value="Submit" class="btn btn-success" />
+							<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
+							<a href="http://localhost/jmiams/index.php/admin/new_period" class="btn btn-warning">Create New Period</a>&nbsp;&nbsp;
+							<a href="http://localhost/jmiams/index.php/admin/total_attendance" class="btn btn-danger">Total Attendance</a>
 						</div>
 					</form>
+					<br>
+					
 				</section>
 				<br><br>
 				<table class="table table-striped">

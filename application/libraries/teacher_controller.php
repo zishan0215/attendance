@@ -5,6 +5,8 @@ class Teacher_Controller extends MY_Controller
 		parent::__construct();
 		$this->data['meta_title'] = 'Attendance Management System';
 		$this->load->model('teacher_m');
+		$this->load->model('student_m');
+		$this->load->model('attendance_m');
 		$this->load->library('session');
 		$this->load->helper('form');
 		$this->load->library('form_validation');

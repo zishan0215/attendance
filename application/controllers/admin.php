@@ -12,15 +12,46 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = $this->attendance_m->get_distinct();
-		$this->data['period'] = $this->attendance_m->get_distinct_period();
+		$this->load->model('period_m');
+		$this->data['period'] = $this->period_m->get();
 		$period = $this->input->post('period');
 		if($period) {
 			$temp = explode('#', $period);
 			$array = array('from_date' => $temp[0], 'to_date' => $temp[1]);
 			$this->data['rows2'] = $this->attendance_m->get_distinct_select($array);
 		}
-			$this->load->view('admin/components/admin_header', $this->data);
-			$this->load->view('admin/main_layout');	
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/main_layout');	
+	}
+
+	public function new_period() {
+		$this->data['confirmation'] = "";
+		$this->data['page'] = 0;
+		$this->data['name'] = $this->session->userdata('name');
+		if($this->input->post('submit')) {
+			$this->load->model('period_m');
+			$rules = $this->period_m->rules;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+				$array = array('from_date' => $this->input->post('from_date'), 'to_date' => $this->input->post('to_date'));
+				if($this->period_m->insert($array)) {
+					$this->data['confirmation'] = 1;
+				} else {
+					$this->data['confirmation'] = 2;
+				}	
+	    	} else {
+				$this->data['confirmation'] = 3;
+			}
+		}
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/new_period_layout');
+	}
+
+	public function total_attendance() {
+		$this->data['page'] = 0;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/total_attendance_layout');
 	}
 
 	public function view_attendance() {
