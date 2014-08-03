@@ -1,4 +1,11 @@
+<?php 
 
+$date = DateTime::createFromFormat('Y-m-d', $from_date);
+$from_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
+$date = DateTime::createFromFormat('Y-m-d', $to_date);
+$to_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
+
+?>
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
