@@ -24,12 +24,15 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['from_date'] = $this->input->post('from_date');
 		$this->data['to_date'] = $this->input->post('to_date');
+		unset($array);
+		$array = array('subject_code' => $code, 'from_date' => $this->data['from_date'], 'to_date' => $this->data['to_date']);
+		$this->data['rows'] = $this->attendance_m->get_by($array);
+		$this->data['rows2'] = $this->student_m->get();
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/view_attendance_layout');
 	}
 
 	public function teachers() {
-		$this->load->model('subject_m');
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/components/admin_header', $this->data);
@@ -43,7 +46,6 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/components/admin_header', $this->data);
-		$this->load->model('student_m');
 		$data['rows']=$this->student_m->get();
 		$this->load->view('admin/students_layout',$data);
 	}
@@ -82,7 +84,6 @@ class Admin extends Admin_Controller {
 	}
 
 	public function show() {
-		$this->load->model('student_m');
 		$this->load->model('teacher_m');
 		$students = $this->student_m->get();
 		$teachers = $this->teacher_m->get(2);

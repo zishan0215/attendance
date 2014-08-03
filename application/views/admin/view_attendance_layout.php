@@ -19,9 +19,18 @@
 						<thead><tr><th>S.No.</th><th>Roll Number</th><th>Student Id</th><th>Name</th><th>Semester</th><th>Attendance</th><th>Total Classes</th></tr></thead>
 						<tbody>
 						<?php
-							//foreach($rows as $r){
-							//	echo '<tr><td>' . $r->student_id . '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name . '</td><td>' . $r->semester.'</td>';
-							//}
+							$counter = 1;
+							foreach($rows as $r){
+								foreach($rows2 as $r2) {
+									if($r->student_id === $r2->student_id) {
+										echo '<tr><td>' . $counter++ .'</td><td>' . $r->student_id;
+										echo '</td><td>' . $r2->roll_number . '</td><td>' . $r2->student_name;
+										echo '</td><td>' . $r2->semester;
+										echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
+										echo '</td></tr>';
+									}
+								}								
+							}
 						?>
 						</tbody>
 					</table>
