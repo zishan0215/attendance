@@ -24,10 +24,13 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['from_date'] = $this->input->post('from_date');
 		$this->data['to_date'] = $this->input->post('to_date');
-		unset($array);
-		$array = array('subject_code' => $code, 'from_date' => $this->data['from_date'], 'to_date' => $this->data['to_date']);
-		$this->data['rows'] = $this->attendance_m->get_by($array);
-		$this->data['rows2'] = $this->student_m->get();
+		$this->data['subject_code'] = $code;
+		//unset($array);
+		//$array = array('subject_code' => $code, 'from_date' => $this->data['from_date'], 'to_date' => $this->data['to_date']);
+		//$this->attendance_m->get_by($array);
+		//$this->data['rows2'] = $this->student_m->get();
+		//var_dump($this->data);
+		$this->data['rows'] = $this->admin_m->get_view_attendance($this->data);
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/view_attendance_layout');
 	}

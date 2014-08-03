@@ -20,16 +20,12 @@
 						<tbody>
 						<?php
 							$counter = 1;
-							foreach($rows as $r){
-								foreach($rows2 as $r2) {
-									if($r->student_id === $r2->student_id) {
-										echo '<tr><td>' . $counter++ .'</td><td>' . $r->student_id;
-										echo '</td><td>' . $r2->roll_number . '</td><td>' . $r2->student_name;
-										echo '</td><td>' . $r2->semester;
-										echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
-										echo '</td></tr>';
-									}
-								}								
+							foreach($rows->result() as $r){
+								echo '<tr><td>' . $counter++ .'</td><td>' . $r->student_id;
+								echo '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name;
+								echo '</td><td>' . $r->semester;
+								echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
+								echo '</td></tr>';		
 							}
 						?>
 						</tbody>
