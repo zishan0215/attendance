@@ -8,6 +8,12 @@ class Student_m extends MY_Model {
 		protected $_order_by = 'roll_number';
 		public $_rules = array();
 		protected $_timestamps = FALSE;
+
+		public function get_distinct_semester() {
+			$query = 'SELECT DISTINCT semester FROM student';
+			$q = $this->db->query($query);
+			return $q;
+		}
 }
 
 ?>

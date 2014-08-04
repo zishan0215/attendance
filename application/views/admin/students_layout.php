@@ -6,6 +6,26 @@
 				<section>
 					<h2>List of students</h2>
 					<br />
+				</section>
+				<section>
+					<h4>Select Semester</h4>
+					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/students" method="post">
+						<div class="form-group">
+							<select class="form-control" name="semester">
+								<?php 
+									foreach($semesters->result() as $s) {
+										echo '<option value="' . $s->semester . '">' . $s->semester . '</ostion>';
+									}
+								 ?>
+							</select>&nbsp;&nbsp;
+							<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
+							
+						</div>
+					</form>
+					<br>
+				</section>
+				<br><br>
+				<section>
 					<table class="table table-striped"> 	
 						<thead><tr><th>Student Id</th><th>Roll Number</th><th>Name</th><th>Semester</th></tr></thead>
 						<tbody>
