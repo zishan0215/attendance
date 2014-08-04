@@ -4,7 +4,10 @@
 			<!-- Main column -->
 			<div class="col-md-9">
 				<section>
-					<h2>Welcome, <?php echo $name; ?></h2><br><br>
+					<h2>Welcome, <?php echo $name; ?></h2><br>
+					<a href="http://localhost/jmiams/index.php/admin/new_period" class="btn btn-warning">Create New Period</a>&nbsp;&nbsp;
+					<a href="http://localhost/jmiams/index.php/admin/total_attendance" class="btn btn-danger">Total Attendance</a>
+					<br><br>
 				</section>
 				<section>
 					<h4>Select Period</h4>
@@ -22,8 +25,7 @@
 								 ?>
 							</select>&nbsp;&nbsp;
 							<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
-							<a href="http://localhost/jmiams/index.php/admin/new_period" class="btn btn-warning">Create New Period</a>&nbsp;&nbsp;
-							<a href="http://localhost/jmiams/index.php/admin/total_attendance" class="btn btn-danger">Total Attendance</a>
+							
 						</div>
 					</form>
 					<br>
