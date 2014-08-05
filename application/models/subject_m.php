@@ -24,6 +24,18 @@ class Subject_m extends MY_Model {
 			return $data;
 		}	
 	}
+
+	public function insert($data) {
+		$query = 'INSERT INTO subject (subject_code, subject_name, semester, teacher_id) VALUES ('. "'";
+		$query .= $data['subject_code'] . "','" . $data['subject_name'] ."','";
+		$query .= $data['semester'] ."'," . $data['teacher_id'] . ');';
+		//echo $query;
+		$this->db->query($query);
+		if($this->db->affected_rows()) {
+				return TRUE;
+			}
+			return FALSE;
+		}
 }
 
 ?>

@@ -85,11 +85,38 @@ class Admin extends Admin_Controller {
 	public function teachers() {
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
-		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->model('teacher_m');
-		$data['rows'] = $this->teacher_m->get();
-		$data['rows2'] = $this->subject_m->get();
-		$this->load->view('admin/teachers_layout',$data);
+		$this->data['rows'] = $this->teacher_m->get();
+		$this->data['rows2'] = $this->subject_m->get();
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/teachers_layout');
+	}
+
+	public function add_teacher() {
+		$this->data['confirmation'] = "";
+		$this->data['page'] = 1;
+		$this->data['name'] = $this->session->userdata('name');		
+		if($this->input->post('submit')) {
+			$this->load->model('teacher_m');
+			$rules = $this->teacher_m->rules2;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+				$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
+				$id = $this->teacher_m->save($array);
+				unset($array);
+				$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
+				//$id = $this->subject_m->save($array);
+				if($this->subject_m->insert($array)) {
+					$this->data['confirmation'] = 1;
+				} else {
+					$this->data['confirmation'] = 2;
+				}	
+	    	} else {
+				$this->data['confirmation'] = 3;
+			}
+		}
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/add_teacher_layout');
 	}
 
 	public function account() {

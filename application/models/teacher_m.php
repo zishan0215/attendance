@@ -6,21 +6,53 @@ class Teacher_m extends MY_Model {
 		protected $_primary_key = 'teacher_id';
 		protected $_primary_filter = 'intval';
 		protected $_order_by = 'teacher_id';
-		public $_rules = array();
 		protected $_timestamps = FALSE;
 
 		public $rules = array(
-		'username' => array(
-			'field' => 'username', 
-			'label' => 'Username', 
-			'rules' => 'trim|required'
-		), 
-		'password' => array(
-			'field' => 'password', 
-			'label' => 'Password', 
-			'rules' => 'trim|required'
-		)
-	);
+			'username' => array(
+				'field' => 'username', 
+				'label' => 'Username', 
+				'rules' => 'trim|required'
+			), 
+			'password' => array(
+				'field' => 'password', 
+				'label' => 'Password', 
+				'rules' => 'trim|required'
+			)
+		);
+
+		public $rules2 = array(
+			'teachername' => array(
+				'field' => 'teacher_name', 
+				'label' => 'Full Name', 
+				'rules' => 'trim|required'
+			),
+			'username' => array(
+				'field' => 'username', 
+				'label' => 'Username', 
+				'rules' => 'trim|required'
+			), 
+			'password' => array(
+				'field' => 'password', 
+				'label' => 'Password', 
+				'rules' => 'trim|required'
+			),
+			'subject_name' => array(
+				'field' => 'subject_name', 
+				'label' => 'Subject Name', 
+				'rules' => 'trim|required'
+			),
+			'subject_code' => array(
+				'field' => 'subject_code', 
+				'label' => 'Subject Code', 
+				'rules' => 'trim|required'
+			),
+			'semester' => array(
+				'field' => 'semester', 
+				'label' => 'Semester', 
+				'rules' => 'trim|required'
+			)
+		);
 
 	function __construct () {
 		parent::__construct();

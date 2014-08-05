@@ -4,8 +4,16 @@
 			<!-- Main column -->
 			<div class="col-md-9">
 				<section>
+					<br>
+					<a href="http://localhost/jmiams/index.php/admin/add_teacher" class="btn btn-warning">Add Teacher</a>
+				</section>
+				<section>
+					<br>
 					<h2>List of Teachers</h2>
-					<br />
+				</section>
+				
+				<section>
+					<br>
 					<table class="table table-striped">
 						<thead><tr><th>S.No.</th><th>Name</th><th>Subject Name</th><th>Subject Code</th></tr></thead>
 						<tbody>
