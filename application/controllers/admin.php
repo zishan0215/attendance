@@ -106,14 +106,21 @@ class Admin extends Admin_Controller {
 				unset($array);
 				$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
 				//$id = $this->subject_m->save($array);
-				if($this->subject_m->insert($array)) {
-					$this->data['confirmation'] = 1;
-				} else {
-					$this->data['confirmation'] = 2;
-				}	
+				$this->data['rows'] = $this->teacher_m->get_username();
+				$this->data['username'] = $this->input->post('username');
+				if($this->teacher_m->check()) {
+					if($this->subject_m->insert($array)) {
+						$this->data['confirmation'] = 1;
+					} else {
+						$this->data['confirmation'] = 2;
+					}	
+	    		}
+	    		else {
+	    			echo "P";
+	    		}
 	    	} else {
-				$this->data['confirmation'] = 3;
-			}
+					$this->data['confirmation'] = 3;
+				}
 		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_teacher_layout');
