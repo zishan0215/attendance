@@ -66,12 +66,7 @@ class Teacher_m extends MY_Model {
 		$q = $this->db->query($query);
 		return $q;
 	}
-
-	public function get_username(){
-		$query = 'SELECT username FROM teacher';
-		$q = $this->db->query($query);
-		return $q;
-	}
+	
 	public function login() {
 		$user = $this->get_by(array(
 			'username' => $this->input->post('username'),
@@ -89,13 +84,14 @@ class Teacher_m extends MY_Model {
 			$this->session->set_userdata($data);
 		}
 	}
-	public function check() {
-		foreach($rows1 as $r){
-			if ($r->uname == $username){
-				return FALSE;
-			}
-			return TRUE;
+	
+	public function check($data) {
+		$query = "SELECT * FROM teacher where username = " . $data['username'] ;
+		$q = $this->db->query($query);
+		if($q->num_rows()>0){
+			return FALSE;
 		}
+		return TRUE;
 	}
 
 	public function logout () {
