@@ -32,7 +32,6 @@
 										<tr class="danger"><td>Failure! Username already exists. Please enter valid data </td></tr>
 									</table>
 									';
-									redirect('admin/add_teacher_layout');
 							} 
 						}
 					?>

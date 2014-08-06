@@ -115,16 +115,17 @@ class Admin extends Admin_Controller {
 					}	
 	    		}
 	    		else {
+	    			
 	    			$this->data['confirmation'] = 4;
 	    		}
-	    	} else {
+	    	} 
+	    	else {
 					$this->data['confirmation'] = 3;
 				}
-		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_teacher_layout');
+		}
 	}
-
 	public function account() {
 		$id = $this->session->userdata('id');
 		$admin_data = $this->admin_m->get($id);
