@@ -98,6 +98,7 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');		
 		if($this->input->post('submit')) {
 			$this->load->model('teacher_m');
+			$this->load->model('subject_m');
 			$rules = $this->teacher_m->rules2;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
