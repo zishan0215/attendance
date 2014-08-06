@@ -114,7 +114,7 @@ class Admin extends Admin_Controller {
 					}	
 	    		}
 	    		else {
-	    			echo "P";
+	    			$this->data['confirmation'] = 4;
 	    		}
 	    	} else {
 					$this->data['confirmation'] = 3;
