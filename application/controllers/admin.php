@@ -105,7 +105,6 @@ class Admin extends Admin_Controller {
 				$id = $this->teacher_m->save($array);
 				unset($array);
 				$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
-				//$id = $this->subject_m->save($array);
 				if($this->subject_m->insert($array)) {
 					$this->data['confirmation'] = 1;
 				} else {

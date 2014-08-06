@@ -32,7 +32,7 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <img src="/jmiams/img/jmi_logo.jpg" style="margin-top: -15%;">
-            <h1>Attendance Management System</h1>
+            <h1 class="landing_heading">Attendance Management System</h1>
             <br><br>
             <a href="http://localhost/jmiams/teacher" class="btn btn-dark btn-lg">Teacher Login</a> &nbsp;
             <a href="http://localhost/jmiams/admin" class="btn btn-dark btn-lg">Admin Login</a>
