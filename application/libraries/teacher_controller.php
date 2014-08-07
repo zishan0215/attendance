@@ -7,6 +7,7 @@ class Teacher_Controller extends MY_Controller
 		$this->load->model('teacher_m');
 		$this->load->model('student_m');
 		$this->load->model('attendance_m');
+		$this->load->model('subject_m');
 		$this->load->library('session');
 		$this->load->helper('form');
 		$this->load->library('form_validation');

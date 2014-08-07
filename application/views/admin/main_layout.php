@@ -28,8 +28,7 @@
 							
 						</div>
 					</form>
-					<br>
-					
+					<br>	
 				</section>
 				<br><br>
 				<table class="table table-striped">
