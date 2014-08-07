@@ -22,6 +22,16 @@ class Attendance_m extends MY_Model {
 			return $q;
 		}
 
+		public function get_list($data){
+			$query = 'SELECT * FROM attendance a, student s ';
+			$query .= 'WHERE (a.from_date = ' . "'" . $data['from_date'] . "'" . ') AND (a.to_date = '; 
+			$query .= "'" . $data['to_date'] . "'" . ') AND (a.subject_code = '; 
+			$query .= "'" . $data['subject_code'] . "'" . ') AND (s.student_id = a.student_id) ORDER BY s.roll_number'; 
+			//$query .= "'" . $data['subject_code'] . "'" . ')';
+			$q=$this->db->query($query);
+			return $q;
+		}		
+
 		public function get_distinct_period(){
 			$q=$this->db->query("SELECT DISTINCT from_date, to_date FROM attendance");
 			if($q->num_rows>0){

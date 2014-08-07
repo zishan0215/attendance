@@ -52,20 +52,22 @@ class Teacher extends Teacher_Controller {
 	}
 
 	public function view_attendance() {
-		$code = $this->input->post('subject_code'); // Use this variable to fetch attendance from the database using subject_code
+		$code = $this->input->post('subject_code');
 		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
-		$this->data['submit'] = 0;
 		$array = array('subject_code' => $code);
 		$this->data['subject'] = $this->subject_m->get_by($array, TRUE);
+		$this->data['code'] = $code;
 		$this->load->model('period_m');
 		$this->data['period'] = $this->period_m->get();
 		$period = $this->input->post('period');
 		if($period) {
 			$temp = explode('#', $period);
-			$array = array('from_date' => $temp[0], 'to_date' => $temp[1]);
-			$this->data['rows'] = $this->attendance_m->get_distinct_select($array);
-			$this->data['submit'] = 1;
+			unset($array);
+			$array = array('from_date' => $temp[0], 'to_date' => $temp[1], 'subject_code' => $code);
+			$this->data['rows'] = $this->attendance_m->get_list($array);
+			$this->data['from_date'] = $temp[0];
+			$this->data['to_date'] = $temp[1];
 		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/view_attendance_layout');		
