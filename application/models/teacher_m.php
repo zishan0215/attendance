@@ -86,12 +86,12 @@ class Teacher_m extends MY_Model {
 	}
 
 	public function check_username($data) {
-		$query = 'SELECT * FROM teacher where username = ' . "'" . $data['username'] . "'" ;
+		$query = 'SELECT * FROM teacher WHERE username = ' . "'" . $data['username'] . "'" ;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0) {
-				return FALSE;
-			}
-			return TRUE;
+			return FALSE;
+		}
+		return TRUE;
 	}
 	
 	public function logout () {

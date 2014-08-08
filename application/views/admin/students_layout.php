@@ -31,7 +31,7 @@
 						<tbody>
 						<?php
 							foreach($rows as $r){
-								echo '<tr><td>' . $r->student_id . '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name . '</td><td>' . $r->semester.'</td>';
+								echo '<tr><td>' . $r->student_id . '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name . '</td><td>' . $r->semester.'</td><td><form method="post" action="http://localhost/jmiams/index.php/admin/edit_student"><input type="hidden" value="' . $r->student_id .'" name="student_id"><input type="submit" value="Edit" name="submit" class="btn btn-primary"></form></td></tr>';
 							}
 						?>
 						</tbody>

@@ -22,7 +22,7 @@
 								foreach($rows as $r){
 									foreach ($rows2 as $r2) {
 										if($r->teacher_id == $r2->teacher_id)
-											echo '<tr><td>' . $counter++ . '</td><td>' . $r->teacher_name . '</td><td>' . $r2->subject_name . '</td><td>' . $r2->subject_code . '</td></tr>';
+											echo '<tr><td>' . $counter++ . '</td><td>' . $r->teacher_name . '</td><td>' . $r2->subject_name . '</td><td>' . $r2->subject_code . '</td><td><form method="post" action="http://localhost/jmiams/index.php/admin/edit_teacher"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="Edit" name="submit" class="btn btn-primary"></form></td></tr>';
 									}
 								}
 							?>

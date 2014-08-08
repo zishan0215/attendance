@@ -29,7 +29,7 @@
 							} elseif($confirmation === 4) {
 								echo '
 									<table class="table">
-										<tr class="danger"><td>Failure! Username already exists. Please enter valid data </td></tr>
+										<tr class="danger"><td>Failure! Username already exists. Please enter a different username </td></tr>
 									</table>
 									';
 							}

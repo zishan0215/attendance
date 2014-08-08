@@ -38,6 +38,14 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/students_layout');
 	}
 
+	public function edit_student() {
+		$this->data['page'] = 2;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['student_id'] = $this->input->post('student_id');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/edit_student_layout');	
+	}
+
 	public function new_period() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 0;
@@ -90,6 +98,14 @@ class Admin extends Admin_Controller {
 		$this->data['rows2'] = $this->subject_m->get();
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/teachers_layout');
+	}
+
+	public function edit_teacher() {
+		$this->data['page'] = 1;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/edit_teacher_layout');	
 	}
 
 	public function add_teacher() {

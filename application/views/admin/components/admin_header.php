@@ -8,6 +8,11 @@
 	<script src="/jmiams/js/jquery-1.11.1.min.js"></script>
 	<script src="/jmiams/js/bootstrap.min.js"></script>
 	<script src="/jmiams/js/bootstrap-datepicker.js"></script>
+	<style type="text/css">
+		.bigger_text{
+			font-size: 20px;
+		}
+	</style>
 </head>
 
 <body>
