@@ -101,7 +101,8 @@ class Admin extends Admin_Controller {
 			$rules = $this->teacher_m->rules2;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
-		    	if($this->teacher_m->check_username($data)) {
+	    		$array1 = array('username' => $this->input->post('username'));	
+		    	if($this->teacher_m->check_username($array1)) {
 					$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
 					$id = $this->teacher_m->save($array);
 					unset($array);
@@ -121,7 +122,7 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_teacher_layout');
 	}
-	
+
 	public function account() {
 		$id = $this->session->userdata('id');
 		$admin_data = $this->admin_m->get($id);
