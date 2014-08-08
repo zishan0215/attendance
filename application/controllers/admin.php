@@ -101,23 +101,27 @@ class Admin extends Admin_Controller {
 			$rules = $this->teacher_m->rules2;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
-				$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
-				$id = $this->teacher_m->save($array);
-				unset($array);
-				$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
-				if($this->subject_m->insert($array)) {
-					$this->data['confirmation'] = 1;
+		    	if($this->teacher_m->check_username($data)) {
+					$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
+					$id = $this->teacher_m->save($array);
+					unset($array);
+					$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
+					if($this->subject_m->insert($array)) {
+						$this->data['confirmation'] = 1;
+					} else {
+						$this->data['confirmation'] = 2;
+					}	
 				} else {
-					$this->data['confirmation'] = 2;
-				}	
-	    	} else {
+					$this->data['confirmation'] = 4;
+				}
+			} else {
 				$this->data['confirmation'] = 3;
 			}
 		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_teacher_layout');
 	}
-
+	
 	public function account() {
 		$id = $this->session->userdata('id');
 		$admin_data = $this->admin_m->get($id);
