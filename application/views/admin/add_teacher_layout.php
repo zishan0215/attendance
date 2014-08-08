@@ -26,6 +26,12 @@
 										<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid data </td></tr>
 									</table>
 									';
+							} elseif($confirmation === 4) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Username already exists. Please enter valid data </td></tr>
+									</table>
+									';
 							}
 						}
 					?>
