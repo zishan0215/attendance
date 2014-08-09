@@ -101,20 +101,22 @@ class Admin extends Admin_Controller {
 	}
 
 	public function edit_teacher() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
 		if($this->input->post('submit')) {
 			$this->load->model('teacher_m');
+			$this->data['teacher'] = $this->teacher_m->get_s($this->data['teacher_id']);
 			$rules = $this->teacher_m->rules2;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
 				$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));	
 				if($this->teacher_m->check_username($array)) {
-					$id = $this->teacher_m->save($array);
+					$id1 = $this->teacher_m->save($array,$this->data['teacher_id']);
 					unset($array);
 					$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
-					if($this->subject_m->insert($array)) {
+					if($this->teacher_m->save($array,$this->data['teacher_id'])) {
 						$this->data['confirmation'] = 1;
 					} else {
 						$this->data['confirmation'] = 2;

@@ -2,8 +2,8 @@
 	<div class="row">
 		<!-- Main column -->
 		<div class="col-md-9">
-			<h2>Edit teacher details of : <? php ?></h2>
-			<h4>Teacher Id: <?php echo $teacher_id; //remove this when done with the editing ?></h4>
+			<h3>Teacher Id: <?php echo $_POST['teacher_id']; ?></h3>
+			<h4>Edit details of : $teacher->teacher_name</h4>
 			<br>
 			<section>
 				<h2>Add Teacher</h2>

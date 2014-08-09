@@ -94,6 +94,12 @@ class Teacher_m extends MY_Model {
 		return TRUE;
 	}
 	
+	public function get_s($id){
+		$sql = "SELECT teacher_name, teacher_id FROM teacher WHERE teacher_id = ? "; 
+		$q=$this->db->query($sql, array(1, $id));
+		return $q;		
+	} 
+
 	public function logout () {
 		$this->session->sess_destroy();
 	}
