@@ -18,43 +18,48 @@
 					    	<input type="text" class="form-control" name="teacher_name" value="Put name here through PHP" required>
 					    </div>
 					</div>
+					<br/>	
 					<br/>
 					<!-- Insert other fields here -->
 					<div class="form-group">
 					    <label for="username" class="col-sm-3 control-label">Username</label>
-					    <div class="col-sm-5">
+					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" placeholder="Username for login" name="username" required>
 					    </div>
 					</div>
 					<br/>
+					<br/>
 					<div class="form-group">
 					    <label for="password" class="col-sm-3 control-label">Password</label>
-					    <div class="col-sm-5">
+					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" placeholder="Password for login" name="password" required>
 					    </div>
 					</div>
 					<br/>
+					<br/>
 					<div class="form-group">
 					    <label for="subjectname" class="col-sm-3 control-label">Subject Name</label>
-					    <div class="col-sm-5">
+					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" placeholder="Name of the subject" name="subject_name" required>
 					    </div>
 					</div>
 					<br/>
+					<br/>
 					<div class="form-group">
 					    <label for="subjectcode" class="col-sm-3 control-label">Subject Code</label>
-					    <div class="col-sm-5">
+					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" placeholder="Subject Code (Eg. CEN-501)" name="subject_code" required>
 					    </div>
 					</div>
 					<br/>
+					<br/>
 					<div class="form-group">
 					    <label for="semester" class="col-sm-3 control-label">Semester</label>
-					    <div class="col-sm-5">
+					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" placeholder="Subject semester" name="semester" required>
 					    </div>
 					</div>
-
+					<br/>
 					<div class="form-group">
 					    <div class="col-sm-offset-3 col-sm-7">
 					    	<br>
