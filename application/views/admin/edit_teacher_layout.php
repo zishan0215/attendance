@@ -18,6 +18,7 @@
 					    	<input type="text" class="form-control" name="teacher_name" value="Put name here through PHP" required>
 					    </div>
 					</div>
+					<br/>
 					<br/>	
 					<br/>
 					<!-- Insert other fields here -->
