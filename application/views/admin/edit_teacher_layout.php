@@ -6,7 +6,37 @@
 			<h4>Teacher Id: <?php echo $teacher_id; //remove this when done with the editing ?></h4>
 			<br>
 			<section>
-				
+				<h2>Add Teacher</h2>
+					<br>
+					<?php 
+						if(isset($confirmation)) {
+							if($confirmation === 1) {
+								echo '
+									<table class="table">
+										<tr class="success"><td>Success! Teacher Details Updated</td></tr>
+									</table>
+									';
+							} elseif($confirmation === 2) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Could edit the details </td></tr>
+									</table>
+									';
+							} elseif($confirmation === 3) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid data </td></tr>
+									</table>
+									';
+							} elseif($confirmation === 4) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Username already exists. Please enter a different username </td></tr>
+									</table>
+									';
+							}
+						}
+					?>	
 			</section>
 			<section>
 				<!-- Put the form below this line -->
@@ -15,7 +45,7 @@
 					<div class="form-group">
 					    <label for="name" class="col-sm-3 control-label ">Name</label>
 					    <div class="col-sm-7">
-					    	<input type="text" class="form-control" name="teacher_name" value="Put name here through PHP" required>
+					    	<input type="text" class="form-control" name="teacher_name" placeholder="Name of the teacher" required>
 					    </div>
 					</div>
 					<br/>
