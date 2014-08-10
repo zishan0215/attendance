@@ -110,6 +110,6 @@ class Teacher_m extends MY_Model {
 	public function hash ($string) {
 		return hash('sha512', $string . config_item('encryption_key'));
 	}
-}
+ }
 
 ?>

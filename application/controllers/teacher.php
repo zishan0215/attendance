@@ -14,6 +14,7 @@ class Teacher extends Teacher_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$id = $this->session->userdata('id');
 		$array = array('teacher_id' => $id);
+		$this->load->model('subject_m');
 		$this->data['rows'] = $this->subject_m->get_by($array);
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/main_layout');
@@ -23,10 +24,15 @@ class Teacher extends Teacher_Controller {
 	public function students() {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
-		$this->load->view('teachers/components/teacher_header', $this->data);
-		$this->load->model('student_m');
-		$data['rows']=$this->student_m->get();
-		$this->load->view('teachers/students_layout',$data);
+		$this->data['rows'] = array();
+		$this->data['semesters'] = $this->student_m->get_distinct_semester();
+		$semester = $this->input->post('semester');
+		if($semester) {
+			$array = array('semester' => $semester);
+			$this->data['rows'] = $this->student_m->get_by($array);
+		}
+		$this->load->view('teacher/components/teacher_header', $this->data);
+		$this->load->view('teacher/students_layout');
 	}
 
 	public function teachers() {
@@ -72,7 +78,6 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/view_attendance_layout');		
 	}
-
 	public function login() {
 		$this->teacher_m->loggedin() == FALSE || redirect('teacher/');
 		$rules = $this->teacher_m->rules;
