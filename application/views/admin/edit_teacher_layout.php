@@ -93,7 +93,7 @@
 					<div class="form-group">
 					    <div class="col-sm-offset-3 col-sm-7">
 					    	<br>
-					    	<input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
+					    	<input type="submit" class="btn btn-success"  value="Submit">&nbsp;&nbsp;
 					    	<a href="http://localhost/jmiams/index.php/admin/teachers" class="btn btn-danger">Cancel</a>
 					    </div>
   					</div>

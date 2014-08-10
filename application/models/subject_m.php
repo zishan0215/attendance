@@ -38,8 +38,8 @@ class Subject_m extends MY_Model {
 	}
 
 	public function update($data,$id) {
-		$query = 'UPDATE subject SET subject_code = ' . "'" . $data['subject_code'] . "' , " . 'subject_name = ' . "'" . $data['subject_name'] . "' ," .'semester = ' . $data['semester'] . ' WHERE teacher_id = '  . $id ;
-		echo $query;  
+		$query = 'UPDATE subject SET subject_code = ' . "'" . $data['subject_code'] . "'" . "','" . 'subject_name  = ' . "'" . $data['subject_name'] . "'" . "','" .'semester = ' . "'" . $data['semester'] . "'" .' WHERE teacher_id' = . $id ;
+		//echo $query;  
 		$this->db->query($query);
 		if($this->db->affected_rows()) {
 				return TRUE;
