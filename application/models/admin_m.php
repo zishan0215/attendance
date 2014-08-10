@@ -46,6 +46,7 @@ class Admin_m extends MY_Model {
 				'username' => $user->username,
 				'id' => $user->admin_id,
 				'loggedin' => TRUE,
+				'loggedin_type' => 0
 			);
 			$this->session->set_userdata($data);
 		}
@@ -57,6 +58,10 @@ class Admin_m extends MY_Model {
 
 	public function loggedin () {
 		return (bool) $this->session->userdata('loggedin');
+	}
+
+	public function loggedin_type () {
+		return $this->session->userdata('loggedin_type');
 	}
 
 	public function hash ($string) {

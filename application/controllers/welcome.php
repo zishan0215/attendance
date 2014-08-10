@@ -17,8 +17,16 @@ class Welcome extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index() {
+		$this->load->model('admin_m');
+		$this->load->library('session');
+		if($this->admin_m->loggedin()) {
+			if($this->admin_m->loggedin_type() == 0) {
+				redirect('admin/');
+			} else if($this->admin_m->loggedin_type() == 1) {
+				redirect('teacher/');
+			}
+		}
 		$this->load->view('welcome_message');
 	}
 }

@@ -80,6 +80,7 @@ class Teacher_m extends MY_Model {
 				'username' => $user->username,
 				'id' => $user->teacher_id,
 				'loggedin' => TRUE,
+				'loggedin_type' => 1
 			);
 			$this->session->set_userdata($data);
 		}
@@ -100,6 +101,10 @@ class Teacher_m extends MY_Model {
 
 	public function loggedin () {
 		return (bool) $this->session->userdata('loggedin');
+	}
+
+	public function loggedin_type () {
+		return $this->session->userdata('loggedin_type');
 	}
 
 	public function hash ($string) {
