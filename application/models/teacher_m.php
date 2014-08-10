@@ -80,31 +80,17 @@ class Teacher_m extends MY_Model {
 				'username' => $user->username,
 				'id' => $user->teacher_id,
 				'loggedin' => TRUE,
-				'loggedin_type' => 1
 			);
 			$this->session->set_userdata($data);
 		}
 	}
 
-	public function check_username($data) {
-		$query = 'SELECT * FROM teacher WHERE username = ' . "'" . $data['username'] . "'" ;
-		$q = $this->db->query($query);
-		if($q->num_rows()>0) {
-			return FALSE;
-		}
-		return TRUE;
-	}
-	
 	public function logout () {
 		$this->session->sess_destroy();
 	}
 
 	public function loggedin () {
 		return (bool) $this->session->userdata('loggedin');
-	}
-
-	public function loggedin_type () {
-		return $this->session->userdata('loggedin_type');
 	}
 
 	public function hash ($string) {
