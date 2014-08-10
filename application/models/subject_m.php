@@ -35,7 +35,18 @@ class Subject_m extends MY_Model {
 				return TRUE;
 			}
 			return FALSE;
-		}
+	}
+
+	public function update($data,$id) {
+		//$query = 'UPDATE subject SET subject_code = ' . "'" . $data['subject_code'] . "'" . "','" . 'subject_name = ' . "'" . $data['subject_name'] . "'" . "','" .'semester = ' . $data['semester'] . ' WHERE teacher_id = '  . $id ;
+		$query = 'UPDATE subject SET subject_code = ' . $data['subject_code'] . ', subject_name = ' . $data['subject_name'] .', semester = ' . $data['semester'] . ' WHERE teacher_id =' . $id ;
+		echo $query;  
+		$this->db->query($query);
+		if($this->db->affected_rows()) {
+				return TRUE;
+			}
+			return FALSE;
+	}
 }
 
 ?>

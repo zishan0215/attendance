@@ -6,37 +6,36 @@
 			<h4>Edit details of : $teacher->teacher_name</h4>
 			<br>
 			<section>
-				<h2>Add Teacher</h2>
-					<br>
-					<?php 
-						if(isset($confirmation)) {
-							if($confirmation === 1) {
-								echo '
-									<table class="table">
-										<tr class="success"><td>Success! Teacher Details Updated</td></tr>
-									</table>
-									';
-							} elseif($confirmation === 2) {
-								echo '
-									<table class="table">
-										<tr class="danger"><td>Failure! Could edit the details </td></tr>
-									</table>
-									';
-							} elseif($confirmation === 3) {
-								echo '
-									<table class="table">
-										<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid data </td></tr>
-									</table>
-									';
-							} elseif($confirmation === 4) {
-								echo '
-									<table class="table">
-										<tr class="danger"><td>Failure! Username already exists. Please enter a different username </td></tr>
-									</table>
-									';
-							}
+				<br>
+				<?php 
+					if(isset($confirmation)) {
+						if($confirmation === 1) {
+							echo '
+								<table class="table">
+									<tr class="success"><td>Success! Teacher Details Updated</td></tr>
+								</table>
+								';
+						} elseif($confirmation === 2) {
+							echo '
+								<table class="table">
+									<tr class="danger"><td>Failure! Could edit the details </td></tr>
+								</table>
+								';
+						} elseif($confirmation === 3) {
+							echo '
+								<table class="table">
+									<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid data </td></tr>
+								</table>
+								';
+						} elseif($confirmation === 4) {
+							echo '
+								<table class="table">
+									<tr class="danger"><td>Failure! Username already exists. Please enter a different username </td></tr>
+								</table>
+								';
 						}
-					?>	
+					}
+				?>	
 			</section>
 			<section>
 				<!-- Put the form below this line -->
