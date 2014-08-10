@@ -114,15 +114,16 @@ class Admin extends Admin_Controller {
 				$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
 				if($this->teacher_m->check_username($array)) {
 					$id = $this->teacher_m->save($array,$this->data['teacher_id']);
-					if($this->db->affected_rows()) {
+					//if($this->db->affected_rows()) {
 					unset($array);
 					$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'));
+					$this->load->model('subject_m');
 					if($this->subject_m->update($array,$this->data['teacher_id'])) {
 						$this->data['confirmation'] = 1;
 					} else {
 						$this->data['confirmation'] = 2;
 					}
-				}
+				//}
 				} else {
 					$this->data['confirmation'] = 4;	
 				}	
