@@ -104,9 +104,11 @@ class Admin extends Admin_Controller {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
+		$this->load->model('teacher_m');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->data['teacher'] = $this->teacher_m->get_by(array('teacher_id' => $this->data['teacher_id']));
+		$this->data['subject'] = $this->subject_m->get_by(array('teacher_id' => $this->data['teacher_id']));
 		if($this->input->post('submit')) {
-			$this->load->model('teacher_m');
 			$this->data['teacher'] = $this->teacher_m->get_s($this->data['teacher_id']);
 			$rules = $this->teacher_m->rules2;
 	    	$this->form_validation->set_rules($rules);

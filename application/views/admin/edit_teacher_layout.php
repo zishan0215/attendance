@@ -1,9 +1,9 @@
+
 <div class="container">
 	<div class="row">
 		<!-- Main column -->
 		<div class="col-md-9">
-			<h3>Teacher Id: <?php echo $_POST['teacher_id']; ?></h3>
-			<h4>Edit details of : $teacher->teacher_name</h4>
+			<h3>Edit details of : <?php echo $teacher[0]->teacher_name; ?></h3>
 			<br>
 			<section>
 				<br>
@@ -44,7 +44,7 @@
 					<div class="form-group">
 					    <label for="name" class="col-sm-3 control-label ">Name</label>
 					    <div class="col-sm-7">
-					    	<input type="text" class="form-control" name="teacher_name" placeholder="Name of the teacher" required>
+					    	<input type="text" class="form-control" name="teacher_name" value="<?php echo $teacher[0]->teacher_name; ?>" required>
 					    </div>
 					</div>
 					<br/>
@@ -54,23 +54,23 @@
 					<div class="form-group">
 					    <label for="username" class="col-sm-3 control-label">Username</label>
 					    <div class="col-sm-7">
-					    	<input type="text" class="form-control" placeholder="Username for login" name="username" required>
+					    	<input type="text" class="form-control" value="<?php echo $teacher[0]->username; ?>" name="username" required>
 					    </div>
 					</div>
-					<br/>
+					<!--br/>
 					<br/>
 					<div class="form-group">
 					    <label for="password" class="col-sm-3 control-label">Password</label>
 					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" placeholder="Password for login" name="password" required>
 					    </div>
-					</div>
+					</div-->
 					<br/>
 					<br/>
 					<div class="form-group">
 					    <label for="subjectname" class="col-sm-3 control-label">Subject Name</label>
 					    <div class="col-sm-7">
-					    	<input type="text" class="form-control" placeholder="Name of the subject" name="subject_name" required>
+					    	<input type="text" class="form-control" value="<?php echo $subject[0]->subject_name; ?>" name="subject_name" required>
 					    </div>
 					</div>
 					<br/>
@@ -78,7 +78,7 @@
 					<div class="form-group">
 					    <label for="subjectcode" class="col-sm-3 control-label">Subject Code</label>
 					    <div class="col-sm-7">
-					    	<input type="text" class="form-control" placeholder="Subject Code (Eg. CEN-501)" name="subject_code" required>
+					    	<input type="text" class="form-control" value="<?php echo $subject[0]->subject_code; ?>" name="subject_code" required>
 					    </div>
 					</div>
 					<br/>
@@ -86,7 +86,7 @@
 					<div class="form-group">
 					    <label for="semester" class="col-sm-3 control-label">Semester</label>
 					    <div class="col-sm-7">
-					    	<input type="text" class="form-control" placeholder="Subject semester" name="semester" required>
+					    	<input type="text" class="form-control" value="<?php echo $subject[0]->semester; ?>" name="semester" required>
 					    </div>
 					</div>
 					<br/>
