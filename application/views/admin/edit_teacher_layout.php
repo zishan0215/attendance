@@ -3,7 +3,7 @@
 	<div class="row">
 		<!-- Main column -->
 		<div class="col-md-9">
-			<h3>Edit details of : <?php echo $teacher[0]->teacher_name; ?></h3>
+			<h2>Edit details of : <?php echo $teacher[0]->teacher_name; ?></h2>
 			<br>
 			<section>
 				<br>
@@ -18,7 +18,7 @@
 						} elseif($confirmation === 2) {
 							echo '
 								<table class="table">
-									<tr class="danger"><td>Failure! Could edit the details </td></tr>
+									<tr class="danger"><td>Failure! Could not edit the details </td></tr>
 								</table>
 								';
 						} elseif($confirmation === 3) {
@@ -93,7 +93,8 @@
 					<div class="form-group">
 					    <div class="col-sm-offset-3 col-sm-7">
 					    	<br>
-					    	<input type="submit" class="btn btn-success" name="submit1" value="Submit">&nbsp;&nbsp;
+					    	<input type="hidden" name="teacher_id" value="<?php echo $teacher_id; ?>">
+					    	<input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
 					    	<a href="http://localhost/jmiams/index.php/admin/teachers" class="btn btn-danger">Cancel</a>
 					    </div>
   					</div>

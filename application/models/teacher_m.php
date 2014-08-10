@@ -54,6 +54,34 @@ class Teacher_m extends MY_Model {
 			)
 		);
 
+		public $rules3 = array(
+			'teachername' => array(
+				'field' => 'teacher_name', 
+				'label' => 'Full Name', 
+				'rules' => 'trim|required'
+			),
+			'username' => array(
+				'field' => 'username', 
+				'label' => 'Username', 
+				'rules' => 'trim|required'
+			), 
+			'subject_name' => array(
+				'field' => 'subject_name', 
+				'label' => 'Subject Name', 
+				'rules' => 'trim|required'
+			),
+			'subject_code' => array(
+				'field' => 'subject_code', 
+				'label' => 'Subject Code', 
+				'rules' => 'trim|required'
+			),
+			'semester' => array(
+				'field' => 'semester', 
+				'label' => 'Semester', 
+				'rules' => 'trim|required'
+			)
+		);
+
 	function __construct () {
 		parent::__construct();
 	}
@@ -90,9 +118,14 @@ class Teacher_m extends MY_Model {
 		$query = 'SELECT * FROM teacher WHERE username = ' . "'" . $data['username'] . "'" ;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0) {
-			return FALSE;
+			return TRUE;
 		}
-		return TRUE;
+		return FALSE;
+	}
+
+	public function get_username($data) {
+		$row = $this->get_by($data);
+		return $row[0]->username;
 	}
 	
 	public function get_s($id){
