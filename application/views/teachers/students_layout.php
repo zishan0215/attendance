@@ -41,4 +41,4 @@
 		</div>
 	</div>
 
-<?php $this->load->view('teacher/components/teacher_footer') ; ?>
+<?php $this->load->view('teachers/components/teacher_footer') ; ?>

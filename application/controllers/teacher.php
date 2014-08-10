@@ -31,8 +31,8 @@ class Teacher extends Teacher_Controller {
 			$array = array('semester' => $semester);
 			$this->data['rows'] = $this->student_m->get_by($array);
 		}
-		$this->load->view('teacher/components/teacher_header', $this->data);
-		$this->load->view('teacher/students_layout');
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/students_layout');
 	}
 
 	public function teachers() {
