@@ -24,15 +24,16 @@ class Teacher extends Teacher_Controller {
 	public function students() {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
+		$array = array('teacher_id' => $this->session->userdata('id'));
 		$this->data['rows'] = array();
-		$this->data['semesters'] = $this->student_m->get_distinct_semester();
+		//$this->data['semesters'] = $this->student_m->get_distinct_semester();
+		$this->data['semesters'] = $this->subject_m->get_distinct_semester($this->session->userdata('id'));
 		$semester = $this->input->post('semester');
 		if($semester) {
 			$array = array('semester' => $semester);
 			$this->data['rows'] = $this->student_m->get_by($array);
 		}
 		$this->load->model('student_m');
-		$data['rows']=$this->student_m->get();
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/students_layout');
 	}
