@@ -64,21 +64,6 @@ class Teacher_m extends MY_Model {
 				'field' => 'username', 
 				'label' => 'Username', 
 				'rules' => 'trim|required'
-			), 
-			'subject_name' => array(
-				'field' => 'subject_name', 
-				'label' => 'Subject Name', 
-				'rules' => 'trim|required'
-			),
-			'subject_code' => array(
-				'field' => 'subject_code', 
-				'label' => 'Subject Code', 
-				'rules' => 'trim|required'
-			),
-			'semester' => array(
-				'field' => 'semester', 
-				'label' => 'Semester', 
-				'rules' => 'trim|required'
 			)
 		);
 

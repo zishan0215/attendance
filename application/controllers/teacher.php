@@ -25,7 +25,6 @@ class Teacher extends Teacher_Controller {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = array();
-		//$this->data['semesters'] = $this->student_m->get_distinct_semester();
 		$this->data['semesters'] = $this->subject_m->get_distinct_semester($this->session->userdata('id'));
 		$semester = $this->input->post('semester');
 		if($semester) {

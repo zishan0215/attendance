@@ -106,11 +106,8 @@ class Admin extends Admin_Controller {
 		$this->load->model('teacher_m');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
 		$array = array('teacher_id' => $this->data['teacher_id']);
-		$this->data['teacher'] = $this->teacher_m->get_by($array);
-		$this->data['subject'] = $this->subject_m->get_by($array);
 		$username = $this->teacher_m->get_username($array);
 		if($this->input->post('submit')) {
-			//$this->data['teacher'] = $this->teacher_m->get_s($this->data['teacher_id']);
 			$rules = $this->teacher_m->rules3;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
@@ -120,11 +117,7 @@ class Admin extends Admin_Controller {
 						$this->data['confirmation'] = 4;
 					}
 				} else {
-					$id = $this->teacher_m->save($array,$this->data['teacher_id']);
-					//if($this->db->affected_rows()) {
-					unset($array);
-					$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'));
-					if($this->subject_m->update($array,$this->data['teacher_id'])) {
+					if($this->teacher_m->save($array,$this->data['teacher_id'])) {
 						$this->data['confirmation'] = 1;
 					} else {
 						$this->data['confirmation'] = 2;
@@ -134,6 +127,7 @@ class Admin extends Admin_Controller {
 				$this->data['confirmation'] = 3;
 			}
 		}
+		$this->data['teacher'] = $this->teacher_m->get_by($array);
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/edit_teacher_layout');	
 	}
