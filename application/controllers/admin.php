@@ -95,7 +95,6 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$this->load->model('teacher_m');
 		$this->data['rows'] = $this->teacher_m->get();
-		$this->data['rows2'] = $this->subject_m->get();
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/teachers_layout');
 	}
@@ -167,6 +166,22 @@ class Admin extends Admin_Controller {
 		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_teacher_layout');
+	}
+
+	public function view_teacher() {
+		$this->data['page'] = 1;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/view_teacher_layout');
+	}
+
+	public function add_subject() {
+		$this->data['page'] = 1;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/add_subject_layout');
 	}
 
 	public function account() {
