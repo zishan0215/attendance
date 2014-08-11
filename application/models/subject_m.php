@@ -25,6 +25,14 @@ class Subject_m extends MY_Model {
 		}	
 	}
 
+	public function get_sem_by_id($id) {
+		$query = "SELECT DISTINCT semester FROM subject WHERE teacher_id = " . $id;
+		$q = $this->db->query($query);
+
+		return $q;
+		}	
+	}
+	
 	public function insert($data) {
 		$query = 'INSERT INTO subject (subject_code, subject_name, semester, teacher_id) VALUES ('. "'";
 		$query .= $data['subject_code'] . "','" . $data['subject_name'] ."','";
