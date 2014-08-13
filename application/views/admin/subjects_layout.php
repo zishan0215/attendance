@@ -5,7 +5,11 @@
 			<div class="col-md-9">
 				<section>
 					<h2>List of subjects</h2>
-					<br />
+					<br>
+				</section>
+				<section>
+					<a href="http://localhost/jmiams/index.php/admin/add_subject" class="btn btn-warning">Add Subject</a>
+					<br><br>
 				</section>
 				<section>
 					<h4>Select Semester</h4>

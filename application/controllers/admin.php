@@ -184,10 +184,17 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/view_teacher_layout');
 	}
 
-	public function add_subject() {
+	public function link_subject() {
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/link_subject_layout');
+	}
+
+	public function add_subject() {
+		$this->data['page'] = 3;
+		$this->data['name'] = $this->session->userdata('name');
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_subject_layout');
 	}
