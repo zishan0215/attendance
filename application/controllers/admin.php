@@ -24,6 +24,20 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/main_layout');	
 	}
 
+	public function subjects() {
+		$this->data['page'] = 3;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['rows'] = array();
+		$this->data['semesters'] = $this->subject_m->get_distinct_semester_all();
+		$semester = $this->input->post('semester');
+		if($semester) {
+			$array = array('semester' => $semester);
+			$this->data['rows'] = $this->subject_m->get_by($array);
+		}
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/subjects_layout');
+	}
+
 	public function students() {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');

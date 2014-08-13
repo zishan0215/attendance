@@ -37,17 +37,10 @@ class Subject_m extends MY_Model {
 		return FALSE;
 	}
 
-	public function update($data,$id) {
-		$query = 'UPDATE subject SET'; 
-		$query .= ' subject_name = ' . "'" . $data['subject_name'] . "',";
-		$query .= ' semester = ' . $data['semester'] . ' WHERE teacher_id = '. $id;
-		//echo $query;  
-		$this->db->query($query);
-		return TRUE;
-		/*if($this->db->affected_rows()) {
-			return TRUE;
-		}
-		return FALSE;*/
+	public function get_distinct_semester_all() {
+		$query = 'SELECT DISTINCT semester FROM subject';
+		$q = $this->db->query($query);
+		return $q;
 	}
 
 	public function get_distinct_semester($id) {

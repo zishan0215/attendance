@@ -26,6 +26,8 @@
 				    <li <?php if($page == 0) echo 'class="active"' ?>><a href="<?php echo site_url('admin/'); ?>">Dashboard</a></li>
 				    <li <?php if($page == 1) echo 'class="active"' ?>><?php echo anchor('admin/teachers', 'Teachers'); ?></li>
 				    <li <?php if($page == 2) echo 'class="active"' ?>><?php echo anchor('admin/students', 'Students'); ?></li>
+				    <li <?php if($page == 3) echo 'class="active"' ?>><?php echo anchor('admin/subjects', 'Subjects'); ?></li>
+			    
 			    </ul>
 			    <ul class="nav navbar-nav pull-right">
 			    	<li class="dropdown pull-right">

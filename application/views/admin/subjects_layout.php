@@ -4,12 +4,12 @@
 			<!-- Main column -->
 			<div class="col-md-9">
 				<section>
-					<h2>List of students</h2>
+					<h2>List of subjects</h2>
 					<br />
 				</section>
 				<section>
 					<h4>Select Semester</h4>
-					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/students" method="post">
+					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/subjects" method="post">
 						<div class="form-group">
 							<select class="form-control" name="semester">
 								<?php 
@@ -26,11 +26,11 @@
 				<br><br>
 				<section>
 					<table class="table table-striped"> 	
-						<thead><tr><th>Student Id</th><th>Roll Number</th><th>Name</th><th>Semester</th></tr></thead>
+						<thead><tr><th>Subject Code</th><th>Subject Name</th><th>Semester</th></tr></thead>
 						<tbody>
 						<?php
 							foreach($rows as $r){
-								echo '<tr><td>' . $r->student_id . '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name . '</td><td>' . $r->semester.'</td><td><form method="post" action="http://localhost/jmiams/index.php/admin/edit_student"><input type="hidden" value="' . $r->student_id .'" name="student_id"><input type="submit" value="Edit" class="btn btn-primary"></form></td></tr>';
+								echo '<tr><td>' . $r->subject_code . '</td><td>' . $r->subject_name . '</td><td>' . $r->semester.'</td></tr>';
 							}
 						?>
 						</tbody>
