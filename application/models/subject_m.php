@@ -25,6 +25,18 @@ class Subject_m extends MY_Model {
 		}	
 	}
 
+	public function get_code() {
+		$query = "SELECT subject_code FROM subject";
+		$q = $this->db->query($query);
+		/*if($q->num_rows()>0){
+			foreach($q->result() as $rows){
+				$data[]=$rows;
+			}
+			return $data;
+		}*/
+		return $q;	
+	}
+
 	public function insert($data) {
 		$query = 'INSERT INTO subject (subject_code, subject_name, semester, teacher_id) VALUES ('. "'";
 		$query .= $data['subject_code'] . "','" . $data['subject_name'] ."','";

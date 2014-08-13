@@ -188,6 +188,8 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		
+		$this->data['rows'] = $this->subject_m->get_code();
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/link_subject_layout');
 	}
