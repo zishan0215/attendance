@@ -12,7 +12,13 @@ class Subject_m extends MY_Model {
 		$sql = "SELECT subject_name, semester, teacher_id FROM subject WHERE subject_code = ? "; 
 		$q=$this->db->query($sql, array(1, $id));
 		return $q;		
-	} 
+	}
+
+	public function get_up($id){
+		$query = "UPDATE subject SET teacher_id = " . $id;	
+		$q = $this->db->query($query);
+		return $q;
+	}
 
 	public function get_id($id) {
 		$query = "SELECT subject_code FROM subject WHERE teacher_id = " . $id;

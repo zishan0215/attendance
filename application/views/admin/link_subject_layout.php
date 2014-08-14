@@ -3,23 +3,24 @@
 		<!-- Main column -->
 		<div class="col-md-9">
 			<section>
-				<h2><?php echo 'Teacher Id: ' . $teacher_id; ?></h2>
+				<h3><?php echo 'Teacher Id: ' . $teacher_id; ?></h3>
 			</section>
 		</div>
 	</div>
 </div>
-<div class="collapse navbar-collapse">
-	<li class="dropdown">
-	    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Subjects</a>
-    		<ul class="dropdown-menu">
-		        <?php
-		        if(isset($rows)) {
-		        	foreach($rows->result() as $row) {
-		                echo "<li>" . $row->subject_code . "</li>";
-		       		}
-		        }
-		        ?>
-    		</ul>
-	</li>
-</div>
+
+<h4>Select Subject</h4>
+					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/link_subject" method="post">
+						<div class="form-group">
+							<select class="form-control" name="subject">
+								<?php 
+									foreach($rows->result() as $s) {
+										echo '<option value="' . $s->subject_code . '">' . $s->subject_code . '</option>';
+									}
+								 ?>
+							</select>&nbsp;&nbsp;
+							<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
+						</div>
+					</form>
+
 <?php $this->load->view('admin/components/admin_footer'); ?>
