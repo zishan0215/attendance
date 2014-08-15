@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-class Subject_m extends MY_Model {	
+class Subject_m extends MY_Model {
 	protected $_table_name = 'subject';
 	protected $_primary_key = 'subject_code';
 	protected $_primary_filter = 'strval';
@@ -9,20 +9,20 @@ class Subject_m extends MY_Model {
 	protected $_timestamps = FALSE;
 	public $rules = array(
 		'subject_code' => array(
-			'field' => 'subject_code', 
-			'label' => 'Subject Code', 
+			'field' => 'subject_code',
+			'label' => 'Subject Code',
 			'rules' => 'trim|required'
 		)
 	);
 
 	public function get_s($id){
-		$sql = "SELECT subject_name, semester, teacher_id FROM subject WHERE subject_code = ? "; 
+		$sql = "SELECT subject_name, semester, teacher_id FROM subject WHERE subject_code = ? ";
 		$q=$this->db->query($sql, array(1, $id));
-		return $q;		
+		return $q;
 	}
 
 	public function get_up($data){
-		$query = "UPDATE subject SET teacher_id = " . $data['teacher_id'];	
+		$query = 'UPDATE subject SET teacher_id = ' . $data['teacher_id'] . " WHERE subject_code = " . "'" . $data['subject_code'] . "'";
 		$q = $this->db->query($query);
 		return $q;
 	}
@@ -35,7 +35,7 @@ class Subject_m extends MY_Model {
 				$data[]=$rows;
 			}
 			return $data;
-		}	
+		}
 	}
 
 	public function get_code() {
@@ -47,7 +47,7 @@ class Subject_m extends MY_Model {
 			}
 			return $data;
 		}*/
-		return $q;	
+		return $q;
 	}
 
 	public function insert($data) {
