@@ -5,13 +5,13 @@
 			<div class="col-md-9">
 				<section>
 					<h2>Welcome, <?php echo $name; ?></h2><br>
-					<a href="http://localhost/jmiams/index.php/admin/new_period" class="btn btn-warning">Create New Period</a>&nbsp;&nbsp;
-					<a href="http://localhost/jmiams/index.php/admin/total_attendance" class="btn btn-danger">Total Attendance</a>
+					<a href="/jmiams/index.php/admin/new_period" class="btn btn-warning">Create New Period</a>&nbsp;&nbsp;
+					<a href="/jmiams/index.php/admin/total_attendance" class="btn btn-danger">Total Attendance</a>
 					<br><br>
 				</section>
 				<section>
 					<h4>Select Period</h4>
-					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/" method="post">
+					<form class="form-inline" role="form" action="/jmiams/index.php/admin/" method="post">
 						<div class="form-group">
 							<select class="form-control" name="period">
 								<?php 
@@ -47,7 +47,7 @@
 								$to_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
 								echo '<tr><td>' . $r->subject_code . '</td><td>' . $from_date;
 								echo '</td><td>' . $to_date . '</td><td>' . $r->total_classes;
-								echo '</td><td><form action="http://localhost/jmiams/index.php/admin/view_attendance" method="post">';
+								echo '</td><td><form action="/jmiams/index.php/admin/view_attendance" method="post">';
 								echo '<input type="submit" name="View" class="btn btn-primary" value="View"/>';
 								echo '<input type="hidden" name="subject_code" value="' . $r->subject_code .'" />';
 								echo '<input type="hidden" name="from_date" value="' . $r->from_date .'" />';

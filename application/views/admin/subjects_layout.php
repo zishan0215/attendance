@@ -8,12 +8,12 @@
 					<br>
 				</section>
 				<section>
-					<a href="http://localhost/jmiams/index.php/admin/add_subject" class="btn btn-warning">Add Subject</a>
+					<a href="/jmiams/index.php/admin/add_subject" class="btn btn-warning">Add Subject</a>
 					<br><br>
 				</section>
 				<section>
 					<h4>Select Semester</h4>
-					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/subjects" method="post">
+					<form class="form-inline" role="form" action="/jmiams/index.php/admin/subjects" method="post">
 						<div class="form-group">
 							<select class="form-control" name="semester">
 								<?php 

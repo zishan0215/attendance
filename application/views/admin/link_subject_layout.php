@@ -32,7 +32,7 @@
 		</div>
 	</div>	
 	<h4>Select Subject</h4>
-		<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/link_subject" method="post">
+		<form class="form-inline" role="form" action="/jmiams/index.php/admin/link_subject" method="post">
 			<div class="form-group">
 				<select class="form-control" name="subject_code">
 					<?php 

@@ -42,7 +42,7 @@
   						</div>
   						<br>
   						<input type="submit" name="submit" value="Submit" class="btn btn-primary">&nbsp;&nbsp;
-  						<a href="http://localhost/jmiams/index.php/admin" class="btn btn-danger">Cancel</a>
+  						<a href="/jmiams/index.php/admin" class="btn btn-danger">Cancel</a>
 					</form>
 				</section>
 			</div>

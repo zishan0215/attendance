@@ -38,7 +38,7 @@
 				</section>
 				<section>
 					<br>
-					<form class="form-horizontal" role="form" method="post" action="http://localhost/jmiams/index.php/admin/add_teacher">
+					<form class="form-horizontal" role="form" method="post" action="/jmiams/index.php/admin/add_teacher">
 						<div class="form-group">
 						    <label for="teachername" class="col-sm-3 control-label">Full Name</label>
 						    <div class="col-sm-7">

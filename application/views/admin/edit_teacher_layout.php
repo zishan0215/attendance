@@ -39,7 +39,7 @@
 			</section>
 			<section>
 				<!-- Put the form below this line -->
-				<form method="post" action="http://localhost/jmiams/index.php/admin/edit_teacher">
+				<form method="post" action="/jmiams/index.php/admin/edit_teacher">
 				<!-- For each entry, copy paste the code below and edit it -->
 					<div class="form-group">
 					    <label for="name" class="col-sm-3 control-label bigger_text">Name</label>
@@ -63,7 +63,7 @@
 					    	<br>
 					    	<input type="hidden" name="teacher_id" value="<?php echo $teacher_id; ?>">
 					    	<input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
-					    	<a href="http://localhost/jmiams/index.php/admin/teachers" class="btn btn-danger">Cancel</a>
+					    	<a href="jmiams/index.php/admin/teachers" class="btn btn-danger">Cancel</a>
 					    </div>
   					</div>
 				</form>
