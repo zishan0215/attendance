@@ -21,7 +21,7 @@ class Admin extends Admin_Controller {
 			$this->data['rows2'] = $this->attendance_m->get_distinct_select($array);
 		}
 		$this->load->view('admin/components/admin_header', $this->data);
-		$this->load->view('admin/main_layout');	
+		$this->load->view('admin/main_layout');
 	}
 
 	public function subjects() {
@@ -57,7 +57,7 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['student_id'] = $this->input->post('student_id');
 		$this->load->view('admin/components/admin_header', $this->data);
-		$this->load->view('admin/edit_student_layout');	
+		$this->load->view('admin/edit_student_layout');
 	}
 
 	public function new_period() {
@@ -74,7 +74,7 @@ class Admin extends Admin_Controller {
 					$this->data['confirmation'] = 1;
 				} else {
 					$this->data['confirmation'] = 2;
-				}	
+				}
 	    	} else {
 				$this->data['confirmation'] = 3;
 			}
@@ -91,7 +91,7 @@ class Admin extends Admin_Controller {
 	}
 
 	public function view_attendance() {
-		$code = $this->input->post('subject_code'); 
+		$code = $this->input->post('subject_code');
 		$array = array('subject_code' => $code);
 		$this->data['subject'] = $this->subject_m->get_by($array, TRUE);
 		$this->data['page'] = 0;
@@ -135,27 +135,27 @@ class Admin extends Admin_Controller {
 						$this->data['confirmation'] = 1;
 					} else {
 						$this->data['confirmation'] = 2;
-					}	
-				}	
+					}
+				}
 	    	} else {
 				$this->data['confirmation'] = 3;
 			}
 		}
 		$this->data['teacher'] = $this->teacher_m->get_by($array);
 		$this->load->view('admin/components/admin_header', $this->data);
-		$this->load->view('admin/edit_teacher_layout');	
+		$this->load->view('admin/edit_teacher_layout');
 	}
 
 	public function add_teacher() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
-		$this->data['name'] = $this->session->userdata('name');		
+		$this->data['name'] = $this->session->userdata('name');
 		if($this->input->post('submit')) {
 			$this->load->model('teacher_m');
 			$rules = $this->teacher_m->rules2;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
-				$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));	
+				$array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
 				if($this->teacher_m->check_username($array)) {
 					$id = $this->teacher_m->save($array);
 					unset($array);
@@ -166,8 +166,8 @@ class Admin extends Admin_Controller {
 						$this->data['confirmation'] = 2;
 					}
 				} else {
-					$this->data['confirmation'] = 4;	
-				}	
+					$this->data['confirmation'] = 4;
+				}
 	    	} else {
 				$this->data['confirmation'] = 3;
 			}
@@ -185,9 +185,25 @@ class Admin extends Admin_Controller {
 	}
 
 	public function link_subject() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->data['rows'] = $this->subject_m->get_code();
+		$this->load->model('subject_m');
+		$rules = $this->subject_m->rules;
+    	$this->form_validation->set_rules($rules);
+    	if ($this->form_validation->run() == TRUE) {
+			$array = array('subject_code' => $this->input->post('subject_code'),'teacher_id' => $this->data['teacher_id']);
+			if($this->subject_m->get_up($array)) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+    	} else {
+			$this->data['confirmation'] = 3;
+		}
+
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/link_subject_layout');
 	}
@@ -249,7 +265,7 @@ class Admin extends Admin_Controller {
 	}
 
 	public function delete() {
-    	$this->teacher_m->delete(3); // deletes an entry in the teacher table with the id 3 
+    	$this->teacher_m->delete(3); // deletes an entry in the teacher table with the id 3
     }
 
 }
