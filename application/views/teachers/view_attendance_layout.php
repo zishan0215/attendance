@@ -16,7 +16,7 @@ if(isset($rows)) {
 				</section>
 				<section>
 					<h4>Select Period</h4>
-					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/teacher/view_attendance" method="post">
+					<form class="form-inline" role="form" action="/jmiams/index.php/teacher/view_attendance" method="post">
 						<div class="form-group">
 							<select class="form-control" name="period">
 								<?php 

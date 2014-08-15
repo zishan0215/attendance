@@ -9,7 +9,7 @@
 				</section>
 				<section>
 					<h4>Select Semester</h4>
-					<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/teacher/students" method="post">
+					<form class="form-inline" role="form" action="/jmiams/index.php/teacher/students" method="post">
 						<div class="form-group">
 							<select class="form-control" name="semester">
 								<?php 
