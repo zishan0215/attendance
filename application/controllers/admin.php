@@ -185,11 +185,26 @@ class Admin extends Admin_Controller {
 	}
 
 	public function link_subject() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
-		
 		$this->data['rows'] = $this->subject_m->get_code();
+		if($this->input->post('submit')) {
+			$this->load->model('subject_m');
+			$rules = $this->subject_m->rules;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+				$array = array('subject_code' => $this->input->post('subject_code'),'teacher_id' => $this->data['teacher_id']);
+				if($this->subject_m->get_up($array)) {
+					$this->data['confirmation'] = 1;
+				} else {
+					$this->data['confirmation'] = 2;
+				}	
+	    	} else {
+				$this->data['confirmation'] = 3;
+			}			
+		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/link_subject_layout');
 	}

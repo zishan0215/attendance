@@ -7,15 +7,22 @@ class Subject_m extends MY_Model {
 	protected $_order_by = 'subject_code';
 	public $_rules = array();
 	protected $_timestamps = FALSE;
-	
+	public $rules = array(
+		'subject_code' => array(
+			'field' => 'subject_code', 
+			'label' => 'Subject Code', 
+			'rules' => 'trim|required'
+		)
+	);
+
 	public function get_s($id){
 		$sql = "SELECT subject_name, semester, teacher_id FROM subject WHERE subject_code = ? "; 
 		$q=$this->db->query($sql, array(1, $id));
 		return $q;		
 	}
 
-	public function get_up($id){
-		$query = "UPDATE subject SET teacher_id = " . $id;	
+	public function get_up($data){
+		$query = "UPDATE subject SET teacher_id = " . $data['teacher_id'];	
 		$q = $this->db->query($query);
 		return $q;
 	}
