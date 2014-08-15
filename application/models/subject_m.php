@@ -5,23 +5,15 @@ class Subject_m extends MY_Model {
 	protected $_primary_key = 'subject_code';
 	protected $_primary_filter = 'strval';
 	protected $_order_by = 'subject_code';
-	public $_rules = array();
 	protected $_timestamps = FALSE;
-	public $rules = array(
-		'subject_code' => array(
-			'field' => 'subject_code',
-			'label' => 'Subject Code',
-			'rules' => 'trim|required'
-		)
-	);
-
+	public $rules = array();
 	public function get_s($id){
 		$sql = "SELECT subject_name, semester, teacher_id FROM subject WHERE subject_code = ? ";
 		$q=$this->db->query($sql, array(1, $id));
 		return $q;
 	}
 
-	public function get_up($data){
+	public function link_code($data){
 		$query = 'UPDATE subject SET teacher_id = ' . $data['teacher_id'] . " WHERE subject_code = " . "'" . $data['subject_code'] . "'";
 		$q = $this->db->query($query);
 		return $q;
@@ -38,15 +30,9 @@ class Subject_m extends MY_Model {
 		}
 	}
 
-	public function get_code() {
-		$query = "SELECT subject_code FROM subject";
+	public function get_subject_code_for_teacher($id) {
+		$query = "SELECT subject_code FROM subject WHERE subject_code NOT IN (SELECT subject_code from subject WHERE teacher_id = " . $id .")";
 		$q = $this->db->query($query);
-		/*if($q->num_rows()>0){
-			foreach($q->result() as $rows){
-				$data[]=$rows;
-			}
-			return $data;
-		}*/
 		return $q;
 	}
 

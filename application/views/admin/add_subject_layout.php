@@ -3,7 +3,7 @@
 		<!-- Main column -->
 		<div class="col-md-9">
 			<section>
-				<h2>Add subject (For subjects only and not teacher.)</h2>
+				<h2>Add subject (For subjects only and not teacher.	)</h2>
 			</section>
 		</div>
 	</div>

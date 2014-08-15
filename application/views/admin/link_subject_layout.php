@@ -34,13 +34,14 @@
 	<h4>Select Subject</h4>
 		<form class="form-inline" role="form" action="http://localhost/jmiams/index.php/admin/link_subject" method="post">
 			<div class="form-group">
-				<select class="form-control" name="subject">
+				<select class="form-control" name="subject_code">
 					<?php 
 						foreach($rows->result() as $s) {
 							echo '<option value="' . $s->subject_code . '">' . $s->subject_code . '</option>';
 						}
 					 ?>
 				</select>&nbsp;&nbsp;
+				<input type="hidden" name="teacher_id" value="<?php echo $teacher_id; ?>">
 				<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
 			</div>
 		</form>

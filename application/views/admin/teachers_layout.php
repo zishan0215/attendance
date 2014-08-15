@@ -19,7 +19,7 @@
 							<?php 
 								$counter=1;	
 								foreach($rows as $r){
-									echo '<tr><td>' . $counter++ . '</td><td>' . $r->teacher_name . '</td><td><form method="post" action="http://localhost/jmiams/index.php/admin/view_teacher"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="View" class="btn btn-success"></form></td><td><form method="post" action="http://localhost/jmiams/index.php/admin/edit_teacher"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="Edit" class="btn btn-danger"></form></td><td><form method="post" action="http://localhost/jmiams/index.php/admin/link_subject"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="Add Subject" class="btn btn-primary"></form></td></tr>';
+									echo '<tr><td>' . $counter++ . '</td><td>' . $r->teacher_name . '</td><td><form method="post" action="http://localhost/jmiams/index.php/admin/view_teacher"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="View" class="btn btn-success"></form></td><td><form method="post" action="http://localhost/jmiams/index.php/admin/edit_teacher"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="Edit" class="btn btn-danger"></form></td><td><form method="post" action="/jmiams/index.php/admin/link_subject"><input type="hidden" value="' . $r->teacher_id .'" name="teacher_id"><input type="submit" value="Add Subject" class="btn btn-primary"></form></td></tr>';
 								}
 							?>
 						</tbody>
