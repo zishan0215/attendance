@@ -53,17 +53,25 @@ class Admin extends Admin_Controller {
 	}
 
 	public function edit_student() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['student_id'] = $this->input->post('student_id');
+		$this->load->model('student_m');
+		$array = array('student_id' => $this->data['student_id']);
 		if($this->input->post('submit')) {
-    		$array = array('student_name' => $this->input->post('student_name'),'student_id' => $this->data['student_id']);
-			if($this->student_m->edit_name($array)) {
-				$this->data['confirmation'] = 1;
-			} else {
-				$this->data['confirmation'] = 2;
-			}
+			$rules = $this->student_m->rules;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+	    		$array = array('student_name' => $this->input->post('student_name'),'student_id' => $this->data['student_id']);
+				if($this->student_m->save($array,$this->data['student_id'])) {
+					$this->data['confirmation'] = 1;
+				} else {
+					$this->data['confirmation'] = 2;
+				}
+	    	}
     	}
+    	$this->data['student'] = $this->student_m->get_by($array);
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/edit_student_layout');
 	}

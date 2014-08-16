@@ -3,8 +3,7 @@
 		<!-- Main column -->
 		<div class="col-md-9">
 			<section>
-				<h2>Edit student: Put student name here</h2>
-				<h4>Student Id: <?php echo $student_id; //remove this when done with the editing ?></h4>
+				<h2>Edit student: <?php echo $student[0]->student_name; ?></h2>
 				<br>
 				<?php
 						if(isset($confirmation)) {
@@ -37,7 +36,7 @@
 					<div class="form-group">
 					    <label for="name" class="col-md-2 control-label bigger_text">Name</label>
 					    <div class="col-sm-5">
-					    	<input type="text" class="form-control" name="student_name" value="Put name here through PHP" required>
+					    	<input type="text" class="form-control" name="student_name" value="<?php echo $student[0]->student_name; ?>" required>
 					    </div>
 					</div>
 					<!-- Insert other fields here -->
@@ -47,6 +46,7 @@
 					<div class="form-group">
 					    <div class="col-sm-offset-3 col-sm-7">
 					    	<br>
+					    	<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
 					    	<input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
 					    	<a href="/jmiams/index.php/admin/students" class="btn btn-danger">Cancel</a>
 					    </div>
