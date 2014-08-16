@@ -2,9 +2,34 @@
 	<div class="row">
 		<!-- Main column -->
 		<div class="col-md-9">
-			<h2>Edit student: Put student name here</h2>
-			<h4>Student Id: <?php echo $student_id; //remove this when done with the editing ?></h4>
-			<br>
+			<section>
+				<h2>Edit student: Put student name here</h2>
+				<h4>Student Id: <?php echo $student_id; //remove this when done with the editing ?></h4>
+				<br>
+				<?php
+						if(isset($confirmation)) {
+							if($confirmation === 1) {
+								echo '
+									<table class="table">
+										<tr class="success"><td>Success! Subject name changed</td></tr>
+									</table>
+									';
+							} elseif($confirmation === 2) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Could not change student name </td></tr>
+									</table>
+									';
+							} elseif($confirmation === 3) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid student name </td></tr>
+									</table>
+									';
+							}
+						}
+					?>
+			</section>
 			<section>
 				<!-- Put the form below this line -->
 				<form method="post" action="/jmiams/index.php/admin/edit_student">

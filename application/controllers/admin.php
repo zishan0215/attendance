@@ -56,6 +56,14 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['student_id'] = $this->input->post('student_id');
+		if($this->input->post('submit')) {
+    		$array = array('student_name' => $this->input->post('student_name'),'student_id' => $this->data['student_id']);
+			if($this->student_m->edit_name($array)) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+    	}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/edit_student_layout');
 	}
