@@ -4,7 +4,6 @@
 		<div class="col-md-9">
 			<section>
 				<h3><?php echo 'Teacher Id: ' . $teacher_id; ?></h3>
-				<h2>Edit details of : <?php echo $teacher[0]->teacher_name; ?></h2>
 				<br>
 				<?php
 						if(isset($confirmation)) {
