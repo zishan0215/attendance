@@ -4,6 +4,7 @@
 	<title><?php echo $meta_title; ?></title>
 	<!-- Bootstrap -->
 	<link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/jmiams/css/styles.css" rel="stylesheet">
 	<script src="/jmiams/js/jquery-1.11.1.min.js"></script>
 	<script src="/jmiams/js/bootstrap.min.js"></script>
 </head>

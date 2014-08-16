@@ -41,6 +41,17 @@ class Attendance_m extends MY_Model {
 				return $data;
 			}
 		}
+
+		public function insert($data){
+			$query = 'INSERT INTO attendance VALUES(';
+			$query .= $data['student_id'] . ", '" . $data['subject_code'] . "', '" . $data['from_date'] . "', '";
+			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ");";
+			$this->db->query($query);
+			if($this->db->affected_rows()) {
+				return TRUE;
+			}
+			return FALSE;
+		}
 }
 
 ?>
