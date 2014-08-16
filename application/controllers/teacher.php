@@ -107,7 +107,6 @@ class Teacher extends Teacher_Controller {
 		for ($i=1;$i<=$values; $i++) { 
 			$val = $this->input->post('num:' . $i);
 			$s_id = $this->input->post('student_id:' . $i);
-			//echo $s_id;
 			$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total);
 			$this->attendance_m->insert($array);
 		}
