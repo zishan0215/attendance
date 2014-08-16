@@ -13,6 +13,7 @@
 							$counter = 1;
 							foreach($rows as $r){
 								echo '<tr><td>' . $counter++ . '</td><td>' . $r->subject_code . '</td><td>' . $r->subject_name . '</td><td>' . $r->semester . '</td><td><form action="/jmiams/index.php/teacher/view_attendance" method="post"><input type="submit" name="View" class="btn btn-primary" value="View"/><input type="hidden" name="subject_code" value="' . $r->subject_code .'" /></form></td><td><a href="#" class="btn btn-primary" name="subject_code" value="' . $r->subject_code .'">Feed</a></td></tr>';
+								echo '<tr><td>' . $counter++ . '</td><td>' . $r->subject_code . '</td><td>' . $r->subject_name . '</td><td>' . $r->semester . '</td><td><form action="http://localhost/jmiams/index.php/teacher/view_attendance" method="post"><input type="submit" name="View" class="btn btn-primary" value="View"/><input type="hidden" name="subject_code" value="' . $r->subject_code .'" /></form></td><td><form action="http://localhost/jmiams/index.php/teacher/feed_attendance" method="post"><input type="hidden" name="subject_code" value="' . $r->subject_code .'" /><input type="hidden" name="semester" value="' . $r->semester .'" /><input type="submit" name="Feed" class="btn btn-primary" value="Feed"/></form></td></tr>';
 							}
 						?>
 					</tbody>
