@@ -63,7 +63,7 @@ class Admin extends Admin_Controller {
 			$rules = $this->student_m->rules;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
-	    		$array = array('student_name' => $this->input->post('student_name'),'student_id' => $this->data['student_id']);
+	    		$array = array('student_name' => $this->input->post('student_name'),'student_id' => $this->data['student_id'],'semester' => $this->input->post('semester'));
 				if($this->student_m->save($array,$this->data['student_id'])) {
 					$this->data['confirmation'] = 1;
 				} else {

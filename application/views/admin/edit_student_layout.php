@@ -39,6 +39,14 @@
 					    	<input type="text" class="form-control" name="student_name" value="<?php echo $student[0]->student_name; ?>" required>
 					    </div>
 					</div>
+					<br/>
+						<br/>
+						<br/>
+					    <label for="semester" class="col-md-2 control-label bigger_text">Semester</label>
+					    <div class="col-sm-5">
+					    	<input type="text" class="form-control" name="semester" value="<?php echo $student[0]->semester; ?>" required>
+					    </div>
+					</div>
 					<!-- Insert other fields here -->
 
 
