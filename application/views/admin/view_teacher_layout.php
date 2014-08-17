@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<!-- Main column -->
-		<div class="col-md-9">
+		<div class="col-md-10 col-md-offset-1">
 			<section>
 				<h2><?php echo 'Teacher Name: '.$teacher1->teacher_name; ?></h2>	
 				<br><br>

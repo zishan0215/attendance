@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="col-md-9">
+			<div class="col-md-8 col-md-offset-2">
 				<section>
 					<h2>My account</h2><br />	
 				</section>

@@ -112,7 +112,12 @@ class Teacher_m extends MY_Model {
 		$row = $this->get_by($data);
 		return $row[0]->username;
 	}
-	
+
+	public function get_name($data) {
+		$row = $this->get_by($data);
+		return $row[0]->teacher_name;
+	}
+
 	public function get_s($id){
 		$sql = "SELECT teacher_name, teacher_id FROM teacher WHERE teacher_id = ? "; 
 		$q=$this->db->query($sql, array(1, $id));

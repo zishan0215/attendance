@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="col-md-9">
+			<div class="col-md-10 col-md-offset-1">
 				<section>
 					<h2>List of subjects</h2>
 					<br>
@@ -34,7 +34,7 @@
 						<tbody>
 						<?php
 							foreach($rows as $r){
-								echo '<tr><td>' . $r->subject_code . '</td><td>' . $r->subject_name . '</td><td>' . $r->semester.'</td></tr>';
+								echo '<tr><td>' . $r->subject_code . '</td><td>' . $r->subject_name . '</td><td>' . $r->semester.'</td><td><form method="post" action="/jmiams/index.php/admin/edit_subject"><input type="hidden" value="' . $r->subject_code .'" name="subject_code"><input type="submit" value="Edit" class="btn btn-primary"></form></td></tr>';
 							}
 						?>
 						</tbody>

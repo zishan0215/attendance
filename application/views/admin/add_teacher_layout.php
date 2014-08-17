@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="col-md-9">
+			<div class="col-md-8 col-md-offset-2" style="text-align:center;">
 				<section>
 					<h2>Add Teacher</h2>
 					<br>

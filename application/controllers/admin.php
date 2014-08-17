@@ -38,6 +38,24 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/subjects_layout');
 	}
 
+	public function edit_subject() {
+		$this->data['page'] = 3;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['confirmation'] = 0;
+		$this->data['subject_code'] = $this->input->post('subject_code');
+		if($this->input->post('submit')) {
+			$data = array('subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'));
+			if($this->subject_m->save($data, $this->data['subject_code'])) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+		}
+		$this->data['subject'] = $this->subject_m->get_by(array('subject_code' => $this->data['subject_code']));
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/edit_subject_layout');
+	}
+
 	public function students() {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
@@ -208,6 +226,7 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
+		$this->data['teacher_name'] = $this->teacher_m->get_name(array('teacher_id' => $this->data['teacher_id']));
     	if($this->input->post('submit')) {
     		$array = array('subject_code' => $this->input->post('subject_code'),'teacher_id' => $this->data['teacher_id']);
 			if($this->subject_m->link_code($array)) {

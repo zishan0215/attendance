@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row">
 		<!-- Main column -->
-		<div class="col-md-9">
+		<div class="col-md-8 col-md-offset-2">
 			<h2>Edit details of : <?php echo $teacher[0]->teacher_name; ?></h2>
 			<br>
 			<section>
@@ -63,7 +63,7 @@
 					    	<br>
 					    	<input type="hidden" name="teacher_id" value="<?php echo $teacher_id; ?>">
 					    	<input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
-					    	<a href="jmiams/index.php/admin/teachers" class="btn btn-danger">Cancel</a>
+					    	<a href="/jmiams/index.php/admin/teachers" class="btn btn-danger">Cancel</a>
 					    </div>
   					</div>
 				</form>
