@@ -253,24 +253,30 @@ public function add_subject() {
 		$this->data['name'] = $this->session->userdata('name');
 		if($this->input->post('submit')) 
 		{
-			$this->load->model('subject_m');
 			$rules = $this->subject_m->rules2;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) 
 	    	{
-				$array = array('subject_name' => $this->input->post('subject_name'));// 'subject_name' => $this->input->post('subject_name')); //'password' => $this->teacher_m->hash($this->input->post('password')));
+				$array = array('subject_name' => $this->input->post('subject_name'));
 				if($this->subject_m->check_subjectname($array)) 
 				{
-					$id = $this->subject_m->save($array);
+					//$id = $this->subject_m->save($array);
 					unset($array);
-					$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
-					if($this->subject_m->insert($array))
-					{
-						$this->data['confirmation'] = 1;
-					} 
-					else
-					{
-						$this->data['confirmation'] = 2;
+					$array = array('subject_code' => $this->input->post('subject_code'));
+					if($this->subject_m->check_subject_code($array)) {
+						unset($array);				
+						$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'subject_abbr' => $this->input->post('subject_abbr'), 'semester' => $this->input->post('semester'), 'teacher_id' => 0);
+						if($this->subject_m->insert($array))
+						{
+							$this->data['confirmation'] = 1;
+						} 
+						else
+						{
+							$this->data['confirmation'] = 2;
+						}
+		
+					} else {
+						$this->data['confirmation'] = 5;
 					}
 				} 
 				else 

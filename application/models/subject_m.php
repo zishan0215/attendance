@@ -25,6 +25,11 @@ class Subject_m extends MY_Model {
 				'label' => 'Subject Name', 
 				'rules' => 'trim|required'
 			),
+			'subject_abbr' => array(
+				'field' => 'subject_abbr', 
+				'label' => 'Subject Abbreviation', 
+				'rules' => 'trim|required'
+			),
 			'subject_code' => array(
 				'field' => 'subject_code', 
 				'label' => 'Subject Code', 
@@ -61,8 +66,8 @@ class Subject_m extends MY_Model {
 	}
 
 	public function insert($data) {
-		$query = 'INSERT INTO subject (subject_code, subject_name, semester, teacher_id) VALUES ('. "'";
-		$query .= $data['subject_code'] . "','" . $data['subject_name'] ."','";
+		$query = 'INSERT INTO subject (subject_code, subject_name, subject_abbr, semester, teacher_id) VALUES ('. "'";
+		$query .= $data['subject_code'] . "','" . $data['subject_name'] ."','" . $data['subject_abbr'] ."','";
 		$query .= $data['semester'] ."'," . $data['teacher_id'] . ');';
 		//echo $query;
 		$this->db->query($query);
@@ -79,6 +84,16 @@ class Subject_m extends MY_Model {
 		}
 		return TRUE;
 	}
+	
+	public function check_subject_code($data) {
+		$query = 'SELECT * FROM subject WHERE subject_code = ' . "'" . $data['subject_code'] . "'" ;
+		$q = $this->db->query($query);
+		if($q->num_rows()>0) {
+			return FALSE;
+		}
+		return TRUE;
+	}
+
 	public function get_distinct_semester_all() {
 		$query = 'SELECT DISTINCT semester FROM subject';
 		$q = $this->db->query($query);

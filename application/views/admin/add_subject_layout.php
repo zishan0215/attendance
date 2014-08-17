@@ -28,7 +28,13 @@
 							} elseif($confirmation === 4) {
 								echo '
 									<table class="table">
-										<tr class="danger"><td>Failure! Subjectname already exists. Please enter a different Subjectname </td></tr>
+										<tr class="danger"><td>Failure! Subject name already exists. Please enter a different Subject name </td></tr>
+									</table>
+									';
+							} elseif($confirmation === 5) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Subject code already exists. Please enter a different Subject code </td></tr>
 									</table>
 									';
 							}
@@ -45,6 +51,12 @@
 						    </div>
 						</div>
 						<div class="form-group">
+						    <label for="subjectname" class="col-sm-3 control-label">Subject Abbreviation</label>
+						    <div class="col-sm-7">
+						    	<input type="text" class="form-control" placeholder="Subject Abbreviation (Eg CA)" name="subject_abbr" required>
+						    </div>
+						</div>
+						<div class="form-group">
 						    <label for="subjectcode" class="col-sm-3 control-label">Subject Code</label>
 						    <div class="col-sm-7">
 						    	<input type="text" class="form-control" placeholder="Subject Code (Eg. CEN-501)" name="subject_code" required>
@@ -54,12 +66,6 @@
 						    <label for="semester" class="col-sm-3 control-label">Semester</label>
 						    <div class="col-sm-7">
 						    	<input type="text" class="form-control" placeholder="Semester in which subject is taught" name="semester" required>
-						    </div>
-						</div>
-						<div class="form-group">
-						    <label for="semester" class="col-sm-3 control-label">Teacher ID</label>
-						    <div class="col-sm-7">
-						    	<input type="text" class="form-control" placeholder="ID of Teacher teaching subject" name="semester" required>
 						    </div>
 						</div>
 						<div class="form-group">
