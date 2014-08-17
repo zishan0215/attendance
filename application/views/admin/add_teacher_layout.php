@@ -6,7 +6,7 @@
 				<section>
 					<h2>Add Teacher</h2>
 					<br>
-					<?php 
+					<?php
 						if(isset($confirmation)) {
 							if($confirmation === 1) {
 								echo '

@@ -39,10 +39,18 @@ class Admin extends Admin_Controller {
 	}
 
 	public function students() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = array();
 		$this->data['semesters'] = $this->student_m->get_distinct_semester();
+		if($this->input->post('increment')) {
+			if($this->student_m->update_semester()) {
+				$this->data['confirmation'] = 1;
+			} else {
+					$this->data['confirmation'] = 2;
+				}
+		}
 		$semester = $this->input->post('semester');
 		if($semester) {
 			$array = array('semester' => $semester);
@@ -75,7 +83,7 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/edit_student_layout');
 	}
-	
+
 	public function new_period() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 0;

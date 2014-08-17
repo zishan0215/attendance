@@ -35,15 +35,21 @@
 				<form method="post" action="/jmiams/index.php/admin/edit_student">
 				<!-- For each entry, copy paste the code below and edit it -->
 					<div class="form-group">
-					    <label for="name" class="col-md-2 control-label bigger_text">Name</label>
+						<label for="rollnumber" class="col-sm-3 control-label">Roll number</label>
+					    <div class="col-sm-5">
+					    	<input class="form-control" type="text" value="<?php echo $student[0]->roll_number; ?>" disabled>
+					    </div>
+					    <br/>
+						<br/>
+						<br/>
+					    <label for="name" class="col-sm-3 control-label">Name</label>
 					    <div class="col-sm-5">
 					    	<input type="text" class="form-control" name="student_name" value="<?php echo $student[0]->student_name; ?>" required>
 					    </div>
-					</div>
-					<br/>
 						<br/>
 						<br/>
-					    <label for="semester" class="col-md-2 control-label bigger_text">Semester</label>
+						<br/>
+					    <label for="semester" class="col-sm-3 control-label">Semester</label>
 					    <div class="col-sm-5">
 					    	<input type="text" class="form-control" name="semester" value="<?php echo $student[0]->semester; ?>" required>
 					    </div>
