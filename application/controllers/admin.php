@@ -61,6 +61,13 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = array();
 		$this->data['semesters'] = $this->student_m->get_distinct_semester();
+		if($this->input->post('increment')) {
+			if($this->student_m->update_semester()) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+		}
 		$semester = $this->input->post('semester');
 		if($semester) {
 			$array = array('semester' => $semester);

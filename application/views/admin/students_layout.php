@@ -8,6 +8,26 @@
 					<br />
 				</section>
 				<section>
+					<?php
+						if(isset($confirmation)) {
+							if($confirmation === 1) {
+								echo '
+								<table class="table">
+								<tr class="success"><td>Success! Semester incremented</td></tr>
+								</table>
+								';
+							} elseif($confirmation === 2) {
+								echo '
+								<table class="table">
+								<tr class="danger"><td>Failure! Could not increment semester </td></tr>
+								</table>
+								';
+							}
+						}
+					?>
+					<br>
+				</section>
+				<section>
 					<form action="/jmiams/admin/students" method="post">
 						<input type="submit" name="increment" value="Increment Semester" class="btn btn-warning">
 					</form>
