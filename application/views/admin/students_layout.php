@@ -5,7 +5,6 @@
 			<div class="col-md-10 col-md-offset-1">
 				<section>
 					<h2>List of students</h2>
-					<br />
 				</section>
 				<section>
 					<?php

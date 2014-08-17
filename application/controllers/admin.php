@@ -301,7 +301,18 @@ public function add_subject() {
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
 		$this->load->view('admin/components/admin_header', $admin_data);
-		$this->load->view('admin/account_layout');
+		$this->load->view('admin/account_layout');		
+	}
+
+	public function change_password() {
+		$id = $this->session->userdata('id');
+		$admin_data = $this->admin_m->get($id);
+		$admin_data->site_name = config_item('site_name');
+		$admin_data->meta_title = 'Attendance Management System';
+		$admin_data->page = -1; // No highlights in the navigation bar
+		$admin_data->name = $admin_data->admin_name;
+		$this->load->view('admin/components/admin_header', $admin_data);
+		$this->load->view('admin/change_password_layout');	
 	}
 
 	public function login() {

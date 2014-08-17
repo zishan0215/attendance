@@ -7,7 +7,6 @@
 					<h2>My account</h2><br />	
 				</section>
 				<div class="well">
-					<form class="form-horizontal" role="form">
 					  	<div class="form-group">
 					    	<label class="col-md-2 control-label">Name: </label>
 					    	<div class="col-md-10">
@@ -20,7 +19,15 @@
 					      		<p class="form-control-static"><?php echo $username ?></p>
 					    	</div>
 					  	</div>
-					</form>
+					  	<div class="form-group">
+						    <div class="col-md-offset-1">
+						    	<br>
+						    	<form action="/jmiams/admin/change_password" method="post">
+						    		<input type="submit" class="btn btn-danger" name="password" value="Change Password">
+						    	</form>
+						    </div>
+  						</div>
+
 				</div>
 			</div>
 		</div>

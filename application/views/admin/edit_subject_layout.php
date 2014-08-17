@@ -55,3 +55,4 @@
 		</div>
 	</div>
 </div>
+<?php $this->load->view('admin/components/admin_footer'); ?>
