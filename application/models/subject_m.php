@@ -12,6 +12,30 @@ class Subject_m extends MY_Model {
 		$q=$this->db->query($sql, array(1, $id));
 		return $q;
 	}
+	public $rules = array(
+			'subject_name' => array(
+				'field' => 'subject_name', 
+				'label' => 'Subjectname', 
+				'rules' => 'trim|required'
+			);
+			
+	public $rules2 = array(
+			'subject_name' => array(
+				'field' => 'subject_name', 
+				'label' => 'Subject Name', 
+				'rules' => 'trim|required'
+			),
+			'subject_code' => array(
+				'field' => 'subject_code', 
+				'label' => 'Subject Code', 
+				'rules' => 'trim|required'
+			),
+			'semester' => array(
+				'field' => 'semester', 
+				'label' => 'Semester', 
+				'rules' => 'trim|required'
+			)
+		);
 
 	public function link_code($data){
 		$query = 'UPDATE subject SET teacher_id = ' . $data['teacher_id'] . " WHERE subject_code = " . "'" . $data['subject_code'] . "'";
@@ -47,7 +71,14 @@ class Subject_m extends MY_Model {
 		}
 		return FALSE;
 	}
-
+	public function check_subjectname($data) {
+		$query = 'SELECT * FROM subject WHERE subject_name = ' . "'" . $data['subject_name'] . "'" ;
+		$q = $this->db->query($query);
+		if($q->num_rows()>0) {
+			return TRUE;
+		}
+		return FALSE;
+	}
 	public function get_distinct_semester_all() {
 		$query = 'SELECT DISTINCT semester FROM subject';
 		$q = $this->db->query($query);
