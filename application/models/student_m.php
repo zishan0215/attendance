@@ -25,13 +25,8 @@ class Student_m extends MY_Model {
 		$q = $this->db->query($query);
 		return $q;
 	}
-	public function edit_name($data) {
-		$query = 'UPDATE student SET student_name = ' . "'" . $data['student_name'] . "'" . " WHERE student_id = " . $data['student_id'] ;
-		$q = $this->db->query($query);
-		return $q;
-	}
 	public function update_semester() {
-		$query = 'UPDATE student set semester + = 1';
+		$query = 'UPDATE student set semester = semester + 1';
 		$q =$this->db->query($query);
 		return $q;
 	}
