@@ -75,9 +75,9 @@ class Subject_m extends MY_Model {
 		$query = 'SELECT * FROM subject WHERE subject_name = ' . "'" . $data['subject_name'] . "'" ;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0) {
-			return TRUE;
+			return FALSE;
 		}
-		return FALSE;
+		return TRUE;
 	}
 	public function get_distinct_semester_all() {
 		$query = 'SELECT DISTINCT semester FROM subject';
