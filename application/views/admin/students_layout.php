@@ -12,7 +12,7 @@
 					<form class="form-inline" role="form" action="/jmiams/index.php/admin/students" method="post">
 						<div class="form-group">
 							<select class="form-control" name="semester">
-								<?php 
+								<?php
 									foreach($semesters->result() as $s) {
 										echo '<option value="' . $s->semester . '">' . $s->semester . '</option>';
 									}
@@ -25,7 +25,7 @@
 				</section>
 				<br><br>
 				<section>
-					<table class="table table-striped"> 	
+					<table class="table table-striped">
 						<thead><tr><th>Student Id</th><th>Roll Number</th><th>Name</th><th>Semester</th></tr></thead>
 						<tbody>
 						<?php

@@ -7,7 +7,7 @@
 			<br>
 			<section>
 				<br>
-				<?php 
+				<?php
 					if(isset($confirmation)) {
 						if($confirmation === 1) {
 							echo '
@@ -35,7 +35,7 @@
 								';
 						}
 					}
-				?>	
+				?>
 			</section>
 			<section>
 				<!-- Put the form below this line -->
@@ -48,7 +48,7 @@
 					    </div>
 					</div>
 					<br/>
-					<br/>	
+					<br/>
 					<br/>
 					<!-- Insert other fields here -->
 					<div class="form-group">

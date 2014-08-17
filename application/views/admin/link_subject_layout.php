@@ -5,7 +5,7 @@
 			<section>
 				<h3><?php echo 'Teacher Id: ' . $teacher_id; ?></h3>
 				<br>
-				<?php 
+				<?php
 						if(isset($confirmation)) {
 							if($confirmation === 1) {
 								echo '
@@ -30,12 +30,12 @@
 					?>
 			</section>
 		</div>
-	</div>	
+	</div>
 	<h4>Select Subject</h4>
 		<form class="form-inline" role="form" action="/jmiams/index.php/admin/link_subject" method="post">
 			<div class="form-group">
 				<select class="form-control" name="subject_code">
-					<?php 
+					<?php
 						foreach($rows->result() as $s) {
 							echo '<option value="' . $s->subject_code . '">' . $s->subject_code . '</option>';
 						}
