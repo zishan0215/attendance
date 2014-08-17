@@ -11,7 +11,7 @@ class Admin_Controller extends MY_Controller
 		$this->load->model('attendance_m');
 		$this->load->model('subject_m');
 		$this->load->model('student_m');
-
+		$this->load->model('teacher_m');
 		// Login check
 		$exception_uris = array(
 			'admin/login', 

@@ -8,6 +8,12 @@
 					<br />
 				</section>
 				<section>
+					<form action="/jmiams/admin/students" method="post">
+						<input type="submit" name="increment" value="Increment Semester" class="btn btn-warning">
+					</form>
+					<br>
+				</section>
+				<section>
 					<h4>Select Semester</h4>
 					<form class="form-inline" role="form" action="/jmiams/index.php/admin/students" method="post">
 						<div class="form-group">
