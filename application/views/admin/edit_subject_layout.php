@@ -23,7 +23,7 @@
 									<tr class="danger"><td>Failure! Could not edit the details </td></tr>
 								</table>
 								';
-						} 
+						}
 					}
 				?>
 				<br>
@@ -31,13 +31,20 @@
 			<section>
 				<form action="/jmiams/admin/edit_subject/" method="post">
 					<div class="form-group">
-					    <label for="subjectname" class="col-sm-3 control-label bigger_text">Subject Name</label>
+					    <label for="subjectname" class="col-sm-3 control-label">Subject Name</label>
 					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" name="subject_name" value="<?php echo $subject[0]->subject_name; ?>" required>
 					    </div><br><br>
 					</div>
 					<div class="form-group">
-					    <label for="semester" class="col-sm-3 control-label bigger_text">Semester</label>
+						    <label for="subjectname" class="col-sm-3 control-label">Subject Abbreviation</label>
+						    <div class="col-sm-7">
+						    	<input type="text" class="form-control" placeholder="Subject Abbreviation (Eg CA)" name="subject_abbr" value="<?php echo $subject[0]->; ?>" required>
+						    </div><br><br>
+					</div>
+
+					<div class="form-group">
+					    <label for="semester" class="col-sm-3 control-label">Semester</label>
 					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" name="semester" value="<?php echo $subject[0]->semester; ?>" required>
 					    </div>
