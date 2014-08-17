@@ -6,7 +6,6 @@ class Subject_m extends MY_Model {
 	protected $_primary_filter = 'strval';
 	protected $_order_by = 'subject_code';
 	protected $_timestamps = FALSE;
-	public $rules = array();
 	public function get_s($id){
 		$sql = "SELECT subject_name, semester, teacher_id FROM subject WHERE subject_code = ? ";
 		$q=$this->db->query($sql, array(1, $id));
