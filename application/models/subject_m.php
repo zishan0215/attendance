@@ -16,6 +16,7 @@ class Subject_m extends MY_Model {
 				'field' => 'subject_name', 
 				'label' => 'Subjectname', 
 				'rules' => 'trim|required'
+			)
 			);
 			
 	public $rules2 = array(
