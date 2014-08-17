@@ -7,11 +7,40 @@
 					<h2>List of students</h2>
 					<br />
 				</section>
+				<br>
+				<?php
+						if(isset($confirmation)) {
+							if($confirmation === 1) {
+								echo '
+									<table class="table">
+										<tr class="success"><td>Success! New subject added</td></tr>
+									</table>
+									';
+							} elseif($confirmation === 2) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Could not add new subject </td></tr>
+									</table>
+									';
+							} elseif($confirmation === 3) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid subject </td></tr>
+									</table>
+									';
+							}
+						}
+					?>
+				<br>
 				<section>
 					<form action="/jmiams/admin/students" method="post">
 						<input type="submit" name="increment" value="Increment Semester" class="btn btn-warning">
 					</form>
 					<br>
+				</section>
+				<br><br>
+				<section>
+
 				</section>
 				<section>
 					<h4>Select Semester</h4>

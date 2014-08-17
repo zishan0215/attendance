@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class Admin_m extends MY_Model {
-	
+
 	protected $_table_name = 'admin';
 	protected $_primary_key = 'admin_id';
 	protected $_primary_filter = 'intval';
@@ -9,13 +9,13 @@ class Admin_m extends MY_Model {
 	protected $_timestamps = FALSE;
 	public $rules = array(
 		'username' => array(
-			'field' => 'username', 
-			'label' => 'Username', 
+			'field' => 'username',
+			'label' => 'Username',
 			'rules' => 'trim|required'
-		), 
+		),
 		'password' => array(
-			'field' => 'password', 
-			'label' => 'Password', 
+			'field' => 'password',
+			'label' => 'Password',
 			'rules' => 'trim|required'
 		)
 	);
@@ -38,7 +38,7 @@ class Admin_m extends MY_Model {
 			'username' => $this->input->post('username'),
 			'password' => $this->hash($this->input->post('password')),
 		), TRUE);
-		
+
 		if (count($user)) {
 			// Log in user
 			$data = array(

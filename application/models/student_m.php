@@ -30,6 +30,11 @@ class Student_m extends MY_Model {
 		$q = $this->db->query($query);
 		return $q;
 	}
+	public function update_semester() {
+		$query = 'UPDATE student set semester + = 1';
+		$q =$this->db->query($query);
+		return $q;
+	}
 }
 
 ?>
