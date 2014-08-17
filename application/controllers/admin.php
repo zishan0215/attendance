@@ -240,9 +240,42 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/link_subject_layout');
 	}
 
-	public function add_subject() {
+public function add_subject() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 3;
 		$this->data['name'] = $this->session->userdata('name');
+		if($this->input->post('submit')) 
+		{
+			$this->load->model('subject_m');
+			$rules = $this->subject_m->rules2;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) 
+	    	{
+				$array = array('subject_name' => $this->input->post('subject_name'));// 'subject_name' => $this->input->post('subject_name')); //'password' => $this->teacher_m->hash($this->input->post('password')));
+				if($this->subject_m->check_subjectname($array)) 
+				{
+					$id = $this->subject_m->save($array);
+					unset($array);
+					$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
+					if($this->subject_m->insert($array))
+					{
+						$this->data['confirmation'] = 1;
+					} 
+					else
+					{
+						$this->data['confirmation'] = 2;
+					}
+				} 
+				else 
+				{
+					$this->data['confirmation'] = 4;
+				}
+	    	} 
+	    	else 
+	    	{
+				$this->data['confirmation'] = 3;
+			}
+		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_subject_layout');
 	}
