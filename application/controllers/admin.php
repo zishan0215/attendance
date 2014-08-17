@@ -75,7 +75,7 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/edit_student_layout');
 	}
-	
+
 	public function new_period() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 0;
