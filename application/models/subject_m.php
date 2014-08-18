@@ -48,8 +48,16 @@ class Subject_m extends MY_Model {
 		return $q;
 	}
 
+	public function unlink_code($data){
+		$query = 'UPDATE subject SET teacher_id = 0  WHERE subject_code = '."'" . $data['subject_code'] . "'";
+		$q = $this->db->query($query);
+		return $q;
+	}
+	/*public function display($data){
+
+	}*/
 	public function get_id($id) {
-		$query = "SELECT subject_code FROM subject WHERE teacher_id = " . $id;
+		$query = "SELECT * FROM subject WHERE teacher_id = " . $id;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0){
 			foreach($q->result() as $rows){

@@ -218,11 +218,20 @@ class Admin extends Admin_Controller {
 	}
 
 	public function view_teacher() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
 		$array = array('teacher_id' => $this->data['teacher_id']);
 		$this->data['teacher1']=$this->teacher_m->get_by($array,TRUE);
+		if($this->input->post('submit')){
+    		$array1 = array('subject_code' => $this->input->post('subject_code'),'teacher_id' => $this->data['teacher_id']);
+    		if($this->subject_m->unlink_code($array1)) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+		}
 		$this->data['teacher2']=$this->subject_m->get_by($array);
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/view_teacher_layout');
