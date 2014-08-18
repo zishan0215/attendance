@@ -309,6 +309,9 @@ public function add_subject() {
 		$admin_data->meta_title = 'Attendance Management System';
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
+		if($this->input->get('confirmation')) {
+			$admin_data->confirmation = 1;	
+		}
 		$this->load->view('admin/components/admin_header', $admin_data);
 		$this->load->view('admin/account_layout');
 	}
@@ -322,19 +325,24 @@ public function add_subject() {
 		$admin_data->name = $admin_data->admin_name;
 		$admin_data->confirmation = "";
 		if($this->input->post('submit')) {
-			$this->load->model('admin_m');
 			$rules = $this->admin_m->rules1;
 	    	$this->form_validation->set_rules($rules);
 	    	if ($this->form_validation->run() == TRUE) {
 	    		$array = array('password' => $this->admin_m->hash($this->input->post('new_password')));
-	    		if($this->admin_m->check_password($admin_data->admin_id)) {
-					$this->data['confirmation'] = 3;
-					if($this->admin_m->save($array,$admin_data->admin_id)) {
-						$this->data['confirmation'] = 1;
+	    		if($this->admin_m->check_old_password($admin_data->admin_id)) {
+					if($this->admin_m->check_new_password()) {
+						if($this->admin_m->save($array,$admin_data->admin_id)) {
+							$admin_data->confirmation = 1;
+							redirect('/admin/account?confirmation=1');
+						}
+					} else {
+						$admin_data->confirmation = 3;	
 					}
 	    		} else {
-	    			$this->data['confirmation'] = 2;
+	    			$admin_data->confirmation = 2;
 	    		}
+	    	} else {
+	    		$admin_data->confirmation = 4;
 	    	}
 		}
 		$this->load->view('admin/components/admin_header', $admin_data);

@@ -74,15 +74,21 @@ class Admin_m extends MY_Model {
 		return $row[0]->password;
 	}
 
-	public function check_password($id) {
-		$data =array('admin_id'=>$id);
+	public function check_old_password($id) {
+		$data = array('admin_id' => $id);
 		if($this->admin_m->hash($this->input->post('old_password')) === $this->admin_m->get_password($data)) {
-			if($this->admin_m->hash($this->input->post('new_password')) === $this->admin_m->hash($this->input->post('confirm_password'))) {
-				return TRUE;
-			}
+			return TRUE;
 		}
 		return FALSE;
 	}
+
+	public function check_new_password() {
+		if($this->admin_m->hash($this->input->post('new_password')) === $this->admin_m->hash($this->input->post('confirm_password'))) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
 	public function logout () {
 		$this->session->sess_destroy();
 	}
