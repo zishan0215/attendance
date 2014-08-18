@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class Teacher_m extends MY_Model {
-	
+
 		protected $_table_name = 'teacher';
 		protected $_primary_key = 'teacher_id';
 		protected $_primary_filter = 'intval';
@@ -10,59 +10,59 @@ class Teacher_m extends MY_Model {
 
 		public $rules = array(
 			'username' => array(
-				'field' => 'username', 
-				'label' => 'Username', 
+				'field' => 'username',
+				'label' => 'Username',
 				'rules' => 'trim|required'
-			), 
+			),
 			'password' => array(
-				'field' => 'password', 
-				'label' => 'Password', 
+				'field' => 'password',
+				'label' => 'Password',
 				'rules' => 'trim|required'
 			)
 		);
 
 		public $rules2 = array(
 			'teachername' => array(
-				'field' => 'teacher_name', 
-				'label' => 'Full Name', 
+				'field' => 'teacher_name',
+				'label' => 'Full Name',
 				'rules' => 'trim|required'
 			),
 			'username' => array(
-				'field' => 'username', 
-				'label' => 'Username', 
+				'field' => 'username',
+				'label' => 'Username',
 				'rules' => 'trim|required'
-			), 
+			),
 			'password' => array(
-				'field' => 'password', 
-				'label' => 'Password', 
+				'field' => 'password',
+				'label' => 'Password',
 				'rules' => 'trim|required'
 			),
 			'subject_name' => array(
-				'field' => 'subject_name', 
-				'label' => 'Subject Name', 
+				'field' => 'subject_name',
+				'label' => 'Subject Name',
 				'rules' => 'trim|required'
 			),
 			'subject_code' => array(
-				'field' => 'subject_code', 
-				'label' => 'Subject Code', 
+				'field' => 'subject_code',
+				'label' => 'Subject Code',
 				'rules' => 'trim|required'
 			),
 			'semester' => array(
-				'field' => 'semester', 
-				'label' => 'Semester', 
+				'field' => 'semester',
+				'label' => 'Semester',
 				'rules' => 'trim|required'
 			)
 		);
 
 		public $rules3 = array(
 			'teachername' => array(
-				'field' => 'teacher_name', 
-				'label' => 'Full Name', 
+				'field' => 'teacher_name',
+				'label' => 'Full Name',
 				'rules' => 'trim|required'
 			),
 			'username' => array(
-				'field' => 'username', 
-				'label' => 'Username', 
+				'field' => 'username',
+				'label' => 'Username',
 				'rules' => 'trim|required'
 			)
 		);
@@ -85,7 +85,7 @@ class Teacher_m extends MY_Model {
 			'username' => $this->input->post('username'),
 			'password' => $this->hash($this->input->post('password')),
 		), TRUE);
-		
+
 		if (count($user)) {
 			// Log in user
 			$data = array(
@@ -119,10 +119,10 @@ class Teacher_m extends MY_Model {
 	}
 
 	public function get_s($id){
-		$sql = "SELECT teacher_name, teacher_id FROM teacher WHERE teacher_id = ? "; 
+		$sql = "SELECT teacher_name, teacher_id FROM teacher WHERE teacher_id = ? ";
 		$q=$this->db->query($sql, array(1, $id));
-		return $q;		
-	} 
+		return $q;
+	}
 
 	public function logout () {
 		$this->session->sess_destroy();

@@ -301,7 +301,7 @@ public function add_subject() {
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
 		$this->load->view('admin/components/admin_header', $admin_data);
-		$this->load->view('admin/account_layout');		
+		$this->load->view('admin/account_layout');
 	}
 
 	public function change_password() {
@@ -311,8 +311,25 @@ public function add_subject() {
 		$admin_data->meta_title = 'Attendance Management System';
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
+		$admin_data->confirmation = "";
+		if($this->input->post('submit')) {
+			$this->load->model('admin_m');
+			$rules = $this->admin_m->rules1;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+	    		$array = array('password' => $this->admin_m->hash($this->input->post('new_password')));
+	    		if($this->admin_m->check_password($admin_data->admin_id)) {
+					$this->data['confirmation'] = 3;
+					if($this->admin_m->save($array,$admin_data->admin_id)) {
+						$this->data['confirmation'] = 1;
+					}
+	    		} else {
+	    			$this->data['confirmation'] = 2;
+	    		}
+	    	}
+		}
 		$this->load->view('admin/components/admin_header', $admin_data);
-		$this->load->view('admin/change_password_layout');	
+		$this->load->view('admin/change_password_layout');
 	}
 
 	public function login() {

@@ -39,7 +39,7 @@
 					<div class="form-group">
 						    <label for="subjectname" class="col-sm-3 control-label">Subject Abbreviation</label>
 						    <div class="col-sm-7">
-						    	<input type="text" class="form-control" placeholder="Subject Abbreviation (Eg CA)" name="subject_abbr" value="<?php echo $subject[0]->; ?>" required>
+						    	<input type="text" class="form-control" placeholder="Subject Abbreviation (Eg CA)" name="subject_abbr" value="<?php echo $subject[0]->subject_abbr; ?>" required>
 						    </div><br><br>
 					</div>
 

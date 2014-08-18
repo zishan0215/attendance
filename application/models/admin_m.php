@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class Admin_m extends MY_Model {
-	
+
 	protected $_table_name = 'admin';
 	protected $_primary_key = 'admin_id';
 	protected $_primary_filter = 'intval';
@@ -9,13 +9,30 @@ class Admin_m extends MY_Model {
 	protected $_timestamps = FALSE;
 	public $rules = array(
 		'username' => array(
-			'field' => 'username', 
-			'label' => 'Username', 
+			'field' => 'username',
+			'label' => 'Username',
 			'rules' => 'trim|required'
-		), 
+		),
 		'password' => array(
-			'field' => 'password', 
-			'label' => 'Password', 
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'trim|required'
+		)
+	);
+	public $rules1 = array(
+		'oldpassword' => array(
+			'field' => 'old_password',
+			'label' => 'Old password',
+			'rules' => 'trim|required'
+		),
+		'newpassword' => array(
+			'field' => 'new_password',
+			'label' => 'New password',
+			'rules' => 'trim|required'
+		),
+		'confirmpassword' => array(
+			'field' => 'confirm_password',
+			'label' => 'Confirm password',
 			'rules' => 'trim|required'
 		)
 	);
@@ -38,7 +55,7 @@ class Admin_m extends MY_Model {
 			'username' => $this->input->post('username'),
 			'password' => $this->hash($this->input->post('password')),
 		), TRUE);
-		
+
 		if (count($user)) {
 			// Log in user
 			$data = array(
@@ -52,6 +69,20 @@ class Admin_m extends MY_Model {
 		}
 	}
 
+	public function get_password($data) {
+		$row = $this->get_by($data);
+		return $row[0]->password;
+	}
+
+	public function check_password($id) {
+		$data =array('admin_id'=>$id);
+		if($this->admin_m->hash($this->input->post('old_password')) === $this->admin_m->get_password($data)) {
+			if($this->admin_m->hash($this->input->post('new_password')) === $this->admin_m->hash($this->input->post('confirm_password'))) {
+				return TRUE;
+			}
+		}
+		return FALSE;
+	}
 	public function logout () {
 		$this->session->sess_destroy();
 	}
