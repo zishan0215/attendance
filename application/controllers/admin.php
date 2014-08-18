@@ -44,7 +44,7 @@ class Admin extends Admin_Controller {
 		$this->data['confirmation'] = 0;
 		$this->data['subject_code'] = $this->input->post('subject_code');
 		if($this->input->post('submit')) {
-			$data = array('subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'));
+			$data = array('subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'subject_abbr' => $this->input->post('subject_abbr'));
 			if($this->subject_m->save($data, $this->data['subject_code'])) {
 				$this->data['confirmation'] = 1;
 			} else {
@@ -100,7 +100,7 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/edit_student_layout');
 	}
-	
+
 	public function new_period() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 0;
@@ -218,11 +218,20 @@ class Admin extends Admin_Controller {
 	}
 
 	public function view_teacher() {
+		$this->data['confirmation'] = "";
 		$this->data['page'] = 1;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['teacher_id'] = $this->input->post('teacher_id');
 		$array = array('teacher_id' => $this->data['teacher_id']);
 		$this->data['teacher1']=$this->teacher_m->get_by($array,TRUE);
+		if($this->input->post('submit')){
+    		$array1 = array('subject_code' => $this->input->post('subject_code'),'teacher_id' => $this->data['teacher_id']);
+    		if($this->subject_m->unlink_code($array1)) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+		}
 		$this->data['teacher2']=$this->subject_m->get_by($array);
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/view_teacher_layout');
@@ -251,40 +260,40 @@ public function add_subject() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 3;
 		$this->data['name'] = $this->session->userdata('name');
-		if($this->input->post('submit')) 
+		if($this->input->post('submit'))
 		{
 			$rules = $this->subject_m->rules2;
 	    	$this->form_validation->set_rules($rules);
-	    	if ($this->form_validation->run() == TRUE) 
+	    	if ($this->form_validation->run() == TRUE)
 	    	{
 				$array = array('subject_name' => $this->input->post('subject_name'));
-				if($this->subject_m->check_subjectname($array)) 
+				if($this->subject_m->check_subjectname($array))
 				{
 					//$id = $this->subject_m->save($array);
 					unset($array);
 					$array = array('subject_code' => $this->input->post('subject_code'));
 					if($this->subject_m->check_subject_code($array)) {
-						unset($array);				
+						unset($array);
 						$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'subject_abbr' => $this->input->post('subject_abbr'), 'semester' => $this->input->post('semester'), 'teacher_id' => 0);
 						if($this->subject_m->insert($array))
 						{
 							$this->data['confirmation'] = 1;
-						} 
+						}
 						else
 						{
 							$this->data['confirmation'] = 2;
 						}
-		
+
 					} else {
 						$this->data['confirmation'] = 5;
 					}
-				} 
-				else 
+				}
+				else
 				{
 					$this->data['confirmation'] = 4;
 				}
-	    	} 
-	    	else 
+	    	}
+	    	else
 	    	{
 				$this->data['confirmation'] = 3;
 			}
@@ -301,7 +310,7 @@ public function add_subject() {
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
 		$this->load->view('admin/components/admin_header', $admin_data);
-		$this->load->view('admin/account_layout');		
+		$this->load->view('admin/account_layout');
 	}
 
 	public function change_password() {
@@ -311,8 +320,25 @@ public function add_subject() {
 		$admin_data->meta_title = 'Attendance Management System';
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
+		$admin_data->confirmation = "";
+		if($this->input->post('submit')) {
+			$this->load->model('admin_m');
+			$rules = $this->admin_m->rules1;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+	    		$array = array('password' => $this->admin_m->hash($this->input->post('new_password')));
+	    		if($this->admin_m->check_password($admin_data->admin_id)) {
+					$this->data['confirmation'] = 3;
+					if($this->admin_m->save($array,$admin_data->admin_id)) {
+						$this->data['confirmation'] = 1;
+					}
+	    		} else {
+	    			$this->data['confirmation'] = 2;
+	    		}
+	    	}
+		}
 		$this->load->view('admin/components/admin_header', $admin_data);
-		$this->load->view('admin/change_password_layout');	
+		$this->load->view('admin/change_password_layout');
 	}
 
 	public function login() {

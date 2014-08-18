@@ -13,31 +13,31 @@ class Subject_m extends MY_Model {
 	}
 	public $rules = array(
 			'subject_name' => array(
-				'field' => 'subject_name', 
-				'label' => 'Subjectname', 
+				'field' => 'subject_name',
+				'label' => 'Subjectname',
 				'rules' => 'trim|required'
 			)
 			);
-			
+
 	public $rules2 = array(
 			'subject_name' => array(
-				'field' => 'subject_name', 
-				'label' => 'Subject Name', 
+				'field' => 'subject_name',
+				'label' => 'Subject Name',
 				'rules' => 'trim|required'
 			),
 			'subject_abbr' => array(
-				'field' => 'subject_abbr', 
-				'label' => 'Subject Abbreviation', 
+				'field' => 'subject_abbr',
+				'label' => 'Subject Abbreviation',
 				'rules' => 'trim|required'
 			),
 			'subject_code' => array(
-				'field' => 'subject_code', 
-				'label' => 'Subject Code', 
+				'field' => 'subject_code',
+				'label' => 'Subject Code',
 				'rules' => 'trim|required'
 			),
 			'semester' => array(
-				'field' => 'semester', 
-				'label' => 'Semester', 
+				'field' => 'semester',
+				'label' => 'Semester',
 				'rules' => 'trim|required'
 			)
 		);
@@ -48,8 +48,16 @@ class Subject_m extends MY_Model {
 		return $q;
 	}
 
+	public function unlink_code($data){
+		$query = 'UPDATE subject SET teacher_id = 0  WHERE subject_code = '."'" . $data['subject_code'] . "'";
+		$q = $this->db->query($query);
+		return $q;
+	}
+	/*public function display($data){
+
+	}*/
 	public function get_id($id) {
-		$query = "SELECT subject_code FROM subject WHERE teacher_id = " . $id;
+		$query = "SELECT * FROM subject WHERE teacher_id = " . $id;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0){
 			foreach($q->result() as $rows){
@@ -84,7 +92,7 @@ class Subject_m extends MY_Model {
 		}
 		return TRUE;
 	}
-	
+
 	public function check_subject_code($data) {
 		$query = 'SELECT * FROM subject WHERE subject_code = ' . "'" . $data['subject_code'] . "'" ;
 		$q = $this->db->query($query);
