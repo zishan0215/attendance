@@ -11,13 +11,13 @@
 							if($confirmation === 1) {
 								echo '
 									<table class="table">
-										<tr class="success"><td>Success! Subject name changed</td></tr>
+										<tr class="success"><td>Success! Subject details updated</td></tr>
 									</table>
 									';
 							} elseif($confirmation === 2) {
 								echo '
 									<table class="table">
-										<tr class="danger"><td>Failure! Could not change student name </td></tr>
+										<tr class="danger"><td>Failure! Could not change student details </td></tr>
 									</table>
 									';
 							} elseif($confirmation === 3) {

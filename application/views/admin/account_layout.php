@@ -18,7 +18,7 @@
 					?>
 				</section>
 				<div class="well">
-					<div class="col-md-offset-1" style="font-size: 20px;">
+					<div class="col-md-offset-1" style="font-size: 18px;">
 						<form class="form-horizontal" role="form">
 						  	<div class="form-group">
 						    	<label class="col-md-2 control-label">Name: &nbsp;</label>
@@ -33,7 +33,7 @@
 						    	</div>
 						  	</div>
 						</form>
-					</div><br>
+					</div><br>	
 				    <div class="col-md-offset-1">
 				    	<form action="/jmiams/admin/change_password" method="post">
 				    		<input type="submit" class="btn btn-danger" name="password" value="Change Password">

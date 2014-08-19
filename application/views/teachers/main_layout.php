@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="col-md-9">
+			<div class="col-md-10 col-md-offset-1">
 				<section>
 					<h2>Welcome, <?php echo $name; ?></h2><br><br>
 				</section>

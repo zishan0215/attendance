@@ -22,7 +22,6 @@
 		    <div class="collapse navbar-collapse">
 			    <ul class="nav navbar-nav">
 				    <li <?php if($page == 0) echo 'class="active"' ?>><a href="<?php echo site_url('teacher/'); ?>">Dashboard</a></li>
-				    <li <?php if($page == 1) echo 'class="active"' ?>><?php echo anchor('teacher/teachers', 'Teachers'); ?></li>
 				    <li <?php if($page == 2) echo 'class="active"' ?>><?php echo anchor('teacher/students', 'Students'); ?></li>
 			    </ul>
 			    <ul class="nav navbar-nav pull-right">

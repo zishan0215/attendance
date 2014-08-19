@@ -19,12 +19,12 @@
 					</div>
 				</div><br><br>
 				<table class="table">
-					<thead><tr><th>Student Id</th><th>Student Name</th><th>Attendance</th></tr></thead>
+					<thead><tr><th>Roll Number</th><th>Student Name</th><th>Attendance</th></tr></thead>
 					<tbody>
 				<?php
 					$count = 1;
 					foreach ($list as $n) {
-						echo '<tr><td>' . $n->student_id . '</td>';
+						echo '<tr><td>' . $n->roll_number . '</td>';
 						echo '<td>' . $n->student_name . '</td>';
 						echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
 						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" class="form-control input-sm"';
