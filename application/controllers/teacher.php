@@ -8,7 +8,7 @@ class Teacher extends Teacher_Controller {
 		parent::__construct();
 	}
 
-	
+
 	public function index() {
 		$this->data['page'] = 0;
 		$this->data['name'] = $this->session->userdata('name');
@@ -20,7 +20,7 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/main_layout');
 	}
 
-	
+
 	public function students() {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
@@ -42,8 +42,45 @@ class Teacher extends Teacher_Controller {
 		$teacher_data->meta_title = 'Attendance Management System';
 		$teacher_data->page = -1; // No highlights in the navigation bar
 		$teacher_data->name = $teacher_data->teacher_name;
+		$teacher_data->confirmation = "";
+		if($this->input->get('confirmation')) {
+			$teacher_data->confirmation = 1;
+		}
 		$this->load->view('teachers/components/teacher_header', $teacher_data);
 		$this->load->view('teachers/account_layout');
+	}
+
+	public function change_password() {
+		$id = $this->session->userdata('id');
+		$teacher_data = $this->teacher_m->get($id);
+		$teacher_data->site_name = config_item('site_name');
+		$teacher_data->meta_title = 'Attendance Management System';
+		$teacher_data->page = -1; // No highlights in the navigation bar
+		$teacher_data->name = $teacher_data->teacher_name;
+		$teacher_data->confirmation = "";
+		if($this->input->post('submit')) {
+			$rules = $this->teacher_m->rules1;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE) {
+	    		$array = array('password' => $this->teacher_m->hash($this->input->post('new_password')));
+	    		if($this->teacher_m->check_old_password($teacher_data->teacher_id)) {
+					if($this->teacher_m->check_new_password()) {
+						if($this->teacher_m->save($array,$teacher_data->teacher_id)) {
+							$teacher_data->confirmation = 1;
+							redirect('/teacher/account?confirmation=1');
+						}
+					} else {
+						$teacher_data->confirmation = 3;
+					}
+	    		} else {
+	    			$teacher_data->confirmation = 2;
+	    		}
+	    	} else {
+	    		$teacher_data->confirmation = 4;
+	    	}
+		}
+		$this->load->view('teachers/components/teacher_header', $teacher_data);
+		$this->load->view('teachers/change_password_layout');
 	}
 
 	public function view_attendance() {
@@ -65,7 +102,7 @@ class Teacher extends Teacher_Controller {
 			$this->data['to_date'] = $temp[1];
 		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
-		$this->load->view('teachers/view_attendance_layout');		
+		$this->load->view('teachers/view_attendance_layout');
 	}
 
 	public function feed_attendance() {
@@ -93,7 +130,7 @@ class Teacher extends Teacher_Controller {
 		$total = $this->input->post('num:0');
 		$values = $this->input->post('total_values');
 		$this->load->model('attendance_m');
-		for ($i=1;$i<=$values; $i++) { 
+		for ($i=1;$i<=$values; $i++) {
 			$val = $this->input->post('num:' . $i);
 			$s_id = $this->input->post('student_id:' . $i);
 			$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total);
@@ -108,7 +145,7 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/main_layout');
 	}
-	
+
 	public function login() {
 		$this->teacher_m->loggedin() == FALSE || redirect('teacher/');
 		$rules = $this->teacher_m->rules;
@@ -135,6 +172,6 @@ class Teacher extends Teacher_Controller {
 		$this->load->model('student_m');
 		$students = $this->student_m->get();
 		var_dump($students);
-		
+
 	}
 }

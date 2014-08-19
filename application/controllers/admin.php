@@ -310,7 +310,7 @@ public function add_subject() {
 		$admin_data->page = -1; // No highlights in the navigation bar
 		$admin_data->name = $admin_data->admin_name;
 		if($this->input->get('confirmation')) {
-			$admin_data->confirmation = 1;	
+			$admin_data->confirmation = 1;
 		}
 		$this->load->view('admin/components/admin_header', $admin_data);
 		$this->load->view('admin/account_layout');
@@ -336,7 +336,7 @@ public function add_subject() {
 							redirect('/admin/account?confirmation=1');
 						}
 					} else {
-						$admin_data->confirmation = 3;	
+						$admin_data->confirmation = 3;
 					}
 	    		} else {
 	    			$admin_data->confirmation = 2;

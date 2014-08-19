@@ -21,6 +21,24 @@ class Teacher_m extends MY_Model {
 			)
 		);
 
+		public $rules1 = array(
+		'oldpassword' => array(
+			'field' => 'old_password',
+			'label' => 'Old password',
+			'rules' => 'trim|required'
+		),
+		'newpassword' => array(
+			'field' => 'new_password',
+			'label' => 'New password',
+			'rules' => 'trim|required'
+		),
+		'confirmpassword' => array(
+			'field' => 'confirm_password',
+			'label' => 'Confirm password',
+			'rules' => 'trim|required'
+		)
+	);
+
 		public $rules2 = array(
 			'teachername' => array(
 				'field' => 'teacher_name',
@@ -97,6 +115,26 @@ class Teacher_m extends MY_Model {
 			);
 			$this->session->set_userdata($data);
 		}
+	}
+
+	public function get_password($data) {
+		$row = $this->get_by($data);
+		return $row[0]->password;
+	}
+
+	public function check_old_password($id) {
+		$data = array('teacher_id' => $id);
+		if($this->teacher_m->hash($this->input->post('old_password')) === $this->teacher_m->get_password($data)) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	public function check_new_password() {
+		if($this->teacher_m->hash($this->input->post('new_password')) === $this->teacher_m->hash($this->input->post('confirm_password'))) {
+			return TRUE;
+		}
+		return FALSE;
 	}
 
 	public function check_username($data) {
