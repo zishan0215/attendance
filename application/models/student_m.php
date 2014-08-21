@@ -5,7 +5,6 @@ class Student_m extends MY_Model {
 	protected $_primary_key = 'student_id';
 	protected $_primary_filter = 'intval';
 	protected $_order_by = 'roll_number';
-	public $_rules = array();
 	protected $_timestamps = FALSE;
 
 	public $rules = array(
@@ -15,10 +14,42 @@ class Student_m extends MY_Model {
 				'rules' => 'trim|required'
 			)
 		);
+	public $rules1 = array(
+			'studentid' => array(
+				'field' => 'student_id',
+				'label' => 'Student id',
+				'rules' => 'trim|required'
+			),
+			'studentname' => array(
+				'field' => 'student_name',
+				'label' => 'Full Name',
+				'rules' => 'trim|required'
+			),
+			'rollnumber' => array(
+				'field' => 'roll_number',
+				'label' => 'Roll number',
+				'rules' => 'trim|required'
+			),
+			'semester' => array(
+				'field' => 'semester',
+				'label' => 'Semester',
+				'rules' => 'trim|required'
+			)
+		);
 	public function get_distinct_semester() {
 		$query = 'SELECT DISTINCT semester FROM student';
 		$q = $this->db->query($query);
 		return $q;
+	}
+	public function add_stu($data) {
+		$query ='INSERT INTO student (student_id,roll_number,student_name,semester) VALUES (' ."";
+		$query .= $data['student_id'] . ",'". $data['roll_number']."','".$data['student_name']."',";
+		$query .= $data['semester'] . ');';
+		$this->db->query($query);
+		if($this->db->affected_rows()) {
+				return TRUE;
+		}
+		return FALSE;
 	}
 	public function get_name($data){
 		$query = 'SELECT student_name FROM student where student_id = ' . $data['student_id'];
