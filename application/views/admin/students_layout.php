@@ -30,6 +30,10 @@
 					<form action="/jmiams/admin/students" method="post">
 						<input type="submit" name="increment" value="Increment Semester" class="btn btn-warning">
 					</form>
+				</section>
+				<section>
+					<br>
+					<a href="/jmiams/index.php/admin/add_student" class="btn btn-info btn-sm">Add Student</a>
 					<br>
 				</section>
 				<section>

@@ -77,6 +77,31 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/students_layout');
 	}
 
+	public function add_student() {
+		$this->data['confirmation'] = "";
+		$this->data['page'] = 2;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['rows'] = array();
+		if($this->input->post('submit'))
+		{
+			$rules = $this->student_m->rules1;
+	    	$this->form_validation->set_rules($rules);
+	    	if ($this->form_validation->run() == TRUE)
+	    	{
+				$array = array('student_id' => $this->input->post('student_id'),'roll_number' =>  $this->input->post('roll_number'),'student_name' => $this->input->post('student_name'),'semester' =>  $this->input->post('semester'));
+			    if($this->student_m->add_stu($array)){
+			    	$this->data['confirmation'] = 1;
+			    } else {
+			    	$this->data['confirmation'] = 2;
+			    }
+			} else {
+				$this->data['confirmation'] = 3;
+			}
+		}
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/add_student_layout');
+	}
+
 	public function edit_student() {
 		$this->data['confirmation'] = "";
 		$this->data['page'] = 2;

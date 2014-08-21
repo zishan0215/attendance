@@ -1,3 +1,4 @@
+
 <div class="container">
 	<div class="row">
 		<!-- Main column -->
@@ -5,7 +6,7 @@
 			<section>
 				<h2>Add Subject</h2>
 				<br>
-				<?php 
+				<?php
 						if(isset($confirmation)) {
 							if($confirmation === 1) {
 								echo '
