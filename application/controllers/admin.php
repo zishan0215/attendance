@@ -82,6 +82,7 @@ class Admin extends Admin_Controller {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = array();
+		$this->load->model('studies_m');
 		if($this->input->post('submit'))
 		{
 			$rules = $this->student_m->rules1;
@@ -90,6 +91,9 @@ class Admin extends Admin_Controller {
 	    	{
 				$array = array('student_id' => $this->input->post('student_id'),'roll_number' =>  $this->input->post('roll_number'),'student_name' => $this->input->post('student_name'),'semester' =>  $this->input->post('semester'));
 			    if($this->student_m->add_stu($array)){
+			    	if($this->input->post('semester') < 7) {
+			    		$this->studies_m->add_student($array);
+			    	}
 			    	$this->data['confirmation'] = 1;
 			    } else {
 			    	$this->data['confirmation'] = 2;

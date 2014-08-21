@@ -9,5 +9,20 @@ class Studies_m extends MY_Model {
 		protected $_timestamps = FALSE;
 		public $rules = array();
 
+		public function add_student($data) {
+			$query = 'SELECT subject_code FROM subject WHERE semester = ' . $data['semester'];
+			$codes = $this->db->query($query);
+			foreach($codes->result() as $code) {
+				$array = array('student_id' => $data['student_id']);
+				$array['subject_code'] = $code->subject_code;
+				$this->db->query('INSERT INTO studies VALUES ( '. $data['student_id'] .', ' . "'" . $code->subject_code . "'" .')');
+				unset($array);
+			}
+			if($this->db->affected_rows()) {
+				return TRUE;
+			}
+			return FALSE;
+		}
+
 }
 ?>
