@@ -93,8 +93,10 @@ class Admin extends Admin_Controller {
 			    if($this->student_m->add_stu($array)){
 			    	if($this->input->post('semester') < 7) {
 			    		$this->studies_m->add_student($array);
-			    	}
-			    	$this->data['confirmation'] = 1;
+			    		$this->data['confirmation'] = 1;
+			    	} else {
+			    		redirect('admin/add_student_final?id=' . $this->input->post('student_id'));
+			    	} 
 			    } else {
 			    	$this->data['confirmation'] = 2;
 			    }
@@ -105,6 +107,18 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_student_layout');
 	}
+
+	public function add_student_final() {
+		$this->data['confirmation'] = "";
+		$this->data['page'] = 2;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['student_name'] = $this->student_m->get_name_final(array('student_id' => $this->input->get('id')));
+		$semester = $this->student_m->get_semester(array('student_id' => $this->input->get('id')));
+		$this->data['subjects'] = $this->subject_m->get_by(array('semester' => $semester));
+		$this->load->model('studies_m');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/add_student_layout_final');
+	}	
 
 	public function edit_student() {
 		$this->data['confirmation'] = "";
