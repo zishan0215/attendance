@@ -188,6 +188,13 @@ class Admin extends Admin_Controller {
 		$this->load->view('admin/total_attendance_layout');
 	}
 
+	public function total_attendance_options() {
+		$this->data['page'] = 0;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('admin/components/admin_header', $this->data);
+		$this->load->view('admin/total_attendance_options_layout');
+	}	
+
 	public function view_attendance() {
 		$code = $this->input->post('subject_code');
 		$array = array('subject_code' => $code);

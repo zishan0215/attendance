@@ -6,7 +6,7 @@
 				<section>
 					<h2>Welcome, <?php echo $name; ?></h2><br>
 					<a href="/jmiams/index.php/admin/new_period" class="btn btn-warning">Create New Period</a>&nbsp;&nbsp;
-					<a href="/jmiams/index.php/admin/total_attendance" class="btn btn-danger">Total Attendance</a>
+					<a href="/jmiams/index.php/admin/total_attendance_options" class="btn btn-danger">Total Attendance</a>
 					<br><br>
 				</section>
 				<section>
