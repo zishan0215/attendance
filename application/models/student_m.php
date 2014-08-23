@@ -62,6 +62,7 @@ class Student_m extends MY_Model {
 		$q = $this->db->query($query);
 		return $q->result()[0]->student_name;
 	}
+
 	public function edit_name($data) {
 		$query = 'UPDATE student SET student_name = ' . "'" . $data['student_name'] . "'" . " WHERE student_id = " . $data['student_id'] ;
 		$q = $this->db->query($query);
@@ -78,6 +79,8 @@ class Student_m extends MY_Model {
 		$info = $this->get_by($data);
 		return $info[0]->semester;
 	}
+
+	
 }
 
 ?>

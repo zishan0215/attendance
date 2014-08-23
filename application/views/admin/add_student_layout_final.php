@@ -13,12 +13,13 @@
 				</section>
 				<section>
 					<div class="col-md-8">
-						<form role="form">
-							<?php 
+						<form role="form" action="/jmiams/admin/add_student_final?id=<?php echo $student_id; ?>" method="post">
+							<?php
+								$counter = 1; 
 								foreach($subjects as $s) {
 									echo '<div class="checkbox">
 											<label >
-												<input type="checkbox" value="' . $s->subject_code . '"> ' .$s->subject_name 
+												<input type="checkbox" name="' . $counter++ .'" value="' . $s->subject_code . '"> ' .$s->subject_name 
 									  	  . '</label>
 									  	  </div>';
 								}

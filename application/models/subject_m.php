@@ -113,6 +113,11 @@ class Subject_m extends MY_Model {
 		$q = $this->db->query($query);
 		return $q;
 	}
+
+	public function count_subjects($data) {
+		$q =  $this->db->query('SELECT count(*) as count FROM subject WHERE semester = ' . $data);
+		return $q->result()[0]->count;
+	}
 }
 
 ?>
