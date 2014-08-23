@@ -61,7 +61,9 @@ class Admin extends Admin_Controller {
 		$this->data['name'] = $this->session->userdata('name');
 		$this->data['rows'] = array();
 		$this->data['semesters'] = $this->student_m->get_distinct_semester();
-		//if($this->input->get())
+		if($this->input->get('confirmation')) {
+			$this->data['confirmation'] = 3;
+		}
 		if($this->input->post('increment')) {
 			if($this->student_m->update_semester()) {
 				$this->data['confirmation'] = 1;
@@ -119,13 +121,14 @@ class Admin extends Admin_Controller {
 		$this->data['subjects'] = $this->subject_m->get_by(array('semester' => $semester));
 		$count = $this->subject_m->count_subjects($semester);
 		if($this->input->post('submit')) {
+			$this->load->model('studies_m');
 			for($counter=1;$counter<=$count;$counter++) {
 				if($this->input->post($counter)) {
 					//echo $this->input->post($counter);
 					$this->studies_m->save(array('student_id' => $this->input->get('id'), 'subject_code' => $this->input->post($counter)));
 				}
 			}
-			redirect('admin/students?confirmation=1');
+			redirect('admin/students?confirmation=3');
 		}
 		$this->load->view('admin/components/admin_header', $this->data);
 		$this->load->view('admin/add_student_layout_final');

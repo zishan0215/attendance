@@ -21,6 +21,12 @@
 								<tr class="danger"><td>Failure! Could not increment semester </td></tr>
 								</table>
 								';
+							} elseif($confirmation === 3) {
+								echo '
+								<table class="table">
+								<tr class="success"><td>Success! Student added successfully </td></tr>
+								</table>
+								';
 							}
 						}
 					?>
