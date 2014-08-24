@@ -18,8 +18,8 @@ function validate_new_period() {
 	if(start > end) {
 		$('#div_dates').addClass('has-error');
 		alert('From date of period cannot exceed the to date in the time period.')
-		$('#fromdate').val("");
-	} else if (start <= end) {
+		$('#todate').val("");
+	} else if (start < end) {
 		if($('#div_dates').hasClass('has-error')) {
 			$('#div_dates').removeClass('has-error');
 		}
