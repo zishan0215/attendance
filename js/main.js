@@ -12,3 +12,16 @@ function validate_total_classes() {
 		}
 	}
 }
+function validate_new_period() {
+	var start = document.getElementById('fromdate').value;
+	var end = document.getElementById('todate').value;
+	if(start > end) {
+		$('#div_dates').addClass('has-error');
+		alert('From date of period cannot exceed the to date in the time period.')
+		$('#fromdate').val("");
+	} else if (start <= end) {
+		if($('#div_dates').hasClass('has-error')) {
+			$('#div_dates').removeClass('has-error');
+		}
+	}
+}

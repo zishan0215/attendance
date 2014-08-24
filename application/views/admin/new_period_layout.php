@@ -6,7 +6,7 @@
 				<section>
 					<h2>New Period Here</h2>
 					<br>
-					<?php 
+					<?php
 						if(isset($confirmation)) {
 							if($confirmation === 1) {
 								echo '
@@ -32,13 +32,15 @@
 				</section>
 				<section class="col-md-5">
 					<form role="form" method="post" action="#">
+						<div id="div_dates">
 						<div class="form-group">
     						<label for="fromdate">From Date</label>
-    						<input type="text" class="form-control datepicker" name="from_date" placeholder="Enter from date (yyyy-mm-dd)" required>
+    						<input type="text" id="fromdate" class="form-control datepicker" name="from_date" placeholder="Enter from date (yyyy-mm-dd)" required>
   						</div>
   						<div class="form-group">
     						<label for="todate">To Date</label>
-    						<input type="text" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" required>
+    						<input type="text" id="todate" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" required>
+  						</div>
   						</div>
   						<br>
   						<input type="submit" name="submit" value="Submit" class="btn btn-primary">&nbsp;&nbsp;
