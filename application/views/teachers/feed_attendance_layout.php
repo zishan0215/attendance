@@ -14,8 +14,9 @@
 			<form action="/jmiams/index.php/teacher/insert_attendance" method="post">
 				<div class="form-group col-sm-offset-1">
 					<label for="totalclasses" class="col-sm-4 control-label bigger_text">Total Classes</label>
-					<div class="col-sm-5">
-						<input type="text" class="form-control" name="num:0" placeholder="Total Classes" autofocus required>
+					<div class="col-sm-5 form-group" id="div_total_classes">
+						<input type="hidden" id="diff" value="<?php echo $to_date - $from_date ?>">
+						<input type="text" id="total_classes" class="form-control" name="num:0" placeholder="Total Classes" onchange="validate_total_classes();" autofocus required>
 					</div>
 				</div><br><br>
 				<table class="table">

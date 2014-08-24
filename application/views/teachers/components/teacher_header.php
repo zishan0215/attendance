@@ -11,6 +11,7 @@
 	</style>
 	<script src="/jmiams/js/jquery-1.11.1.min.js"></script>
 	<script src="/jmiams/js/bootstrap.min.js"></script>
+	<script src="/jmiams/js/main.js"></script>
 </head>
 
 <body>
