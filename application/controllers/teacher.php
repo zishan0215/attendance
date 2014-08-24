@@ -106,6 +106,7 @@ class Teacher extends Teacher_Controller {
 	}
 
 	public function feed_attendance() {
+		$this->data['confirmation'] = "";
 		$sem = $this->input->post('semester');
 		$code = $this->input->post('subject_code');
 		$this->load->model('period_m');
@@ -117,6 +118,12 @@ class Teacher extends Teacher_Controller {
 		$this->data['per'] = $this->period_m->get(NULL,TRUE);
 		$array = array('semester' => $sem);
 		$this->data['list'] = $this->student_m->get_by($array);
+		if($this->input->post('submit')) {
+			 if($this->input->post('num:0') > $this->input->post('total')) {
+			 	$this->data['confirmation'] = 1;
+
+			 }
+		}
 		$this->load->view('teachers/components/teacher_header',$this->data);
 		$this->load->view('teachers/feed_attendance_layout',$this->data);
 	}
@@ -130,22 +137,27 @@ class Teacher extends Teacher_Controller {
 		$total = $this->input->post('num:0');
 		$values = $this->input->post('total_values');
 		$this->load->model('attendance_m');
-		for ($i=1;$i<=$values; $i++) {
-			$val = $this->input->post('num:' . $i);
-			$s_id = $this->input->post('student_id:' . $i);
-			$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total);
-			$this->attendance_m->insert($array);
-		}
-		$id = $this->session->userdata('id');
-		$this->data['page'] = 0;
-		$this->data['name'] = $this->session->userdata('name');
-		$array = array('teacher_id' => $id);
-		$this->load->model('subject_m');
-		$this->data['rows'] = $this->subject_m->get_by($array);
-		$this->load->view('teachers/components/teacher_header', $this->data);
-		$this->load->view('teachers/main_layout');
-	}
+		if($this->input->post('total') < $this->input->post('num:' . 0)) {
+			$this->feed_attendance();
+			//redirect('http://localhost/jmiams/index.php/teacher/feed_attendance');
+		} else {
 
+			for ($i=1;$i<=$values; $i++) {
+				$val = $this->input->post('num:' . $i);
+				$s_id = $this->input->post('student_id:' . $i);
+				$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total);
+				$this->attendance_m->insert($array);
+			}
+			$id = $this->session->userdata('id');
+			$this->data['page'] = 0;
+			$this->data['name'] = $this->session->userdata('name');
+			$array = array('teacher_id' => $id);
+			$this->load->model('subject_m');
+			$this->data['rows'] = $this->subject_m->get_by($array);
+			$this->load->view('teachers/components/teacher_header', $this->data);
+			$this->load->view('teachers/main_layout');
+		}
+	}
 	public function login() {
 		$this->teacher_m->loggedin() == FALSE || redirect('teacher/');
 		$rules = $this->teacher_m->rules;

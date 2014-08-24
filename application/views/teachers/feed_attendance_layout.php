@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$date = DateTime::createFromFormat('Y-m-d', $this->data['per']->from_date);
 	$from_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
 	$date = DateTime::createFromFormat('Y-m-d', $this->data['per']->to_date);
@@ -15,8 +15,8 @@
 				<div class="form-group col-sm-offset-1">
 					<label for="totalclasses" class="col-sm-4 control-label bigger_text">Total Classes</label>
 					<div class="col-sm-5 form-group" id="div_total_classes">
-						<input type="hidden" id="diff" value="<?php echo $to_date - $from_date ?>">
-						<input type="text" id="total_classes" class="form-control" name="num:0" placeholder="Total Classes" onchange="validate_total_classes();" autofocus required>
+						<input type="hidden" id="diff" name="total" value="<?php echo $to_date - $from_date ?>">
+						<input type="text" id="total_classes" class="form-control" name="num:0" placeholder="Total Classes"  autofocus required>
 					</div>
 				</div><br><br>
 				<table class="table">
@@ -30,7 +30,7 @@
 						echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
 						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" class="form-control input-sm"';
 						echo '</td></tr>';
-						
+
 						//echo '<br/>';
 						$count++;
 					}
@@ -45,7 +45,7 @@
 					</tbody>
 				</table>
 				<div class="form-group">
-					<button type="submit" class="col-md-offset-4 btn btn-success">Submit</button>
+					<button type="submit" name = "submit" class="col-md-offset-4 btn btn-success">Submit</button>
 				</div>
 			</form>
 			</div>
