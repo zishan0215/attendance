@@ -107,8 +107,16 @@ class Teacher extends Teacher_Controller {
 
 	public function feed_attendance() {
 		$this->data['confirmation'] = "";
-		$sem = $this->input->post('semester');
-		$code = $this->input->post('subject_code');
+		if($this->input->post('semester')) {
+			$sem = $this->input->post('semester');
+		} else {
+			$sem = $this->input->get('semester');
+		}
+		if($this->input->post('subject_code')) {
+			$code = $this->input->post('subject_code');
+		} else {
+			$code = $this->input->get('subject_code');
+		}
 		$this->load->model('period_m');
 		$this->load->model('student_m');
 		$this->data['page'] = 0;
@@ -125,7 +133,7 @@ class Teacher extends Teacher_Controller {
 			 }
 		}
 		$this->load->view('teachers/components/teacher_header',$this->data);
-		$this->load->view('teachers/feed_attendance_layout',$this->data);
+		$this->load->view('teachers/feed_attendance_layout');
 	}
 
 	public function insert_attendance() {
@@ -138,8 +146,7 @@ class Teacher extends Teacher_Controller {
 		$values = $this->input->post('total_values');
 		$this->load->model('attendance_m');
 		if($this->input->post('total') < $this->input->post('num:' . 0)) {
-			$this->feed_attendance();
-			//redirect('http://localhost/jmiams/index.php/teacher/feed_attendance');
+			redirect('/teacher/feed_attendance?subject_code='.$code.'&semester='.$sem);
 		} else {
 
 			for ($i=1;$i<=$values; $i++) {
