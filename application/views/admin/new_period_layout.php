@@ -31,16 +31,16 @@
 					?>
 				</section>
 				<section class="col-md-5">
-					<form role="form" method="post" action="/jmiams/index.php/admin/new_period">
+					<form role="form" method="post" action="#">
 						<div class="form-group" id="div_dates">
 						<label for="fromdate">From Date</label>
 						<input type="text" id="fromdate" class="form-control datepicker" name="from_date" placeholder="Enter from date (yyyy-mm-dd)" required>
                         <br>
                         <label for="todate">To Date</label>
-						<input type="text" id="todate" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" onchange="validate_new_period();" required>
+						<input type="text" id="todate" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" onchange="" required>
   						</div>
   						<br>
-  						<input type="submit" name="submit" value="Submit" class="btn btn-primary">&nbsp;&nbsp;
+  						<input type="submit" name="submit" value="Submit" class="btn btn-primary" onsubmit="validate_new_period();">&nbsp;&nbsp;
   						<a href="/jmiams/index.php/admin" class="btn btn-danger">Cancel</a>
 					</form>
 				</section>

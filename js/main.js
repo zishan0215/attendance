@@ -11,6 +11,7 @@ function validate_total_classes() {
 		}
 	}
 }
+
 function validate_new_period() {
 	var start = document.getElementById('fromdate').value;
 	var end = document.getElementById('todate').value;
