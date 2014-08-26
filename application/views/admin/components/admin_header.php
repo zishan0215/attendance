@@ -5,14 +5,16 @@
 	<!-- Bootstrap -->
 	<link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/jmiams/css/datepicker.css" rel="stylesheet">
-	<script src="/jmiams/js/jquery-1.11.1.min.js"></script>
-	<script src="/jmiams/js/bootstrap.min.js"></script>
-	<script src="/jmiams/js/bootstrap-datepicker.js"></script>
+
 	<style type="text/css">
 		.bigger_text{
 			font-size: 20px;
 		}
 	</style>
+	<script src="/jmiams/js/jquery-1.11.1.min.js"></script>
+	<script src="/jmiams/js/bootstrap.min.js"></script>
+	<script src="/jmiams/js/bootstrap-datepicker.js"></script>
+	<script src="/jmiams/js/main.js"></script>
 </head>
 
 <body>
@@ -27,7 +29,7 @@
 				    <li <?php if($page == 1) echo 'class="active"' ?>><?php echo anchor('admin/teachers', 'Teachers'); ?></li>
 				    <li <?php if($page == 2) echo 'class="active"' ?>><?php echo anchor('admin/students', 'Students'); ?></li>
 				    <li <?php if($page == 3) echo 'class="active"' ?>><?php echo anchor('admin/subjects', 'Subjects'); ?></li>
-			    
+
 			    </ul>
 			    <ul class="nav navbar-nav pull-right">
 			    	<li class="dropdown pull-right">
