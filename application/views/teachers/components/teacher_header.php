@@ -4,6 +4,7 @@
 	<title><?php echo $meta_title; ?></title>
 	<!-- Bootstrap -->
 	<link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/jmiams/css/main.css" rel="stylesheet">
 	<style type="text/css">
 		.bigger_text {
 			font-size: 16px;

@@ -5,6 +5,7 @@
 	<!-- Bootstrap -->
 	<link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/jmiams/css/datepicker.css" rel="stylesheet">
+	<link href="/jmiams/css/main.css" rel="stylesheet">
 
 	<style type="text/css">
 		.bigger_text{
@@ -18,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+    <nav class="navbar navbar-static-top  navbar-inverse" role="navigation">
 	    <div class="container-fluid">
 		    <div class="navbar-header">
 		    	<a class="navbar-brand" href="<?php echo site_url('admin/'); ?>"><?php echo $meta_title; ?></a>
