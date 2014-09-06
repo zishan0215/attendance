@@ -27,11 +27,11 @@ function validate_new_period() {
 }
 
 function validate_attendance() {
-	var total = document.getElementById('diff').value;
+	var total = document.getElementById('total_classes').value;
 	var input = document.getElementById('total').value;
 	if(input > total) {
 		$('#div_total').addClass('has-error');
-		alert('Total Classes cannot exceed the days in the time period.')
+		alert('Attendance cannot exceed the total classes.')
 		$('#total').val("");
 	} else if (input <= total) {
 		if($('#div_total').hasClass('has-error')) {
