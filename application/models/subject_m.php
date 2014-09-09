@@ -118,6 +118,18 @@ class Subject_m extends MY_Model {
 		$q =  $this->db->query('SELECT count(*) as count FROM subject WHERE semester = ' . $data);
 		return $q->result()[0]->count;
 	}
+
+	public function get_distinct_subject_abbr($sem){
+		$query = 'SELECT DISTINCT subject_abbr FROM subject WHERE semester = ' . $sem;
+		$q = $this->db->query($query);
+		return $q;
+	}
+
+	public function get_distinct_subject_code($sem){
+		$query = 'SELECT DISTINCT subject_code FROM subject WHERE semester = ' . $sem;
+		$q = $this->db->query($query);
+		return $q;
+	}
 }
 
 ?>

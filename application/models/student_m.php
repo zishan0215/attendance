@@ -80,7 +80,11 @@ class Student_m extends MY_Model {
 		return $info[0]->semester;
 	}
 
-	
+	public function get_distinct_student_id($sem){
+		$query = 'SELECT DISTINCT student_id FROM student WHERE semester = ' . $sem;
+		$q = $this->db->query($query);
+		return $q;
+	}
 }
 
 ?>
