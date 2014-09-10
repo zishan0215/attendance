@@ -37,7 +37,14 @@
 						<input type="text" id="fromdate" class="form-control datepicker" name="from_date" placeholder="Enter from date (yyyy-mm-dd)" required>
                         <br>
                         <label for="todate">To Date</label>
-						<input type="text" id="todate" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" onchange="" required>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> js check for new period
+=======
+						<input type="text" id="todate" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" onblur="validate_new_period();"  required>
+>>>>>>> 0ff0ac234705001bfdda123ea533f07cb675c56e
   						</div>
   						<br>
   						<input type="submit" name="submit" value="Submit" class="btn btn-primary" onsubmit="validate_new_period();">&nbsp;&nbsp;
