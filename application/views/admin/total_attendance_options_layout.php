@@ -1,17 +1,34 @@
-
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
 			<div class="col-md-9 col-md-offset-3">
 				<section>
+					<?php
+						if(isset($this->data['confirmation'])) {
+							if($this->data['confirmation'] === 1) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Invalid Period and/or Semester</td></tr>
+									</table>
+									';
+							} elseif($confirmation === 2) {
+								echo '
+									<table class="table">
+										<tr class="danger"><td>Failure! Something wrong with the input. Please enter valid date </td></tr>
+									</table>
+									';
+							}
+						}
+					?>
 					<h2>Select Periods for total attendance</h2>
 					<br>
 				</section>
 				<section>
 					<div class="col-md-8">
 						<form role="form" action="/jmiams/admin/total_attendance" method="post">
-							<?php 
+							<?php
 								$counter=1;
+								asort($period);
 								foreach($period as $p) {
 									$date = DateTime::createFromFormat('Y-m-d', $p->from_date);
 									$from_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
@@ -25,6 +42,7 @@
 								}
 							?>
 							<br>
+							<input type="text" name="semester" placeholder="Semester" autofocus class="form-group"/>
 							<input type="submit" name="submit" value="Submit" class="btn btn-success" />
 						</form>
 					</div>
