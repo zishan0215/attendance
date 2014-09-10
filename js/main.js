@@ -25,3 +25,18 @@ function validate_new_period() {
 		}
 	}
 }
+
+function validate_attendance(present_id) {
+	var total = document.getElementById('total_classes').value;
+	var input = document.getElementById(present_id).value;
+	if(input > total) {
+		$('#div_total').addClass('has-error');
+		alert('Attendance cannot exceed the total classes.')
+		document.getElementById(present_id).value = '';
+	} else if (input <= total) {
+		if($('#div_total').hasClass('has-error')) {
+			$('#div_total').removeClass('has-error');
+		}
+	}
+}
+
