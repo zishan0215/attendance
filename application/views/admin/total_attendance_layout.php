@@ -7,9 +7,10 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<section>
-					<h1><small>Total Attendance For Semester <?php echo $this->data['sem']; ?> From <?php echo $from_date; ?> To <?php echo $to_date; ?></small></h1>
+					<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
+					<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
 					<br>
 				</section>
 

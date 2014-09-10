@@ -42,7 +42,9 @@
 								}
 							?>
 							<br>
-							<input type="text" name="semester" placeholder="Semester" autofocus class="form-group"/>
+							<div class="col-md-5">
+								<input type="text" name="semester" class="form-control" placeholder="Semester" autofocus />	
+							</div>
 							<input type="submit" name="submit" value="Submit" class="btn btn-success" />
 						</form>
 					</div>
