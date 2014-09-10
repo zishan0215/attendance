@@ -25,12 +25,14 @@
 				<?php
 					$count = 1;
 					foreach ($list as $n) {
+						echo '<div id="div_total">';
 						echo '<tr><td>' . $n->roll_number . '</td>';
 						echo '<td>' . $n->student_name . '</td>';
 						echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
-						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" class="form-control input-sm"';
+						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" onchange="validate_attendance(this.id);">
+						';
 						echo '</td></tr>';
-
+						echo '</div>';
 						//echo '<br/>';
 						$count++;
 					}
