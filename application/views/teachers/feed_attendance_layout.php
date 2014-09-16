@@ -29,7 +29,7 @@
 						echo '<tr><td>' . $n->roll_number . '</td>';
 						echo '<td>' . $n->student_name . '</td>';
 						echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
-						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" onchange="validate_attendance(this.id);">
+						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" >
 						';
 						echo '</td></tr>';
 						echo '</div>';
