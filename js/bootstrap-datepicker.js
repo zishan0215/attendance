@@ -317,7 +317,6 @@
 						break;
 				}
 			}
-			this.hide();
 		},
 		
 		mousedown: function(e){
