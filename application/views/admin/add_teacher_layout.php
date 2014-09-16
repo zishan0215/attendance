@@ -57,7 +57,7 @@
 						    	<input type="text" class="form-control" placeholder="Password for login" name="password" required>
 						    </div>
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 						    <label for="subjectname" class="col-sm-3 control-label">Subject Name</label>
 						    <div class="col-sm-7">
 						    	<input type="text" class="form-control" placeholder="Name of the subject" name="subject_name" required>
@@ -74,7 +74,7 @@
 						    <div class="col-sm-7">
 						    	<input type="text" class="form-control" placeholder="Subject semester" name="semester" required>
 						    </div>
-						</div>
+						</div> -->
 						<div class="form-group">
 						    <div class="col-sm-offset-3 col-sm-7">
 						    	<br>

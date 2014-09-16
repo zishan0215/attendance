@@ -54,7 +54,7 @@ class Teacher_m extends MY_Model {
 				'field' => 'password',
 				'label' => 'Password',
 				'rules' => 'trim|required'
-			),
+			)/*,
 			'subject_name' => array(
 				'field' => 'subject_name',
 				'label' => 'Subject Name',
@@ -69,7 +69,7 @@ class Teacher_m extends MY_Model {
 				'field' => 'semester',
 				'label' => 'Semester',
 				'rules' => 'trim|required'
-			)
+			)*/
 		);
 
 		public $rules3 = array(
@@ -137,8 +137,8 @@ class Teacher_m extends MY_Model {
 		return FALSE;
 	}
 
-	public function check_username($data) {
-		$query = 'SELECT * FROM teacher WHERE username = ' . "'" . $data['username'] . "'" ;
+	public function username_exists($data) {
+		$query = 'SELECT username FROM teacher WHERE username = ' . "'" . $data['username'] . "'" ;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0) {
 			return TRUE;

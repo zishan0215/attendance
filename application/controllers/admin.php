@@ -188,6 +188,7 @@ class Admin extends Admin_Controller {
         $sem = $this->input->post('semester');
         $all = [];
         $count = 0;
+        $check = 1;
         for ($i=0; $i < 10; $i++) {
             $val = $this->input->post($i);
             if($val){
@@ -202,10 +203,7 @@ class Admin extends Admin_Controller {
             }
         }
 
-        if(!$sem || !$all[0]){
-            $this->data['confirmation'] = 1;
-            redirect('/admin/total_attendance_options');
-        }
+        
 
 
         /*foreach ($all as $value) {
@@ -224,12 +222,17 @@ class Admin extends Admin_Controller {
             for($i=0; $i<$count-1; $i++){
                 if ((strtotime($all[$i+1]["from_date"]) - (24 * 60 * 60)) != (strtotime($all[$i]["to_date"]))) {
                     //echo "INVALID";
+                    $check = 0;
                     $this->data['confirmation'] = 1;
                 }
                 else{
                     $end = $all[$i+1]["to_date"];
                 }
             }
+        }
+        if(!$check || !$sem || !$all[0]){
+            $this->data['confirmation'] = 1;
+            redirect('/admin/total_attendance_options');
         }
         //echo strtotime($start) . '<br/>' . strtotime($end);
         //echo $start . " -> " . $end;
@@ -424,15 +427,16 @@ class Admin extends Admin_Controller {
             $this->form_validation->set_rules($rules);
             if ($this->form_validation->run() == TRUE) {
                 $array = array('teacher_name' => $this->input->post('teacher_name'), 'username' => $this->input->post('username'), 'password' => $this->teacher_m->hash($this->input->post('password')));
-                if($this->teacher_m->check_username($array)) {
+                if(!$this->teacher_m->username_exists($array)) {
                     $id = $this->teacher_m->save($array);
                     unset($array);
-                    $array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
+                    $this->data['confirmation'] = 1;
+                    /*$array = array('subject_code' => $this->input->post('subject_code'), 'subject_name' => $this->input->post('subject_name'), 'semester' => $this->input->post('semester'), 'teacher_id' => $id);
                     if($this->subject_m->insert($array)) {
                         $this->data['confirmation'] = 1;
                     } else {
                         $this->data['confirmation'] = 2;
-                    }
+                    }*/
                 } else {
                     $this->data['confirmation'] = 4;
                 }
