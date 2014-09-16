@@ -129,7 +129,6 @@ class Teacher extends Teacher_Controller {
 		if($this->input->post('submit')) {
 			 if($this->input->post('num:0') > $this->input->post('total')) {
 			 	$this->data['confirmation'] = 1;
-
 			 }
 		}
 		$this->load->view('teachers/components/teacher_header',$this->data);
@@ -145,10 +144,9 @@ class Teacher extends Teacher_Controller {
 		$total = $this->input->post('num:0');
 		$values = $this->input->post('total_values');
 		$this->load->model('attendance_m');
-		if($this->input->post('total') < $this->input->post('num:' . 0)) {
+		/*if($this->input->post('total') < $this->input->post('num:0')) {
 			redirect('/teacher/feed_attendance?subject_code='.$code.'&semester='.$sem);
-		} else {
-
+		} else {*/
 			for ($i=1;$i<=$values; $i++) {
 				$val = $this->input->post('num:' . $i);
 				$s_id = $this->input->post('student_id:' . $i);
@@ -163,7 +161,7 @@ class Teacher extends Teacher_Controller {
 			$this->data['rows'] = $this->subject_m->get_by($array);
 			$this->load->view('teachers/components/teacher_header', $this->data);
 			$this->load->view('teachers/main_layout');
-		}
+		//}
 	}
 	public function login() {
 		$this->teacher_m->loggedin() == FALSE || redirect('teacher/');
