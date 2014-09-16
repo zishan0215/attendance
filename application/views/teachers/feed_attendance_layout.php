@@ -16,7 +16,7 @@
 					<label for="totalclasses" class="col-sm-4 control-label bigger_text">Total Classes</label>
 					<div class="col-sm-5 form-group" id="div_total_classes">
 						<input type="hidden" id="diff" name="total" value="<?php echo $to_date - $from_date ?>">
-						<input type="text" id="total_classes" class="form-control" name="num:0" placeholder="Total Classes" onchange="validate_total_classes();" autofocus required>
+						<input type="text" id="total_classes" class="form-control" name="num:0" placeholder="Total Classes"  autofocus required>
 					</div>
 				</div><br><br>
 				<table class="table">
@@ -29,7 +29,7 @@
 						echo '<tr><td>' . $n->roll_number . '</td>';
 						echo '<td>' . $n->student_name . '</td>';
 						echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
-						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" onchange="validate_attendance(this.id);">
+						echo '<input autofocus type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" >
 						';
 						echo '</td></tr>';
 						echo '</div>';
