@@ -15,6 +15,8 @@ class Teacher extends Teacher_Controller {
 		$id = $this->session->userdata('id');
 		$array = array('teacher_id' => $id);
 		$this->load->model('subject_m');
+		$this->load->model('period_m');
+		$this->data['codes'] = $this->period_m->done_attendance();
 		$this->data['rows'] = $this->subject_m->get_by($array);
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/main_layout');

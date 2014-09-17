@@ -29,5 +29,22 @@ class Period_m extends MY_Model {
 			}
 			return FALSE;
 		}
+
+		public function get_latest_period() {
+			$query = "SELECT from_date, to_date FROM period ORDER BY timstamp desc LIMIT 1";
+			$r = $this->db->query($query);
+			return $r->result()[0];
+		}
+
+		public function done_attendance() {
+			$period = $this->get_latest_period();
+			$query = "SELECT DISTINCT subject_code from attendance WHERE from_date='{$period->from_date}' and to_date='{$period->to_date}'";
+			$q = $this->db->query($query);
+			$codes = array();
+			foreach($q->result() as $code) {
+				$codes[] = $code->subject_code;
+			}
+			return $codes;
+		}
 }
 ?>
