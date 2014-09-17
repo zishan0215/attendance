@@ -52,6 +52,13 @@ class Attendance_m extends MY_Model {
 			}
 			return FALSE;
 		}
+
+		public function get_total_classes($data){
+			$query = 'SELECT total_classes FROM attendance WHERE student_id=';
+			$query .= $data['student_id'] . " AND subject_code=" . "'" . $data['subject_code'] . "'" . " AND from_date=" . "'" . $data['from_date'] . "'" . " AND to_date=" . "'" . $data['to_date'] . "'" ;
+			$q = $this->db->query($query);
+			return $q;
+		}
 }
 
 ?>

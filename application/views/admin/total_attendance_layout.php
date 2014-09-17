@@ -31,7 +31,21 @@
 								}*/
 							?>
 						</th>
-						<th>Total Attendance</th><th>Total Classes</th><th>Percentage</th></tr></thead>
+						<th>Total</th><th>Percentage</th></tr></thead>
+						<thead>
+							<tr>
+								<th></th><th></th><th></th><th></th>
+								<th>
+									<?php
+										foreach ($head_class as $head) {
+											echo $head["total"];
+											echo '</th><th>';
+										}
+									?>
+								</th>
+								<th><?php echo $this->data['head_total']; ?></th><th></th>
+							</tr>
+						</thead>
 						<tbody>
 							<!--<tr>
 								<td></td><td></td><td></td><td></td>
@@ -79,7 +93,7 @@
 									}
 								}
 								echo '</td><td>' . $d["total_attendance"];
-								echo '</td><td>' . $d["total_classes"];
+								//echo '</td><td>' . $d["total_classes"];
 								echo '</td><td>' . number_format($d["percentage"],2) . '%';
 								echo '</td></tr>';
 							}

@@ -252,12 +252,33 @@ class Admin extends Admin_Controller {
             ];
         }
 
+        $try_id = $st_ids[0]["id_s"];
+
         $this->data['subs_code'] = $this->subject_m->get_distinct_subject_code($sem);
         $this->data['subs'] = $this->subject_m->get_distinct_subject_abbr($sem);
-        foreach ($this->data['subs']->result() as $key) {
+
+        $att_head = array();
+        foreach ($all as $value) {
+            $c = 0;
+            foreach ($this->data['subs_code']->result() as $key) {
+                $arrAY = array("student_id" => $try_id,"subject_code" => $key->subject_code,"from_date" => $value["from_date"],"to_date" => $value["to_date"]);
+                $this->data['ind_att'] = $this->attendance_m->get_by($arrAY);
+                //$curr = $this->attendance_m->get_total_classes($arrAY);;
+                foreach ($this->data['ind_att'] as $att) {
+                    $this->data['head_class'] [] = [
+                        "total" => $att->total_classes
+                    ];
+                    //echo $att->total_classes;
+                }
+            }
+        }
+
+
+        foreach ($this->data['subs_code']->result() as $key) {
             //echo $key->subject_abbr;
+            $temp = explode('-',$key->subject_code);
             $this->data['subjects'] [] = [
-                "name" => $key->subject_abbr
+                "name" => $temp[1]
             ];
         }
 
@@ -298,6 +319,7 @@ class Admin extends Admin_Controller {
             ];
             //echo '<br/>';
         }
+        $this->data['head_total'] = $total_sum;
 
         foreach ($this->data['values'] as $attend) {
             foreach ($this->data['rows2'] as $details) {
