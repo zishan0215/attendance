@@ -107,6 +107,13 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/view_attendance_layout');
 	}
 
+	public function edit_attendance() {
+		$this->data['page'] = 0;
+		$this->data['name'] = $this->session->userdata('name');
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/edit_attendance');	
+	}
+
 	public function feed_attendance() {
 		$this->data['confirmation'] = "";
 		if($this->input->post('semester')) {
