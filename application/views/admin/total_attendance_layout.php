@@ -98,7 +98,7 @@
 						<?php
 							$counter = 1;
 							foreach($table as $d){
-								if($d["percentage"] <= $filter) {
+								if(($d["percentage"] <= $filter) || ($filter == 0)) {
 									echo '<tr><td>' . $counter++ .'</td><td>' . $d["roll_number"];
 									echo '</td><td>' . $d["student_id"] . '</td><td>' . $d["name"];
 									echo '</td><td>';
