@@ -9,6 +9,7 @@
 			<!-- Main column -->
 			<div class="col-md-12">
 				<section>
+					<p class="pull-right"><a href="javascript:window.print();">Print</a></p>
 					<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
 					<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
 					<br>
