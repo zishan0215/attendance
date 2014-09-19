@@ -185,7 +185,7 @@ class Admin extends Admin_Controller {
         if($this->input->post('filter')) {
             $this->data['filter'] = $this->input->post('filter');
         } else {
-            $this->data['filter'] = 0;
+            $this->data['filter'] = 101;
         }
         $this->data['page'] = 0;
         $this->data['name'] = $this->session->userdata('name');

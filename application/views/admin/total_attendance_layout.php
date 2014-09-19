@@ -13,7 +13,7 @@
 					<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
 					<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
 					<form role="form" class="form-inline" method="post" action="/jmiams/index.php/admin/total_attendance">
-						<input type="text" name="filter" placeholder="Apply filter" <?php if($filter !=0) echo "value=\"{$filter}\""; ?> class="form-control">
+						<input type="text" name="filter" placeholder="Apply filter" <?php if($filter !=101) echo "value=\"{$filter}\""; ?> class="form-control">
 						<input type="hidden" name="semester" value="<?php echo $fsemester; ?>">
 						<?php //$i=1; $next='a'.$i; echo "<p>".$$next."</p>"; ?>
 						<?php 
@@ -98,7 +98,7 @@
 						<?php
 							$counter = 1;
 							foreach($table as $d){
-								if(($d["percentage"] <= $filter) || ($filter == 0)) {
+								if($d["percentage"] <= $filter) {
 									echo '<tr><td>' . $counter++ .'</td><td>' . $d["roll_number"];
 									echo '</td><td>' . $d["student_id"] . '</td><td>' . $d["name"];
 									echo '</td><td>';
