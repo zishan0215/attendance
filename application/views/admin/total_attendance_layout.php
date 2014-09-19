@@ -12,6 +12,23 @@
 					<p class="pull-right"><a href="javascript:window.print();">Print</a></p>
 					<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
 					<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
+					<form role="form" class="form-inline" method="post" action="/jmiams/index.php/admin/total_attendance">
+						<input type="text" name="filter" placeholder="Apply filter" <?php if($filter !=0) echo "value=\"{$filter}\""; ?> class="form-control">
+						<input type="hidden" name="semester" value="<?php echo $fsemester; ?>">
+						<?php //$i=1; $next='a'.$i; echo "<p>".$$next."</p>"; ?>
+						<?php 
+							for($fcounter=1; $fcounter <= $fcount; $fcounter++) {
+								$next='a'.$fcounter;
+								?>
+								<input type="hidden" name="<?php echo $fcounter ?>" value="<?php echo $$next; ?>">
+								<?php  
+							}
+
+						?>
+						<div class="form-group">
+							<input type="submit" name="submit_filter" class="btn btn-default" value="Go">
+						</div>
+					</form>
 					<br>
 				</section>
 
@@ -81,22 +98,24 @@
 						<?php
 							$counter = 1;
 							foreach($table as $d){
-								echo '<tr><td>' . $counter++ .'</td><td>' . $d["roll_number"];
-								echo '</td><td>' . $d["student_id"] . '</td><td>' . $d["name"];
-								echo '</td><td>';
-								//echo  $d["attendance"];
-								foreach ($d["attendance"] as $key) {
-									if($key["id"] == $d["student_id"]){
-										echo '&nbsp;';
-										echo $key["val_in"];
-										echo '</td>';
-										echo '<td>';
+								if($d["percentage"] <= $filter) {
+									echo '<tr><td>' . $counter++ .'</td><td>' . $d["roll_number"];
+									echo '</td><td>' . $d["student_id"] . '</td><td>' . $d["name"];
+									echo '</td><td>';
+									//echo  $d["attendance"];
+									foreach ($d["attendance"] as $key) {
+										if($key["id"] == $d["student_id"]){
+											echo '&nbsp;';
+											echo $key["val_in"];
+											echo '</td>';
+											echo '<td>';
+										}
 									}
+									echo '</td><td>' . $d["total_attendance"];
+									//echo '</td><td>' . $d["total_classes"];
+									echo '</td><td>' . number_format($d["percentage"],2) . '%';
+									echo '</td></tr>';
 								}
-								echo '</td><td>' . $d["total_attendance"];
-								//echo '</td><td>' . $d["total_classes"];
-								echo '</td><td>' . number_format($d["percentage"],2) . '%';
-								echo '</td></tr>';
 							}
 						?>
 						</tbody>

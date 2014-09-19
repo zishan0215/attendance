@@ -182,10 +182,16 @@ class Admin extends Admin_Controller {
     }
 
     public function total_attendance() {
+        if($this->input->post('filter')) {
+            $this->data['filter'] = $this->input->post('filter');
+        } else {
+            $this->data['filter'] = 0;
+        }
         $this->data['page'] = 0;
         $this->data['name'] = $this->session->userdata('name');
         $this->data['confirmation'] = "";
         $sem = $this->input->post('semester');
+        $this->data['fsemester'] = $sem;
         $all = [];
         $count = 0;
         $check = 1;
@@ -193,6 +199,8 @@ class Admin extends Admin_Controller {
             $val = $this->input->post($i);
             if($val){
                 //echo $val;
+                $this->data["a{$i}"] = $val;
+                //print_r($this->data["{$i}"]);   
                 $temp = explode('#', $val);
                 $count++;
                 //echo $temp[0] . " -> " . $temp[1] . '<br/>';
@@ -202,7 +210,7 @@ class Admin extends Admin_Controller {
                 ];
             }
         }
-
+        $this->data['fcount'] = $count;
         
 
 
