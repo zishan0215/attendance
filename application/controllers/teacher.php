@@ -59,18 +59,21 @@ class Teacher extends Teacher_Controller {
 		$teacher_data->page = -1; // No highlights in the navigation bar
 		$teacher_data->name = $teacher_data->teacher_name;
 		$teacher_data->confirmation = "";
-		$student_id = $this->input->post('student_id');
-		$from_date = $this->input->post('from_date');
-		$to_date = $this->input->post('to_date');
-		$subject_code = $this->input->post('subject_code');
-		$total_classes = $this->input->post('total_classes');
+
 		if($this->input->post('submit')) {
+			$student_id = $this->input->post('student_id');
+			$from_date = $this->input->post('from_date');
+			$to_date = $this->input->post('to_date');
+			$subject_code = $this->input->post('subject_code');
+			$total_classes = $this->input->post('total_classes');
 			$array= array('student_id'=>$student_id,'subject_code' => $subject_code,'from_date' =>$from_date,'to_date' =>$to_date ,'total_classes' =>$total_classes, 'attendance' => $this->input->post('attendance'));
 			if($this->attendance_m->get_up($array)) {
 				$this->data['confirmation'] = 1;
 			} else {
 				$this->data['confirmation'] = 2;
 			}
+		} else {
+			$this->data['confirmation'] = 3;
 		}
 		$this->load->view('teachers/components/teacher_header', $teacher_data);
 		$this->load->view('teachers/edit_attendance_layout');

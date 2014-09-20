@@ -14,8 +14,8 @@ class Attendance_m extends MY_Model {
 			return $q;
 		}
 		public function get_up($data) {
-			$query = 'UPDATE attendance SET attendance = ' . "'" . $data['attendance'] . "'" ;
-			$query .= 'WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND  student_id = '."'" . $data['student_id'] . "'" . 'AND from_date = '."'".$data['from_date']."'".'AND to_date = '."'".$data['to_date']."'".'AND total_classes ='."'".$data['total_classes']."'";
+			$query = 'UPDATE attendance SET attendance = '. $data['attendance'];
+			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND  student_id = '. $data['student_id'] . ' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."'".' AND total_classes = ' . $data['total_classes'];
 			$q = $this->db->query($query);
 			return $q;
 		}

@@ -3,7 +3,8 @@
     <div class="row">
         <!-- Main column -->
         <div class="col-md-8 col-md-offset-2">
-            <h2>Edit details of : <?php echo $_POST['student_id']; ?></h2>
+            <h3>Edit details of : <?php echo $_POST['student_name']; ?></h3>
+            <h4>Student id : <?php echo $_POST['student_id']; ?></h4>
             <br>
             <section>
                 <br>
@@ -58,8 +59,12 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-7">
                     <br>
+                    <input type="hidden" value="<?php echo $_POST['student_name']; ?>" name="student_name" />
                     <input type="hidden" value="<?php echo $_POST['student_id']; ?>" name="student_id" />
                     <input type="hidden" value="<?php echo $_POST['total_classes']; ?>" name="total_classes" />
+                    <input type="hidden" value="<?php echo $_POST['from_date']; ?>" name="from_date" />
+                    <input type="hidden" value="<?php echo $_POST['to_date']; ?>" name="to_date" />
+                    <input type="hidden" value="<?php echo $_POST['subject_code']; ?>" name="subject_code" />
                     <input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
                     <a href="/jmiams/index.php/teacher" class="btn btn-danger">Cancel</a>
                 </div>

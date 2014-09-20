@@ -58,7 +58,17 @@ if(isset($rows)) {
 									echo '</td><td>' . $r->student_id . '</td><td>' . $r->student_name;
 									echo '</td><td>' . $r->semester;
 									echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
-									echo '</td><td>' . '<form action="http://localhost/jmiams/index.php/teacher/edit_attendance" method="post"><input type="hidden" value="' . $r->student_id .'" name="student_id" /><input type="hidden" value="' . $subject->subject_code .'" name="subject_code" /><input type="hidden" value="' . $from_date_submit .'" name="from_date" /><input type="hidden" value="' . $to_date_submit .'" name="to_date" /><input type="hidden" value="' . $r->attendance .'" name="attendance" /><input type="hidden" value="' . $r->total_classes .'" name="total_classes" /><input type="submit"  class="btn btn-primary" value="Edit"/></form>';
+									echo '</td><td>' .
+									'<form action="http://localhost/jmiams/index.php/teacher/edit_attendance" method="post">
+									<input type="hidden" value="' . $r->student_name .'" name="student_name" />
+									<input type="hidden" value="' . $r->student_id .'" name="student_id" />
+									<input type="hidden" value="' . $subject->subject_code .'" name="subject_code" />
+									<input type="hidden" value="' . $from_date_submit .'" name="from_date" />
+									<input type="hidden" value="' . $to_date_submit .'" name="to_date" />
+									<input type="hidden" value="' . $r->attendance .'" name="attendance" />
+									<input type="hidden" value="' . $r->total_classes .'" name="total_classes" />
+									<input type="submit"  class="btn btn-primary" value="Edit"/>
+									</form>';
 									echo '</td></tr>';
 								}
 							echo "
