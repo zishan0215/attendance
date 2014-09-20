@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(isset($rows)) {
 	$date = DateTime::createFromFormat('Y-m-d', $from_date);
 	$from_date_submit = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
@@ -19,7 +19,7 @@ if(isset($rows)) {
 					<form class="form-inline" role="form" action="/jmiams/index.php/teacher/view_attendance" method="post">
 						<div class="form-group">
 							<select class="form-control" name="period">
-								<?php 
+								<?php
 									foreach($period as $p) {
 										$date = DateTime::createFromFormat('Y-m-d', $p->from_date);
 										$from_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
@@ -30,13 +30,13 @@ if(isset($rows)) {
 								 ?>
 							</select>&nbsp;&nbsp;
 							<input type="hidden" name="subject_code" value=<?php echo '"'. $code .'"'?> />
-							<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;	
+							<input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
 						</div>
 					</form>
 					<br>
 				</section>
 				<section>
-					<?php 
+					<?php
 						if(isset($rows)) {
 							echo "
 							<div class=\"col-md-5\">
@@ -48,8 +48,8 @@ if(isset($rows)) {
 								</table>
 							</div>
 							<br>
-							<table class=\"table table-striped\"> 	
-								<thead><tr><th>S.No.</th><th>Roll Number</th><th>Student Id</th><th>Name</th><th>Semester</th><th>Attendance</th><th>Total Classes</th></tr></thead>
+							<table class=\"table table-striped\">
+								<thead><tr><th>S.No.</th><th>Roll Number</th><th>Student Id</th><th>Name</th><th>Semester</th><th>Attendance</th><th>Total Classes</th><th>Edit</th></tr></thead>
 								<tbody>
 								";
 								$counter = 1;
@@ -58,7 +58,8 @@ if(isset($rows)) {
 									echo '</td><td>' . $r->student_id . '</td><td>' . $r->student_name;
 									echo '</td><td>' . $r->semester;
 									echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
-									echo '</td></tr>';		
+									echo '</td><td>' . '<form action="http://localhost/jmiams/index.php/teacher/edit_attendance" method="post"><input type="hidden" value="' . $r->student_id .'" name="student_id" /><input type="hidden" value="' . $subject->subject_code .'" name="subject_code" /><input type="hidden" value="' . $from_date_submit .'" name="from_date" /><input type="hidden" value="' . $to_date_submit .'" name="to_date" /><input type="hidden" value="' . $r->attendance .'" name="attendance" /><input type="hidden" value="' . $r->total_classes .'" name="total_classes" /><input type="submit"  class="btn btn-primary" value="Edit"/></form>';
+									echo '</td></tr>';
 								}
 							echo "
 								</tbody>
