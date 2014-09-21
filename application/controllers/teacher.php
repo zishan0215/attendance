@@ -53,13 +53,9 @@ class Teacher extends Teacher_Controller {
 	}
 	public function edit_attendance() {
 		$id = $this->session->userdata('id');
-		$teacher_data = $this->teacher_m->get($id);
-		$teacher_data->site_name = config_item('site_name');
-		$teacher_data->meta_title = 'Attendance Management System';
-		$teacher_data->page = -1; // No highlights in the navigation bar
-		$teacher_data->name = $teacher_data->teacher_name;
-		$teacher_data->confirmation = "";
-
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['page'] = -1; // No highlights in the navigation bar
+		$this->data['confirmation'] = "";
 		if($this->input->post('submit')) {
 			$student_id = $this->input->post('student_id');
 			$from_date = $this->input->post('from_date');
@@ -67,15 +63,13 @@ class Teacher extends Teacher_Controller {
 			$subject_code = $this->input->post('subject_code');
 			$total_classes = $this->input->post('total_classes');
 			$array= array('student_id'=>$student_id,'subject_code' => $subject_code,'from_date' =>$from_date,'to_date' =>$to_date ,'total_classes' =>$total_classes, 'attendance' => $this->input->post('attendance'));
-			if($this->attendance_m->get_up($array)) {
+			if($this->attendance_m->update_attendance($array)) {
 				$this->data['confirmation'] = 1;
 			} else {
 				$this->data['confirmation'] = 2;
 			}
-		} else {
-			$this->data['confirmation'] = 3;
 		}
-		$this->load->view('teachers/components/teacher_header', $teacher_data);
+		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/edit_attendance_layout');
 	}
 	public function change_password() {
@@ -131,13 +125,6 @@ class Teacher extends Teacher_Controller {
 		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/view_attendance_layout');
-	}
-
-	public function edit_attendance() {
-		$this->data['page'] = 0;
-		$this->data['name'] = $this->session->userdata('name');
-		$this->load->view('teachers/components/teacher_header', $this->data);
-		$this->load->view('teachers/edit_attendance');	
 	}
 
 	public function feed_attendance() {
