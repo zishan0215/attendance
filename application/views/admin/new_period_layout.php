@@ -40,9 +40,9 @@
 						<input type="text" id="todate" class="form-control datepicker" name="to_date" placeholder="Enter to date (yyyy-mm-dd)" required>
   						</div>
   						<br>
-  						<input type="submit" name="submit" value="Submit" class="btn btn-primary">&nbsp;&nbsp;
+  						<button class="btn btn-primary" onclick="check_dates();">Submit</button>
+  						<input type="submit" name="submit" id="submit_dates" class="btn btn-primary" style="display:none;">&nbsp;&nbsp;
   						<a href="/jmiams/index.php/admin" class="btn btn-danger">Cancel</a>
-  						
 					</form>
 				</section>
 			</div>

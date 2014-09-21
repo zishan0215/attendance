@@ -25,3 +25,15 @@ function validate_attendance(present_id) {
 		}
 	}
 }
+
+function check_dates() {
+	var d1 = new Date();
+	var d2 = new Date();
+	d1 = document.getElementById('fromdate').value;
+	d2 = document.getElementById('todate').value;
+	if(d1 >= d2) {
+		alert('"From date" must be less than "to date"');
+	} else {
+		document.getElementById('submit_dates').click();
+	}
+}
