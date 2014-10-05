@@ -14,7 +14,7 @@ function validate_total_classes() {
 
 function validate_attendance(present_id) {
 	var total = document.getElementById('total_classes').value;
-	var input = document.getElementById(present_id).value;
+	var input = document.getElementById('present_id').value;
 	if(input > total) {
 		$('#div_total').addClass('has-error');
 		alert('Attendance cannot exceed the total classes.')
@@ -36,4 +36,22 @@ function check_dates() {
 	} else {
 		document.getElementById('submit_dates').click();
 	}
+}
+
+
+function finalSubmit(subject_code, from_date, to_date) {
+	$.ajax({
+		url: "/jmiams/index.php/teacher/final_submit",
+		type: "POST",
+		data: {'subject_code': subject_code, 'from_date': from_date, 'to_date': to_date},
+		success: function() {
+			alert('done');
+		}
+	});
+
+	ebtn = document.getElementsByClassName('Ebtn');
+	for (var i = 0; i < ebtn.length; i++) {
+		ebtn[i].disabled = true;
+	}
+	
 }

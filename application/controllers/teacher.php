@@ -22,7 +22,6 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/main_layout');
 	}
 
-
 	public function students() {
 		$this->data['page'] = 2;
 		$this->data['name'] = $this->session->userdata('name');
@@ -51,6 +50,15 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $teacher_data);
 		$this->load->view('teachers/account_layout');
 	}
+
+	public function final_submit() {
+		$subject_code = $this->input->post('subject_code');
+		$from_date = $this->input->post('from_date');
+		$to_date = $this->input->post('to_date');
+		$this->attendance_m->final_submit_update(array($subject_code,$from_date, $to_date));
+		//echo "<script>console.log('from final_submit');alert('from final_submit');</script>";
+	}
+
 	public function edit_attendance() {
 		$id = $this->session->userdata('id');
 		$this->data['name'] = $this->session->userdata('name');

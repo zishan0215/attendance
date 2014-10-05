@@ -56,7 +56,7 @@ if(isset($rows)) {
 								";
 								$counter = 1;
 								foreach($rows->result() as $r){
-									echo '<tr><td>' . $counter++ .'</td><td>' . $r->roll_number;
+									echo '<tr><td>' . $counter .'</td><td>' . $r->roll_number;
 									echo '</td><td>' . $r->student_id . '</td><td>' . $r->student_name;
 									echo '</td><td>' . $r->semester;
 									echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
@@ -69,7 +69,7 @@ if(isset($rows)) {
 									<input type="hidden" value="' . $to_date_edit .'" name="to_date" />
 									<input type="hidden" value="' . $r->attendance .'" name="attendance" />
 									<input type="hidden" value="' . $r->total_classes .'" name="total_classes" />
-									<input type="submit"  class="btn btn-primary" value="Edit"/>
+									<input type="submit" id="e'. $counter++.'" class="btn btn-primary Ebtn" value="Edit"/>
 									</form>';
 									echo '</td></tr>';
 								}
@@ -77,6 +77,11 @@ if(isset($rows)) {
 								</tbody>
 							</table>
 							";
+							?>
+							<div class="col-md-offset-5">
+								<button class="btn btn-success" onclick="finalSubmit(<?php echo '\''. $subject->subject_code . '\',\'' . $from_date_edit . '\',\'' . $to_date_edit .'\''; ?>);">Final Submit</button><br/><br/><br/>
+							</div>
+							<?php
 						}
 					?>
 				</section>

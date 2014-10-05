@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title><?php echo $meta_title; ?></title>
 	<!-- Bootstrap -->
 	<link href="/jmiams/css/bootstrap.min.css" rel="stylesheet">

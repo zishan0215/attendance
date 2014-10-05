@@ -7,6 +7,9 @@ body {
 	background-color:#FCFCFC;
 }
 
+.navbar-inverse .navbar-nav>li>a{
+	color: #fff;
+}
 
 
 
