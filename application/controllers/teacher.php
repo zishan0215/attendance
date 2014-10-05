@@ -35,6 +35,35 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/students_layout');
 	}
+	
+	public function sessionals() {
+		$this->data['page'] = 3;
+		$this->data['name'] = $this->session->userdata('name');
+		$id = $this->session->userdata('id');
+		$array = array('teacher_id' => $id);
+		$this->load->model('subject_m');
+		$this->data['rows'] = $this->subject_m->get_by($array);
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/sessions_layout');
+	}
+	
+	public function feed_marks() {
+		$this->data['page'] = 3;
+		$this->data['name'] = $this->session->userdata('name');
+		$id = $this->session->userdata('id');
+		$semester = $this->input->post('semester');
+		$this->data['students'] = $this->student_m->get_by(array('semester'=>$semester));
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/feed_marks_layout');
+	}
+	
+	public function view_marks() {
+		$this->data['page'] = 3;
+		$this->data['name'] = $this->session->userdata('name');
+		$id = $this->session->userdata('id');
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/view_marks_layout');
+	}
 
 	public function account() {
 		$id = $this->session->userdata('id');
