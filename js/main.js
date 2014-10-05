@@ -38,9 +38,33 @@ function check_dates() {
 	}
 }
 
+function getXmlResponseObject() {
+	//Create a boolean variable to check for a valid Internet Explorer instance.
+	var xmlhttp = false;
+	//Check if we are using IE.
+	try {
+		//If the Javascript version is greater than 5.
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		//If not, then use the older active x object.
+		try {
+			//If we are using Internet Explorer.
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			//Else we must be using a non-IE browser.
+			xmlhttp = false;
+		}
+	}
+	
+	//If we are using a non-IE browser, create a javascript instance of the object.
+	if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
 
 function finalSubmit(subject_code, from_date, to_date) {
-	$.ajax({
+/*	$.ajax({
 		url: "/jmiams/index.php/teacher/final_submit",
 		type: "POST",
 		data: {'subject_code': subject_code, 'from_date': from_date, 'to_date': to_date},
@@ -48,10 +72,27 @@ function finalSubmit(subject_code, from_date, to_date) {
 			alert('done');
 		}
 	});
-
+*/
+	var xmlhttp = getXmlResponseObject();
+	if(xmlhttp) {
+		//alert('Got the object');
+		var obj = document.getElementById('success');
+		var page = "/jmiams/index.php/teacher/final_submit?subject_code=" + subject_code +"&from_date=" +from_date+"&to_date="+to_date;
+		xmlhttp.open("GET", page);
+		xmlhttp.onreadystatechange = function() {
+			if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				obj.innerHTML = xmlhttp.responseText;
+				alert('Done!');
+			} else if(xmlhttp.status == 404) {
+				alert('Page not found');
+			}
+		}
+		xmlhttp.send(null);
+	}
 	ebtn = document.getElementsByClassName('Ebtn');
 	for (var i = 0; i < ebtn.length; i++) {
 		ebtn[i].disabled = true;
 	}
 	
 }
+

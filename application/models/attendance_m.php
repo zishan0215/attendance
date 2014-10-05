@@ -27,9 +27,21 @@ class Attendance_m extends MY_Model {
 
 		public function final_submit_update($data) {
 			$query = 'UPDATE attendance SET final_submit = 1';
-			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."'".' AND total_classes = ' . $data['total_classes'];
+			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."'";
+// 			echo $query;
 			$q = $this->db->query($query);
 			return $q;
+		}
+		
+		public function check_final_submission($data) {
+			$query = 'SELECT final_submit FROM attendance';
+			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."' LIMIT 1";
+			$q = $this->db->query($query);
+			if($q->result()[0]->final_submit) {
+				return 1;
+			} else {
+				return 0;
+			}
 		}
 
 		public function get_distinct_select($data){

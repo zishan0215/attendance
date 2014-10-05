@@ -69,7 +69,7 @@ if(isset($rows)) {
 									<input type="hidden" value="' . $to_date_edit .'" name="to_date" />
 									<input type="hidden" value="' . $r->attendance .'" name="attendance" />
 									<input type="hidden" value="' . $r->total_classes .'" name="total_classes" />
-									<input type="submit" id="e'. $counter++.'" class="btn btn-primary Ebtn" value="Edit"/>
+									<input type="submit" id="e'. $counter++.'" class="btn btn-primary Ebtn" value="Edit"'; if($final_submission === 1) echo ' disabled'; echo '/>
 									</form>';
 									echo '</td></tr>';
 								}
@@ -81,6 +81,9 @@ if(isset($rows)) {
 							<div class="col-md-offset-5">
 								<button class="btn btn-success" onclick="finalSubmit(<?php echo '\''. $subject->subject_code . '\',\'' . $from_date_edit . '\',\'' . $to_date_edit .'\''; ?>);">Final Submit</button><br/><br/><br/>
 							</div>
+							<div class="col-md-offset-5" id="success">
+								
+							</div>
 							<?php
 						}
 					?>
@@ -88,5 +91,6 @@ if(isset($rows)) {
 			</div>
 		</div>
 	</div>
-
+	
+	
 <?php $this->load->view('teachers/components/teacher_footer'); ?>

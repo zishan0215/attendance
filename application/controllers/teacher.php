@@ -52,11 +52,17 @@ class Teacher extends Teacher_Controller {
 	}
 
 	public function final_submit() {
-		$subject_code = $this->input->post('subject_code');
-		$from_date = $this->input->post('from_date');
-		$to_date = $this->input->post('to_date');
-		$this->attendance_m->final_submit_update(array($subject_code,$from_date, $to_date));
-		//echo "<script>console.log('from final_submit');alert('from final_submit');</script>";
+		if ($this->input->get('subject_code') && $this->input->get('from_date') && $this->input->get('to_date')){
+			$subject_code = $this->input->get('subject_code');
+			$from_date = $this->input->get('from_date');
+			$to_date = $this->input->get('to_date');
+			if($this->attendance_m->final_submit_update(array('subject_code'=>$subject_code,"from_date"=>$from_date, "to_date"=>$to_date))) {
+				echo "Final Submit Sucessful.";
+			} else {
+				echo "Final Submit Unsuccussful";
+			}
+
+		}
 	}
 
 	public function edit_attendance() {
@@ -130,6 +136,7 @@ class Teacher extends Teacher_Controller {
 			$this->data['rows'] = $this->attendance_m->get_list($array);
 			$this->data['from_date'] = $temp[0];
 			$this->data['to_date'] = $temp[1];
+			$this->data['final_submission'] = $this->attendance_m->check_final_submission($array);
 		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/view_attendance_layout');
