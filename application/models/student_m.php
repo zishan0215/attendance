@@ -12,8 +12,14 @@ class Student_m extends MY_Model {
 				'field' => 'student_name',
 				'label' => 'Full Name',
 				'rules' => 'trim|required'
+			),
+			'batch' => array(
+				'field' => 'batch',
+				'label' => 'Batch',
+				'rules' => 'trim|required'
 			)
 		);
+	
 	public $rules1 = array(
 			'studentid' => array(
 				'field' => 'student_id',
@@ -34,23 +40,30 @@ class Student_m extends MY_Model {
 				'field' => 'semester',
 				'label' => 'Semester',
 				'rules' => 'trim|required'
+			),
+			'batch' => array(
+				'field' => 'batch',
+				'label' => 'Batch',
+				'rules' => 'trim|required'
 			)
 		);
+	
 	public function get_distinct_semester() {
 		$query = 'SELECT DISTINCT semester FROM student';
 		$q = $this->db->query($query);
 		return $q;
 	}
 	public function add_stu($data) {
-		$query ='INSERT INTO student (student_id,roll_number,student_name,semester) VALUES (' ."";
+		$query ='INSERT INTO student (student_id,roll_number,student_name,semester,batch) VALUES (' ."";
 		$query .= $data['student_id'] . ",'". $data['roll_number']."','".$data['student_name']."',";
-		$query .= $data['semester'] . ');';
+		$query .= $data['semester'] . ", '" . $data['batch'] . "');";
 		$this->db->query($query);
 		if($this->db->affected_rows()) {
 				return TRUE;
 		}
 		return FALSE;
 	}
+	
 	public function get_name($data){
 		$query = 'SELECT student_name FROM student where student_id = ' . $data['student_id'];
 		$q = $this->db->query($query);

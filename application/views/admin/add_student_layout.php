@@ -58,6 +58,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="batch" class="col-sm-3 control-label">Batch</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="Year of joining (Eg: 2014)" name="batch" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-7">
                                 <br>
                                 <input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;

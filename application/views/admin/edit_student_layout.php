@@ -36,7 +36,7 @@
 				<form method="post" action="/jmiams/index.php/admin/edit_student">
 				<!-- For each entry, copy paste the code below and edit it -->
 					<div class="form-group">
-						<label for="rollnumber" class="col-sm-3 control-label">Roll number</label>
+						<label for="rollnumber" class="col-sm-3 control-label bigger_text">Roll number</label>
 							<div class="col-sm-7">
 							<input class="form-control" type="text" value="<?php echo $student[0]->roll_number; ?>" disabled>
 							</div>
@@ -53,6 +53,13 @@
 					    <label for="semester" class="col-md-3 control-label bigger_text">Semester</label>
 					    <div class="col-sm-7">
 					    	<input type="text" class="form-control" name="semester" value="<?php echo $student[0]->semester; ?>" required>
+					    </div>
+					</div>
+					<br/><br/>
+					<div class="form-group">
+					    <label for="batch" class="col-md-3 control-label bigger_text">Batch</label>
+					    <div class="col-sm-7">
+					    	<input type="text" class="form-control" name="batch" value="<?php echo $student[0]->batch; ?>" required>
 					    </div>
 					</div>
 					<div class="form-group">

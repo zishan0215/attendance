@@ -8,6 +8,7 @@
 				</section>
 				<section>
 					<?php
+						//$confirmation =1;
 						if(isset($confirmation)) {
 							if($confirmation === 1) {
 								echo '
@@ -34,7 +35,8 @@
 				</section>
 				<section>
 					<form action="/jmiams/admin/students" method="post">
-						<input type="submit" name="increment" value="Increment Semester" class="btn btn-warning">&nbsp;&nbsp;
+						<button class="btn btn-warning" onclick="confirmIncrement();">Increment semester</button>
+						<input type="submit" id="increment_it" name="increment" value="Increment Semester" class="btn btn-warning" style="display: none;">&nbsp;&nbsp;
 						<a href="/jmiams/index.php/admin/add_student" class="btn btn-info">Add Student</a>
 					</form>
 				</section>

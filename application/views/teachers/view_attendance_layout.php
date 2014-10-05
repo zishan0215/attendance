@@ -81,7 +81,7 @@ if(isset($rows)) {
 							<div class="col-md-offset-5">
 								<button class="btn btn-success" onclick="finalSubmit(<?php echo '\''. $subject->subject_code . '\',\'' . $from_date_edit . '\',\'' . $to_date_edit .'\''; ?>);">Final Submit</button><br/><br/><br/>
 							</div>
-							<div class="col-md-offset-5" id="success">
+							<div class="col-md-offset-4" id="success">
 								
 							</div>
 							<?php

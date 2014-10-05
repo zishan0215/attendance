@@ -82,7 +82,7 @@ function finalSubmit(subject_code, from_date, to_date) {
 		xmlhttp.onreadystatechange = function() {
 			if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				obj.innerHTML = xmlhttp.responseText;
-				alert('Done!');
+				alert('Final Attendance Submitted!');
 			} else if(xmlhttp.status == 404) {
 				alert('Page not found');
 			}
@@ -94,5 +94,13 @@ function finalSubmit(subject_code, from_date, to_date) {
 		ebtn[i].disabled = true;
 	}
 	
+}
+
+function confirmIncrement() {
+	var c = prompt('Do you really want to increment the semester ? (y/n)');
+	if(c=='y') {
+		var btn = document.getElementById('increment_it');
+		btn.click();
+	}
 }
 

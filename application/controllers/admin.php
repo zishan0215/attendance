@@ -92,7 +92,7 @@ class Admin extends Admin_Controller {
             $this->form_validation->set_rules($rules);
             if ($this->form_validation->run() == TRUE)
             {
-                $array = array('student_id' => $this->input->post('student_id'),'roll_number' =>  $this->input->post('roll_number'),'student_name' => $this->input->post('student_name'),'semester' =>  $this->input->post('semester'));
+                $array = array('student_id' => $this->input->post('student_id'),'roll_number' =>  $this->input->post('roll_number'),'student_name' => $this->input->post('student_name'),'semester' =>  $this->input->post('semester'), 'batch' => $this->input->post('batch'));
                 if($this->student_m->add_stu($array)){
                     if($this->input->post('semester') < 7) {
                         $this->studies_m->add_student($array);
@@ -145,9 +145,9 @@ class Admin extends Admin_Controller {
             $rules = $this->student_m->rules;
             $this->form_validation->set_rules($rules);
             if ($this->form_validation->run() == TRUE) {
-                $array = array('student_name' => $this->input->post('student_name'),'student_id' => $this->data['student_id'],'semester' => $this->input->post('semester'));
+                $array = array('student_name' => $this->input->post('student_name'),'semester' => $this->input->post('semester'),'batch' => $this->input->post('batch'));
                 if($this->student_m->save($array,$this->data['student_id'])) {
-                    $this->data['confirmation'] = 1;
+					$this->data['confirmation'] = 1;
                 } else {
                     $this->data['confirmation'] = 2;
                 }
