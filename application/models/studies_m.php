@@ -24,5 +24,11 @@ class Studies_m extends MY_Model {
 			return FALSE;
 		}
 
+		public function get_id($data){
+			$query = 'SELECT student_id from studies WHERE subject_code=' . "'" . $data['subject_code'] . "'" ;
+			$q = $this->db->query($query);
+			return $q;
+		}
+
 }
 ?>
