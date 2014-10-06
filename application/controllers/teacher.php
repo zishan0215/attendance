@@ -43,6 +43,9 @@ class Teacher extends Teacher_Controller {
 		$array = array('teacher_id' => $id);
 		$this->load->model('subject_m');
 		$this->data['rows'] = $this->subject_m->get_by($array);
+		if($this->input->get('conf')) {
+			$this->data['confirmation'] = 1;
+		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/sessions_layout');
 	}
@@ -59,9 +62,26 @@ class Teacher extends Teacher_Controller {
 		}
 		$this->data['students'] = $this->student_m->get_by(array('semester'=>$this->data['semester']));
 		if($this->input->post('submit_marks')) {
+			$good = 1;
+			$total_marks = $this->input->post('total_marks');
 			for ($i = 0; $i < count($this->data['students']); $i++) {
-				$marks = explode('m', $this->input->post('m'.$i))[0];
-				echo $marks;  
+				$marks = explode('m', $this->input->post('m'.$i))[0];  
+				$student_id =  $this->data['students'][$i]->student_id;
+				$batch =  $this->data['students'][$i]->batch;
+				$subject_code = $this->input->post('subject_code');
+				$type = $this->input->post('semester_type');
+				$array = array('subject_code'=>$subject_code, 'student_id' => $student_id,
+							'batch' => $batch, 'type' => $type,
+							'total_marks' => $total_marks, 'marks' => $marks);
+				$this->load->model('sessional_m');
+				if(!$this->sessional_m->insert_marks($array)) {
+					$good = 0;
+					$this->data['confirmation'] = 1;
+					break;
+				}
+			}
+			if($good === 1) {
+				redirect(site_url('/teacher/sessionals?conf=1'));
 			}
 		}
 		$this->load->view('teachers/components/teacher_header', $this->data);

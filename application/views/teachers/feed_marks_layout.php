@@ -4,6 +4,17 @@
 			<div class="col-md-10 col-md-offset-1">
 				<section style="text-align:center;">
 					<h3>Feed Marks</h3><br><br>
+                    <?php
+                        if(isset($confirmation)) {
+                            if($confirmation === 1) {
+                                echo '
+                                    <table class="table">
+                                        <tr class="danger"><td>Failure! Could not feed marks </td></tr>
+                                    </table>
+                                    ';
+                            }
+                        }
+                    ?>
 				</section>
 				<form role="form" method="post" action="<?php echo site_url('/teacher/feed_marks'); ?>">
 					<div class="row col-md-5">
@@ -25,8 +36,9 @@
 									echo "<td>{$students[$i]->roll_number}</td>";
 									echo "<td>{$students[$i]->student_name}</td>";
 									echo '<td class="col-md-2">';
-										echo '<input class="form-control" type="text" name="m'.$i.'" placeholder="0">';
+										echo '<input class="form-control" type="text" name="m' . $i . '" placeholder="0">';
 										echo '<input type="hidden" name="semester" value="' . $semester . '">';
+										echo '<input type="hidden" name="subject_code" value="' . $subject_code . '">';
 									echo '</td></tr>';
 								}
 							?>
