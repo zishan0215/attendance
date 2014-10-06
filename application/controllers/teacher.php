@@ -51,8 +51,19 @@ class Teacher extends Teacher_Controller {
 		$this->data['page'] = 3;
 		$this->data['name'] = $this->session->userdata('name');
 		$id = $this->session->userdata('id');
-		$semester = $this->input->post('semester');
-		$this->data['students'] = $this->student_m->get_by(array('semester'=>$semester));
+		if($this->input->post('semester')) {
+			$this->data['semester'] = $this->input->post('semester');
+			$this->data['subject_code'] = $this->input->post('subject_code');
+		} else {
+			redirect(site_url('/teacher/sessionals'));
+		}
+		$this->data['students'] = $this->student_m->get_by(array('semester'=>$this->data['semester']));
+		if($this->input->post('submit_marks')) {
+			for ($i = 0; $i < count($this->data['students']); $i++) {
+				$marks = explode('m', $this->input->post('m'.$i))[0];
+				echo $marks;  
+			}
+		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/feed_marks_layout');
 	}

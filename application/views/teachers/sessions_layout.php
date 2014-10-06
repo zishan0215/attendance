@@ -18,6 +18,7 @@
 								echo'</form></td>';
 								echo '<td><form method="post" action="'. site_url('/teacher/feed_marks') .'">';
 									echo '<input type="hidden" name="semester" value="' . $r->semester .'">';
+									echo '<input type="hidden" name="subject_code" value="' . $r->subject_code .'">';
 									echo '<input type="submit" name="submit_marks" class="btn btn-success" value="Feed">';	
 								echo'</form></td></tr>';
 							}
