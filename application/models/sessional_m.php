@@ -18,6 +18,34 @@ class Sessional_m extends MY_Model {
 			return FALSE;
 		}
 	}
+
+	//TODO: Disabled feed button for marks feed. Too complicated. Batch will have to
+	//      included as well
+	public function done_marks($id) {
+		$query = "SELECT subject_code from subject WHERE teacher_id = {$id}";
+		if($this->db->query($query)) {
+			$codes = $this->db->query($query)->result();
+			print_r($codes);
+			for ($i = 0; $i < count($codes); $i++) {
+				//echo $codes[$i]->subject_code;
+				$query = "SELECT DISTINCT type from sessionals WHERE subject_code = '{$codes[$i]->subject_code}'";
+				//echo "<br>".$query;
+				if($this->db->query($query)) {
+					$types = $this->db->query($query)->result();
+					echo "<br>";
+					print_r($types);
+					echo "<br>" . count($types);
+					if(count($types) != 0) {
+							
+					}
+				} else {
+					return 0; //No marks feeded
+				}
+			}
+		} else {
+			return 1; //No subject corresponding to the teacher id
+		}
+	}
 	
 } 
 
