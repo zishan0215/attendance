@@ -21,7 +21,7 @@ class Sessional_m extends MY_Model {
 	}
 	
 	public function get_year() {
-		$query = 'SELECT DISTINCT current_year from sessionals';
+		$query = 'SELECT DISTINCT current_year FROM sessionals';
 		if($this->db->query($query)) {
 			return $this->db->query($query)->result();
 		} else {

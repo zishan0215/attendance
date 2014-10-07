@@ -10,6 +10,14 @@
 					<label class="radio-inline">
 						<input type="radio" name="total_type" value="2"> 2
 					</label>
+					<select class="form-control" name="total_year">
+						<?php 
+							foreach ($years as $y) {
+								echo '<option value="' . $y->current_year .'">' . $y->current_year;
+								echo '</option>';
+							}
+						?>
+					</select>
 				</form>
             </div>
         </div>
