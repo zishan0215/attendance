@@ -30,6 +30,7 @@
 				    <li <?php if($page == 1) echo 'class="active"' ?>><?php echo anchor('admin/teachers', 'Teachers'); ?></li>
 				    <li <?php if($page == 2) echo 'class="active"' ?>><?php echo anchor('admin/students', 'Students'); ?></li>
 				    <li <?php if($page == 3) echo 'class="active"' ?>><?php echo anchor('admin/subjects', 'Subjects'); ?></li>
+				    <li <?php if($page == 4) echo 'class="active"' ?>><?php echo anchor('admin/sessionals', 'Sessionals'); ?></li>
 
 			    </ul>
 			    <ul class="nav navbar-nav pull-right">

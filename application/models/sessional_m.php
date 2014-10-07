@@ -8,7 +8,8 @@ class Sessional_m extends MY_Model {
 	protected $_timestamps = FALSE;
 	
 	public function insert_marks($data) {
-		$query  = 'INSERT INTO sessionals VALUES (';
+		$query  = 'INSERT INTO sessionals(subject_code, student_id, ';
+		$query .= 'current_year, type, total_marks, marks) VALUES (';
 		$query .= "'{$data['subject_code']}', {$data['student_id']}, ";
 		$query .= "'{$data['current_year']}', {$data['type']}, ";
 		$query .= "{$data['total_marks']}, {$data['marks']} );";
