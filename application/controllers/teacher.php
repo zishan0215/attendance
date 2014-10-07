@@ -67,11 +67,12 @@ class Teacher extends Teacher_Controller {
 			for ($i = 0; $i < count($this->data['students']); $i++) {
 				$marks = explode('m', $this->input->post('m'.$i))[0];  
 				$student_id =  $this->data['students'][$i]->student_id;
-				$batch =  $this->data['students'][$i]->batch;
+				//$batch =  $this->data['students'][$i]->batch;
+				$current_year = date('Y');
 				$subject_code = $this->input->post('subject_code');
 				$type = $this->input->post('semester_type');
 				$array = array('subject_code'=>$subject_code, 'student_id' => $student_id,
-							'batch' => $batch, 'type' => $type,
+							'current_year' => $current_year, 'type' => $type,
 							'total_marks' => $total_marks, 'marks' => $marks);
 				$this->load->model('sessional_m');
 				if(!$this->sessional_m->insert_marks($array)) {
