@@ -19,6 +19,15 @@ class Sessional_m extends MY_Model {
 			return FALSE;
 		}
 	}
+	
+	public function get_year() {
+		$query = 'SELECT DISTINCT current_year from sessionals';
+		if($this->db->query($query)) {
+			return $this->db->query($query)->result();
+		} else {
+			return false;
+		}
+	}
 
 	//TODO: Disabled feed button for marks feed. Too complicated. Batch will have to
 	//      included as well
