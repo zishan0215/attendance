@@ -4,7 +4,7 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="center-text">
 					<h4>View Marks</h4>
-				</div> 
+				</div>
 				<?php if($show === 0) {?>
 				<form action="#" method="post" role="form" class="form-inline">
 					<div class="col-md-8 col-md-offset-2">
@@ -13,7 +13,7 @@
 							<table class="table no_border_top">
 								<tr>
 									<td>
-										Sessional: 
+										Sessional:
 										<label class="radio-inline">
 											<input type="radio" name="view_type" value="1"> 1
 										</label>
@@ -22,9 +22,9 @@
 										</label>
 									</td>
 									<td>
-										Year: 
+										Year:
 										<select class="form-control" name="view_year">
-											<?php 
+											<?php
 												foreach ($years as $y) {
 													echo '<option value="' . $y->current_year .'">' . $y->current_year;
 													echo '</option>';
@@ -54,17 +54,29 @@
 				</div>
 				<table class="table">
 					<thead>
-						<tr><th>S.No.</th><th>Student Id</th><th>Student Name</th><th>Marks</th><th>Edit</th></tr>
+						<tr><th>S.No.</th><th>Student Id</th><th>Student Name</th><th>Total Marks</th><th>Marks</th><th>Edit</th></tr>
 					</thead>
-					<?php 
+					<?php
 						$count = 1;
 						foreach ($values as $v) {
 							echo "<tr>";
 								echo "<td>$count</td>";
 								echo "<td>$v->student_id</td>";
 								echo "<td>$v->student_name</td>";
+								echo "<td>$v->total_marks</td>";
 								echo "<td>$v->marks</td>";
-								echo "<td>Edit</td>";
+								echo "<td>".
+								'<form action="http://localhost/jmiams/index.php/teacher/edit_marks" method="post">
+								<input type="hidden" value="' . $v->student_name .'" name="student_name" />
+								<input type="hidden" value="' . $v->student_id .'" name="student_id" />
+								<input type="hidden" value="' . $v->total_marks .'" name="total_marks" />
+								<input type="hidden" value="' . $v->marks .'" name="marks" />
+								<input type="hidden" value="' . $sessional .'" name="sessional" />
+								<input type="hidden" value="' . $subject_code .'" name="subject_code" />
+								<input type="hidden" value="' . $year .'" name="current_year" />
+								<input type="submit" class="btn btn-primary Ebtn" value="Edit"/>
+								</form>'.
+								"</td>";
 							echo "</tr>";
 							$count++;
 						}

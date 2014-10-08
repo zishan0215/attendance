@@ -6,7 +6,7 @@ class Sessional_m extends MY_Model {
 	protected $_primary_filter = 'strval';
 	protected $_order_by = 'subject_code';
 	protected $_timestamps = FALSE;
-	
+
 	public function insert_marks($data) {
 		$query  = 'INSERT INTO sessionals(subject_code, student_id, ';
 		$query .= 'current_year, type, total_marks, marks) VALUES (';
@@ -19,7 +19,7 @@ class Sessional_m extends MY_Model {
 			return FALSE;
 		}
 	}
-	
+
 	public function get_year() {
 		$query = 'SELECT DISTINCT current_year FROM sessionals';
 		if($this->db->query($query)) {
@@ -28,7 +28,7 @@ class Sessional_m extends MY_Model {
 			return false;
 		}
 	}
-	
+
 	public function get_values($data) {
 		$query  = "SELECT s.student_id, d.student_name, s.total_marks, ";
 		$query .= "s.marks FROM sessionals AS s, student AS d ";
@@ -52,6 +52,18 @@ class Sessional_m extends MY_Model {
 		}
 	}
 
+	public function update_marks($data) {
+			$query = 'UPDATE sessionals SET marks = '. $data['marks'];
+			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND  student_id = '. $data['student_id'] . ' AND
+			current_year = '. $data['current_year'] . ' AND type = ' . $data['type'] . ' AND total_marks = ' . $data['total_marks'] ;
+			$q = $this->db->query($query);
+			/*if($this->db->affected_rows()) {
+				return TRUE;
+			}
+			return FALSE;*/
+			return $q;
+		}
+
 	//TODO: Disabled feed button for marks feed. Too complicated. Batch will have to
 	//      included as well
 	public function done_marks($id) {
@@ -69,7 +81,7 @@ class Sessional_m extends MY_Model {
 					print_r($types);
 					echo "<br>" . count($types);
 					if(count($types) != 0) {
-							
+
 					}
 				} else {
 					return 0; //No marks feeded
@@ -79,7 +91,7 @@ class Sessional_m extends MY_Model {
 			return 1; //No subject corresponding to the teacher id
 		}
 	}
-	
-} 
+
+}
 
 ?>
