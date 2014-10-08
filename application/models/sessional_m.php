@@ -41,6 +41,16 @@ class Sessional_m extends MY_Model {
 			return FALSE;
 		}
 	}
+	
+	public function admin_values() {
+		$query  = "SELECT DISTINCT s.subject_code, d.subject_name, type as semester FROM sessionals as s, ";
+		$query .= "subject as d WHERE s.subject_code = d.subject_code";
+		if($this->db->query($query)) {
+			return $this->db->query($query)->result();
+		} else {
+			return FALSE;
+		}
+	}
 
 	//TODO: Disabled feed button for marks feed. Too complicated. Batch will have to
 	//      included as well

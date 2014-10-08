@@ -43,6 +43,7 @@ class Admin extends Admin_Controller {
     	$this->data['name'] = $this->session->userdata('name');
     	$this->load->model('sessional_m');
     	$this->data['years'] = $this->sessional_m->get_year();
+    	$this->data['rows'] = $this->sessional_m->admin_values();
     	$this->load->view('admin/components/admin_header', $this->data);
     	$this->load->view('admin/sessionals_layout');
     }
