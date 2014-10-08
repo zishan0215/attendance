@@ -25,6 +25,7 @@
 								echo '<tr><td>' . $counter++ . '</td><td>' . $r->subject_code . '</td><td>';
 								echo $r->subject_name . '</td><td>' . $r->semester;
 								echo '</td><td><form method="post" action="'. site_url('/teacher/view_marks') .'">';
+									echo '<input type="hidden" name="subject_code" value="' . $r->subject_code .'">';
 									echo '<input type="submit" name="view_marks" class="btn btn-primary" value="View">';	
 								echo'</form></td>';
 								echo '<td><form method="post" action="'. site_url('/teacher/feed_marks') .'">';

@@ -130,6 +130,11 @@ class Subject_m extends MY_Model {
 		$q = $this->db->query($query);
 		return $q;
 	}
+	
+	public function get_subject_name($code) {
+		$query = "SELECT subject_name FROM subject WHERE subject_code = '{$code}' LIMIT 1";
+		return $this->db->query($query)->result()[0]->subject_name;
+	}
 }
 
 ?>
