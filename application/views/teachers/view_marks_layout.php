@@ -1,7 +1,10 @@
 	<div class="container">
 		<div class="row">
 			<!-- Main column -->
-			<div class="col-md-10 col-md-offset-1"> 
+			<div class="col-md-10 col-md-offset-1">
+				<div class="center-text">
+					<h4>View Marks</h4>
+				</div> 
 				<?php if($show === 0) {?>
 				<form action="#" method="post" role="form" class="form-inline">
 					<div class="col-md-8 col-md-offset-2">
@@ -53,6 +56,19 @@
 					<thead>
 						<tr><th>S.No.</th><th>Student Id</th><th>Student Name</th><th>Marks</th><th>Edit</th></tr>
 					</thead>
+					<?php 
+						$count = 1;
+						foreach ($values as $v) {
+							echo "<tr>";
+								echo "<td>$count</td>";
+								echo "<td>$v->student_id</td>";
+								echo "<td>$v->student_name</td>";
+								echo "<td>$v->marks</td>";
+								echo "<td>Edit</td>";
+							echo "</tr>";
+							$count++;
+						}
+					?>
 				</table>
 				<?php }?>
             </div>

@@ -103,7 +103,12 @@ class Teacher extends Teacher_Controller {
 			$this->data['subject_name'] = $this->subject_m->get_subject_name($this->data['subject_code']);
 			$this->data['sessional'] = $this->input->post('view_type');
 			$this->data['year'] = $this->input->post('view_year');
-			//$values = $this->sessional_m->get_marks();
+			$array = array(
+					'subject_code' => $this->data['subject_code'],
+					'sessional' => $this->data['sessional'],
+					'year' => $this->data['year']
+				);
+			$this->data['values'] = $this->sessional_m->get_values($array);
 		}
     	$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/view_marks_layout');

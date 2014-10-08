@@ -28,6 +28,19 @@ class Sessional_m extends MY_Model {
 			return false;
 		}
 	}
+	
+	public function get_values($data) {
+		$query  = "SELECT s.student_id, d.student_name, s.total_marks, ";
+		$query .= "s.marks FROM sessionals AS s, student AS d ";
+		$query .= "WHERE s.student_id = d.student_id AND ";
+		$query .= "subject_code = '{$data['subject_code']}' AND ";
+		$query .= "type = {$data['sessional']} AND current_year = '{$data['year']}'";
+		if($this->db->query($query)) {
+			return $this->db->query($query)->result();
+		} else {
+			return FALSE;
+		}
+	}
 
 	//TODO: Disabled feed button for marks feed. Too complicated. Batch will have to
 	//      included as well
