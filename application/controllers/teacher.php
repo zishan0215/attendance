@@ -35,7 +35,7 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/students_layout');
 	}
-	
+
 	public function sessionals() {
 		$this->data['page'] = 3;
 		$this->data['name'] = $this->session->userdata('name');
@@ -49,7 +49,7 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/sessions_layout');
 	}
-	
+
 	public function feed_marks() {
 		$this->data['page'] = 3;
 		$this->data['name'] = $this->session->userdata('name');
@@ -65,7 +65,7 @@ class Teacher extends Teacher_Controller {
 			$good = 1;
 			$total_marks = $this->input->post('total_marks');
 			for ($i = 0; $i < count($this->data['students']); $i++) {
-				$marks = explode('m', $this->input->post('m'.$i))[0];  
+				$marks = explode('m', $this->input->post('m'.$i))[0];
 				$student_id =  $this->data['students'][$i]->student_id;
 				//$batch =  $this->data['students'][$i]->batch;
 				$current_year = date('Y');
@@ -88,7 +88,7 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/feed_marks_layout');
 	}
-	
+
 	public function view_marks() {
 		$this->data['page'] = 3;
 		$this->data['name'] = $this->session->userdata('name');
@@ -163,6 +163,29 @@ class Teacher extends Teacher_Controller {
 		}
 		$this->load->view('teachers/components/teacher_header', $this->data);
 		$this->load->view('teachers/edit_attendance_layout');
+	}
+
+	public function edit_marks() {
+		$id = $this->session->userdata('id');
+		$this->data['name'] = $this->session->userdata('name');
+		$this->data['page'] = -1; // No highlights in the navigation bar
+		$this->load->model('sessional_m');
+		$this->data['confirmation'] = "";
+		if($this->input->post('submit')) {
+			$student_id = $this->input->post('student_id');
+			$subject_code = $this->input->post('subject_code');
+			$total_marks = $this->input->post('total_marks');
+			$current_year = $this->input->post('current_year');
+			$type = $this->input->post('sessional');
+			$array= array('student_id'=>$student_id,'subject_code' => $subject_code,'current_year' =>$current_year,'type'=>$type,'total_marks' =>$total_marks, 'marks' => $this->input->post('marks'));
+			if($this->sessional_m->update_marks($array)) {
+				$this->data['confirmation'] = 1;
+			} else {
+				$this->data['confirmation'] = 2;
+			}
+		}
+		$this->load->view('teachers/components/teacher_header', $this->data);
+		$this->load->view('teachers/edit_marks_layout');
 	}
 	public function change_password() {
 		$id = $this->session->userdata('id');
