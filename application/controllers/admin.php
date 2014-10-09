@@ -37,7 +37,7 @@ class Admin extends Admin_Controller {
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/subjects_layout');
     }
-    
+
     public function sessionals() {
     	$this->data['page'] = 4;
     	$this->data['name'] = $this->session->userdata('name');
@@ -168,6 +168,17 @@ class Admin extends Admin_Controller {
         $this->load->view('admin/edit_student_layout');
     }
 
+    public function view_student() {
+        $this->data['confirmation'] = "";
+        $this->data['page'] = 2;
+        $this->data['name'] = $this->session->userdata('name');
+        $this->data['student_id'] = $this->input->post('student_id');
+        $this->load->model('subject_m');
+        $this->data['semester'] = $this->input->post('semester');
+        $this->data['subject'] = $this->subject_m->get_subjects($this->data['semester']);
+        $this->load->view('admin/components/admin_header', $this->data);
+        $this->load->view('admin/view_student_layout');
+    }
     public function new_period() {
         $this->data['confirmation'] = "";
         $this->data['page'] = 0;
@@ -210,7 +221,7 @@ class Admin extends Admin_Controller {
             if($val){
                 //echo $val;
                 $this->data["a{$i}"] = $val;
-                //print_r($this->data["{$i}"]);   
+                //print_r($this->data["{$i}"]);
                 $temp = explode('#', $val);
                 $count++;
                 //echo $temp[0] . " -> " . $temp[1] . '<br/>';
@@ -221,7 +232,7 @@ class Admin extends Admin_Controller {
             }
         }
         $this->data['fcount'] = $count;
-        
+
 
 
         /*foreach ($all as $value) {
