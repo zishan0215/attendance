@@ -33,14 +33,13 @@
 				</section>
 
 				<section>
-					<table class="table table-condensed">
+					<table class="table table-bordered">
 						<thead><tr><th>S.No.</th><th>Roll Number</th><th>Student Id</th><th>Name</th>
-						<th>
 							<?php
 								foreach ($subjects as $subj) {
+									echo '<th>';
 									echo $subj["name"];
 									echo '</th>';
-									echo '<th>';
 								}
 								/*foreach ($indiv2 as $subj) {
 									echo $subj["name"] . " " . $subj["count"];
@@ -48,7 +47,6 @@
 									echo '<th>';
 								}*/
 							?>
-						</th>
 						<th>Total</th><th>Percentage</th></tr></thead>
 						<thead>
 							<tr>
@@ -60,8 +58,8 @@
 											echo '</th><th>';
 										}
 									?>
-								</th>
-								<th><?php echo $this->data['head_total']; ?></th><th></th>
+								
+								<?php echo $this->data['head_total']; ?></th><th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,17 +99,17 @@
 								if($d["percentage"] <= $filter) {
 									echo '<tr><td>' . $counter++ .'</td><td>' . $d["roll_number"];
 									echo '</td><td>' . $d["student_id"] . '</td><td>' . $d["name"];
-									echo '</td><td>';
+									echo '</td>';
 									//echo  $d["attendance"];
 									foreach ($d["attendance"] as $key) {
 										if($key["id"] == $d["student_id"]){
+											echo '<td>';
 											echo '&nbsp;';
 											echo $key["val_in"];
 											echo '</td>';
-											echo '<td>';
 										}
 									}
-									echo '</td><td>' . $d["total_attendance"];
+									echo '<td>' . $d["total_attendance"];
 									//echo '</td><td>' . $d["total_classes"];
 									echo '</td><td>' . number_format($d["percentage"],2) . '%';
 									echo '</td></tr>';

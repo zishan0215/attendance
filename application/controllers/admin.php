@@ -76,6 +76,11 @@ class Admin extends Admin_Controller {
         }
         if($this->input->post('increment')) {
             if($this->student_m->update_semester()) {
+                //TODO : insert into total_attendance table
+                //for three odd semesters and two even semesters
+                for($i=0;$i<3;++i){
+                    
+                }
                 $this->data['confirmation'] = 1;
             } else {
                 $this->data['confirmation'] = 2;
@@ -205,7 +210,7 @@ class Admin extends Admin_Controller {
         $all = [];
         $count = 0;
         $check = 1;
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 50; $i++) {
             $val = $this->input->post($i);
             if($val){
                 //echo $val;
@@ -221,7 +226,6 @@ class Admin extends Admin_Controller {
             }
         }
         $this->data['fcount'] = $count;
-        
 
 
         /*foreach ($all as $value) {
@@ -257,6 +261,7 @@ class Admin extends Admin_Controller {
         $this->load->model('attendance_m');
         $this->load->model('student_m');
         $this->load->model('subject_m');
+        $this->load->model('studies_m');
         $this->data['sem'] = $sem;
         $this->data['from_date'] = $start;
         $this->data['to_date'] = $end;
@@ -270,25 +275,52 @@ class Admin extends Admin_Controller {
             ];
         }
 
-        $try_id = $st_ids[0]["id_s"];
+        //$try_id = $st_ids[0]["id_s"];
 
         $this->data['subs_code'] = $this->subject_m->get_distinct_subject_code($sem);
         $this->data['subs'] = $this->subject_m->get_distinct_subject_abbr($sem);
 
         $att_head = array();
-        foreach ($all as $value) {
+        /*foreach ($all as $value) {
             $c = 0;
             foreach ($this->data['subs_code']->result() as $key) {
                 $arrAY = array("student_id" => $try_id,"subject_code" => $key->subject_code,"from_date" => $value["from_date"],"to_date" => $value["to_date"]);
                 $this->data['ind_att'] = $this->attendance_m->get_by($arrAY);
                 //$curr = $this->attendance_m->get_total_classes($arrAY);;
+                $cur_to = 0;
                 foreach ($this->data['ind_att'] as $att) {
-                    $this->data['head_class'] [] = [
-                        "total" => $att->total_classes
-                    ];
+                    $cur_to += $att->total_classes;
                     //echo $att->total_classes;
                 }
+                $this->data['head_class'] [] = [
+                        "total" => $cur_to
+                    ];
             }
+        }*/
+        foreach ($this->data['subs_code']->result() as $key) {
+            $cur_to = 0;
+            $arr1 = array('subject_code' => $key->subject_code);
+            $this->data['id_st'] = $this->studies_m->get_id($arr1);
+            foreach ($this->data['id_st']->result() as $id) {
+                echo $id->student_id;
+                $st_ids [] = [
+                    "id_s" => $id->student_id
+                ];
+            }
+            $try_id = $st_ids[0]["id_s"];
+            foreach ($all as $value) {
+                $arrAY = array("student_id" => $try_id,"subject_code" => $key->subject_code,"from_date" => $value["from_date"],"to_date" => $value["to_date"]);
+                $this->data['ind_att'] = $this->attendance_m->get_by($arrAY);
+                //$curr = $this->attendance_m->get_total_classes($arrAY);;
+                foreach ($this->data['ind_att'] as $att) {
+                    $cur_to += $att->total_classes;
+                    //echo $att->total_classes;
+                    //echo $try_id;
+                }
+            }
+            $this->data['head_class'] [] = [
+                        "total" => $cur_to
+                    ];
         }
 
 
