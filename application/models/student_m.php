@@ -83,7 +83,7 @@ class Student_m extends MY_Model {
 	}
 
 	public function update_semester() {
-		$query = 'UPDATE student set semester = semester + 1';
+		$query = 'UPDATE student set semester = semester + 1 WHERE semester <= 7';
 		$q =$this->db->query($query);
 		return $q;
 	}
