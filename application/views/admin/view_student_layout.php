@@ -25,7 +25,8 @@
                         <input type="hidden" value="<?php echo $_POST['semester']; ?>" name="semester">
                         <input type="hidden" value="<?php echo $_POST['student_name']; ?>" name="student_name">
                         <input type="hidden" value="<?php echo $_POST['student_id']; ?>" name="student_id">
-                        <input type="submit" name="submit" value="Submit" class="btn btn-success" />
+                        <input type="submit" name="submit" value="Submit" class="btn btn-success" />&nbsp;&nbsp;
+                        <a href="/jmiams/index.php/admin/students" class="btn btn-danger">Cancel</a>
                         </form>
             </section>
         </div>
