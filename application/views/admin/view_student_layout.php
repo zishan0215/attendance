@@ -16,12 +16,15 @@
                             foreach($subject as $r){
                                 echo '<div class="checkbox">
                                             <label >
-                                            <input type="checkbox" name="' . $counter++ .'" value="' . $r->subject_code . '#' . $r->subject_name . '">' . $r->subject_code . ' - ' . $r->subject_name
+                                            <input type="checkbox" name="' . $counter++ .'" value="' . $r->subject_code . '">' . $r->subject_code . ' - ' . $r->subject_name
                                             . '</label>
                                           </div>';
                             }
                         ?>
                         <br>
+                        <input type="hidden" value="<?php echo $_POST['semester']; ?>" name="semester">
+                        <input type="hidden" value="<?php echo $_POST['student_name']; ?>" name="student_name">
+                        <input type="hidden" value="<?php echo $_POST['student_id']; ?>" name="student_id">
                         <input type="submit" name="submit" value="Submit" class="btn btn-success" />
                         </form>
             </section>

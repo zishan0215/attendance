@@ -176,6 +176,23 @@ class Admin extends Admin_Controller {
         $this->load->model('subject_m');
         $this->data['semester'] = $this->input->post('semester');
         $this->data['subject'] = $this->subject_m->get_subjects($this->data['semester']);
+        $count = $this->subject_m->count_subjects($this->data['semester']);
+        if($this->input->post('submit')) {
+            $this->load->model('studies_m');
+            if($this->data['semester'] > 6 ){
+                $this->studies_m->del_entry(array('student_id' => $this->input->post('student_id')));
+                for($counter=1;$counter<=$count;$counter++) {
+                    if($this->input->post($counter)) {
+                        //echo $this->input->post($counter);
+                        $this->studies_m->del_entry(array('student_id' => $this->input->post('student_id')));
+                        $this->studies_m->insert(array('student_id' => $this->input->post('student_id'), 'subject_code' => $this->input->post($counter)));
+                    }
+                }
+            }
+            else {
+                redirect('admin/students');
+            }
+        }
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/view_student_layout');
     }
