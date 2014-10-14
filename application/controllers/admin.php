@@ -37,7 +37,7 @@ class Admin extends Admin_Controller {
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/subjects_layout');
     }
-    
+
     public function sessionals() {
     	$this->data['page'] = 4;
     	$this->data['name'] = $this->session->userdata('name');
@@ -211,6 +211,34 @@ class Admin extends Admin_Controller {
         $this->load->view('admin/edit_student_layout');
     }
 
+    public function view_student() {
+        $this->data['confirmation'] = "";
+        $this->data['page'] = 2;
+        $this->data['name'] = $this->session->userdata('name');
+        $this->data['student_id'] = $this->input->post('student_id');
+        $this->load->model('subject_m');
+        $this->data['semester'] = $this->input->post('semester');
+        $this->data['subject'] = $this->subject_m->get_subjects($this->data['semester']);
+        $count = $this->subject_m->count_subjects($this->data['semester']);
+        if($this->input->post('submit')) {
+            $this->load->model('studies_m');
+            if($this->data['semester'] > 6 ){
+                $this->studies_m->del_entry(array('student_id' => $this->input->post('student_id')));
+                for($counter=1;$counter<=$count;$counter++) {
+                    if($this->input->post($counter)) {
+                        //echo $this->input->post($counter);
+                        $this->studies_m->del_entry(array('student_id' => $this->input->post('student_id')));
+                        $this->studies_m->insert(array('student_id' => $this->input->post('student_id'), 'subject_code' => $this->input->post($counter)));
+                    }
+                }
+            }
+            else {
+                redirect('admin/students');
+            }
+        }
+        $this->load->view('admin/components/admin_header', $this->data);
+        $this->load->view('admin/view_student_layout');
+    }
     public function new_period() {
         $this->data['confirmation'] = "";
         $this->data['page'] = 0;
@@ -253,7 +281,7 @@ class Admin extends Admin_Controller {
             if($val){
                 //echo $val;
                 $this->data["a{$i}"] = $val;
-                //print_r($this->data["{$i}"]);   
+                //print_r($this->data["{$i}"]);
                 $temp = explode('#', $val);
                 $count++;
                 //echo $temp[0] . " -> " . $temp[1] . '<br/>';
@@ -264,7 +292,6 @@ class Admin extends Admin_Controller {
             }
         }
         $this->data['fcount'] = $count;
-
 
         /*foreach ($all as $value) {
             echo $value["from_date"] . " -> " . $value["to_date"] . '<br/>';

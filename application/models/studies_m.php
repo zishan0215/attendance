@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class Studies_m extends MY_Model {
-	
+
 		protected $_table_name = 'studies';
 		protected $_primary_key = array('student_id', 'subject_code');
 		protected $_primary_filter = 'intval';
@@ -26,9 +26,16 @@ class Studies_m extends MY_Model {
 
 		public function get_id($data){
 			$query = 'SELECT student_id from studies WHERE subject_code=' . "'" . $data['subject_code'] . "'" ;
+		public function del_entry($data) {
+			$query = 'DELETE FROM studies WHERE student_id = ' . $data['student_id'];
 			$q = $this->db->query($query);
 			return $q;
 		}
 
+		public function insert($data) {
+			$query ='INSERT INTO studies VALUES ( '. $data['student_id'] .', ' . "'" . $data['subject_code'] . "'" .')';
+			$this->db->query($query);
+			//return $q;
+		}
 }
 ?>

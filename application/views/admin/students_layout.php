@@ -42,7 +42,7 @@
 					<!--</form>-->
 				</section>
 				<section>
-					
+
 					<br>
 				</section>
 				<section>
@@ -64,11 +64,11 @@
 				<br><br>
 				<section>
 					<table class="table table-striped">
-						<thead><tr><th>Student Id</th><th>Roll Number</th><th>Name</th><th>Semester</th></tr></thead>
+						<thead><tr><th>Student Id</th><th>Roll Number</th><th>Name</th><th>Semester</th><th>Edit</th><th>View</th></tr></thead>
 						<tbody>
 						<?php
 							foreach($rows as $r){
-								echo '<tr><td>' . $r->student_id . '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name . '</td><td>' . $r->semester.'</td><td><form method="post" action="/jmiams/index.php/admin/edit_student"><input type="hidden" value="' . $r->student_id .'" name="student_id"><input type="submit" value="Edit" class="btn btn-primary"></form></td></tr>';
+								echo '<tr><td>' . $r->student_id . '</td><td>' . $r->roll_number . '</td><td>' . $r->student_name . '</td><td>' . $r->semester.'</td><td><form method="post" action="/jmiams/index.php/admin/edit_student"><input type="hidden" value="' . $r->student_id .'" name="student_id"><input type="submit" value="Edit" class="btn btn-primary"></form></td><td><form method="post" action="/jmiams/index.php/admin/view_student"><input type="hidden" value="' . $r->student_id .'" name="student_id"><input type="hidden" value="' . $r->student_name .'" name="student_name"><input type="hidden" value="' . $r->semester .'" name="semester"><input type="submit" value="View" class="btn btn-primary"></form></td></tr>';
 							}
 						?>
 						</tbody>
