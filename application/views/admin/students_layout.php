@@ -34,11 +34,12 @@
 					<br>
 				</section>
 				<section>
-					<form action="/jmiams/admin/students" method="post">
-						<button class="btn btn-warning" onclick="confirmIncrement();">Increment semester</button>
-						<input type="submit" id="increment_it" name="increment" value="Increment Semester" class="btn btn-warning" style="display: none;">&nbsp;&nbsp;
+					<!--<form action="/jmiams/admin/students" method="post">-->
+						<a href="/jmiams/index.php/admin/incrSem" class="btn btn-warning">Increment Semester</a>
+						<!--<button class="btn btn-warning" onclick="confirmIncrement();">Increment semester</button>
+						<input type="submit" id="increment_it" name="increment" value="Increment Semester" class="btn btn-warning" style="display: none;">-->&nbsp;&nbsp;
 						<a href="/jmiams/index.php/admin/add_student" class="btn btn-info">Add Student</a>
-					</form>
+					<!--</form>-->
 				</section>
 				<section>
 					
