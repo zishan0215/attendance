@@ -26,6 +26,7 @@ class Studies_m extends MY_Model {
 
 		public function get_id($data){
 			$query = 'SELECT student_id from studies WHERE subject_code=' . "'" . $data['subject_code'] . "'" ;
+		}
 		public function del_entry($data) {
 			$query = 'DELETE FROM studies WHERE student_id = ' . $data['student_id'];
 			$q = $this->db->query($query);
@@ -36,6 +37,12 @@ class Studies_m extends MY_Model {
 			$query ='INSERT INTO studies VALUES ( '. $data['student_id'] .', ' . "'" . $data['subject_code'] . "'" .')';
 			$this->db->query($query);
 			//return $q;
+		}
+
+		public function get_subjects($id) {
+		$query = "SELECT * from studies WHERE student_id = {$id}";
+		$q = $this->db->query($query);
+		return $q->result();
 		}
 }
 ?>

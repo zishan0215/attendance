@@ -12,13 +12,40 @@
                         <form role="form" action="/jmiams/admin/view_student" method="post">
 
                         <?php
-                        $counter=1;
-                            foreach($subject as $r){
-                                echo '<div class="checkbox">
-                                            <label >
-                                            <input type="checkbox" name="' . $counter++ .'" value="' . $r->subject_code . '">' . $r->subject_code . ' - ' . $r->subject_name
-                                            . '</label>
-                                          </div>';
+                            $counter=1;
+                            if($_POST['semester'] < 7){
+                                foreach($subject as $r){
+                                    echo '<div class="checkbox">
+                                                <label >
+                                                <input type="checkbox" name="' . $counter++ .'" value="' . $r->subject_code . '" checked="checked">' . $r->subject_code . ' - ' . $r->subject_name
+                                                . '</label>
+                                              </div>';
+                                }
+                            }
+                            else {
+                                foreach($subject as $r){
+                                    $is_der=0;
+                                    foreach ($s_subject as $y) {
+                                        if ($r->subject_code == $y->subject_code) {
+                                            $is_der=1;
+                                            break;
+                                        }
+                                    }
+                                    if($is_der==1){
+                                        echo '<div class="checkbox">
+                                                    <label >
+                                                    <input type="checkbox" name="' . $counter++ .'" value="' . $r->subject_code . '" checked="checked">' . $r->subject_code . ' - ' . $r->subject_name
+                                                    . '</label>
+                                                  </div>';
+                                    }
+                                    else {
+                                        echo '<div class="checkbox">
+                                                    <label >
+                                                    <input type="checkbox" name="' . $counter++ .'" value="' . $r->subject_code . '">' . $r->subject_code . ' - ' . $r->subject_name
+                                                    . '</label>
+                                                    </div>';
+                                    }
+                                }
                             }
                         ?>
                         <br>
