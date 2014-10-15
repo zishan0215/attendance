@@ -26,6 +26,10 @@ class Studies_m extends MY_Model {
 
 		public function get_id($data){
 			$query = 'SELECT student_id from studies WHERE subject_code=' . "'" . $data['subject_code'] . "'" ;
+			$q = $this->db->query($query);
+			return $q;
+		}
+
 		public function del_entry($data) {
 			$query = 'DELETE FROM studies WHERE student_id = ' . $data['student_id'];
 			$q = $this->db->query($query);
