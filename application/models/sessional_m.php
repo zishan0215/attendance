@@ -43,7 +43,7 @@ class Sessional_m extends MY_Model {
 	}
 	
 	public function admin_values() {
-		$query  = "SELECT DISTINCT s.subject_code, d.subject_name, type as semester FROM sessionals as s, ";
+		$query  = "SELECT DISTINCT s.subject_code, d.subject_name FROM sessionals as s, ";
 		$query .= "subject as d WHERE s.subject_code = d.subject_code";
 		if($this->db->query($query)) {
 			return $this->db->query($query)->result();

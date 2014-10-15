@@ -3,20 +3,11 @@
             <!-- Main column -->
             <div class="col-md-8 col-md-offset-2"> 
 				<form action="#" method="post" role="form" class="form-inline">
-					<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-5 col-md-offset-3">
 						<fieldset>
 							<legend>Total Marks</legend>
 							<table class="table no_border_top">
 								<tr>
-									<td>
-										Sessional: 
-										<label class="radio-inline">
-											<input type="radio" name="total_type" value="1"> 1
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="total_type" value="2"> 2
-										</label>
-									</td>
 									<td>
 										Year: 
 										<select class="form-control" name="total_year">
@@ -38,14 +29,14 @@
 				</form>
 				<section class="room_above">
 					<table class="table table-striped">
-						<thead><tr><th>S.no.</th><th>Subject Code</th><th>Subject Name</th><th>Semester</th><th>View</th></tr></thead>
+						<thead><tr><th>S.no.</th><th>Subject Code</th><th>Subject Name</th><th>View</th></tr></thead>
 						<tbody>
 							<?php 	
 								$counter = 1;
 								foreach($rows as $r){
 									echo '<tr><td>' . $counter++ . '</td><td>' . $r->subject_code . '</td><td>';
-									echo $r->subject_name . '</td><td>' . $r->semester;
-									echo '</td><td><form method="post" action="'. site_url('/teacher/view_marks') .'">';
+									echo $r->subject_name . '</td><td>';
+									echo '</td><td><form method="post" action="'. site_url('/admin/view_marks') .'">';
 										echo '<input type="hidden" name="subject_code" value="' . $r->subject_code .'">';
 										echo '<input type="submit" name="view_marks" class="btn btn-primary" value="View">';	
 									echo'</form></td>';

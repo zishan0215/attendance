@@ -48,6 +48,13 @@ class Admin extends Admin_Controller {
     	$this->load->view('admin/sessionals_layout');
     }
 
+    public function view_marks() {
+    	$this->data['page'] = 4;
+    	$this->data['name'] = $this->session->userdata('name');
+    	$this->load->view('admin/components/admin_header', $this->data);
+    	$this->load->view('admin/view_marks_layout');
+    }
+    
     public function edit_subject() {
         $this->data['page'] = 3;
         $this->data['name'] = $this->session->userdata('name');
