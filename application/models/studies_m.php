@@ -41,5 +41,11 @@ class Studies_m extends MY_Model {
 			$this->db->query($query);
 			//return $q;
 		}
+
+		public function get_subjects($id) {
+		$query = "SELECT * from studies WHERE student_id = {$id}";
+		$q = $this->db->query($query);
+		return $q->result();
+		}
 }
 ?>
