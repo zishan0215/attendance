@@ -70,10 +70,9 @@ class Teacher extends Teacher_Controller {
 				//$batch =  $this->data['students'][$i]->batch;
 				$current_year = date('Y');
 				$subject_code = $this->input->post('subject_code');
-				$type = $this->input->post('semester_type');
 				$array = array('subject_code'=>$subject_code, 'student_id' => $student_id,
-							'current_year' => $current_year, 'type' => $type,
-							'total_marks' => $total_marks, 'marks' => $marks);
+							'current_year' => $current_year, 'marks' => $marks,
+							'total_marks' => $total_marks );
 				$this->load->model('sessional_m');
 				if(!$this->sessional_m->insert_marks($array)) {
 					$good = 0;

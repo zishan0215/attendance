@@ -7,20 +7,11 @@
 				</div>
 				<?php if($show === 0) {?>
 				<form action="#" method="post" role="form" class="form-inline">
-					<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-4 col-md-offset-4 room-above-7">
 						<fieldset>
 							<legend>View Marks</legend>
 							<table class="table no_border_top">
 								<tr>
-									<td>
-										Sessional:
-										<label class="radio-inline">
-											<input type="radio" name="view_type" value="1"> 1
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="view_type" value="2"> 2
-										</label>
-									</td>
 									<td>
 										Year:
 										<select class="form-control" name="view_year">
@@ -48,13 +39,13 @@
 					<table class="table">
 						<tr><td>Subject Name:</td><td><?php echo $subject_name?></td></tr>
 						<tr><td>Subject Code:</td><td><?php echo $subject_code?></td></tr>
-						<tr><td>Sessional:</td><td><?php echo $sessional?></td></tr>
+						<tr><td>Total Marks:</td><td><?php echo $values[0]->total_marks?></td></tr>
 						<tr><td>Year:</td><td><?php echo $year?></td></tr>
 					</table>
 				</div>
 				<table class="table">
 					<thead>
-						<tr><th>S.No.</th><th>Student Id</th><th>Student Name</th><th>Total Marks</th><th>Marks</th><th>Edit</th></tr>
+						<tr><th>S.No.</th><th>Student Id</th><th>Student Name</th><th>Marks</th><th>Edit</th></tr>
 					</thead>
 					<?php
 						$count = 1;
@@ -63,7 +54,6 @@
 								echo "<td>$count</td>";
 								echo "<td>$v->student_id</td>";
 								echo "<td>$v->student_name</td>";
-								echo "<td>$v->total_marks</td>";
 								echo "<td>$v->marks</td>";
 								echo "<td>".
 								'<form action="http://localhost/jmiams/index.php/teacher/edit_marks" method="post">

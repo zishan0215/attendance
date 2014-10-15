@@ -21,15 +21,7 @@
 						<table class="table">
 							<tr><td>Subject Code</td><td><?php echo $subject_code;?></td></tr>
 							<tr><td>Semester</td><td><?php echo $semester;?></td></tr>
-							<tr><td>Total Marks</td><td><div class="col-md-6"><input type="text" name="total_marks" class="form-control" autofocus="autofocus"></div></td></tr>
-							<tr><td>Semester Type</td><td><div class="col-md-6">
-									<label class="radio-inline">
-										<input type="radio" name="semester_type" value="1"> 1
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="semester_type" value="2"> 2
-									</label></div>
-							</td></tr>
+							<tr><td>Total Marks</td><td><div class="col-md-6"><input type="text" name="total_marks" class="form-control" value="40" autofocus="autofocus"></div></td></tr>
 						</table>
 						<br>
 					</div>				

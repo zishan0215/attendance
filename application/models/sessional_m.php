@@ -9,9 +9,9 @@ class Sessional_m extends MY_Model {
 
 	public function insert_marks($data) {
 		$query  = 'INSERT INTO sessionals(subject_code, student_id, ';
-		$query .= 'current_year, type, total_marks, marks) VALUES (';
+		$query .= 'current_year, total_marks, marks) VALUES (';
 		$query .= "'{$data['subject_code']}', {$data['student_id']}, ";
-		$query .= "'{$data['current_year']}', {$data['type']}, ";
+		$query .= "'{$data['current_year']}', ";
 		$query .= "{$data['total_marks']}, {$data['marks']} );";
 		if($this->db->query($query)) {
 			return TRUE;
@@ -34,7 +34,7 @@ class Sessional_m extends MY_Model {
 		$query .= "s.marks FROM sessionals AS s, student AS d ";
 		$query .= "WHERE s.student_id = d.student_id AND ";
 		$query .= "subject_code = '{$data['subject_code']}' AND ";
-		$query .= "type = {$data['sessional']} AND current_year = '{$data['year']}'";
+		$query .= "current_year = '{$data['year']}'";
 		if($this->db->query($query)) {
 			return $this->db->query($query)->result();
 		} else {
@@ -55,7 +55,7 @@ class Sessional_m extends MY_Model {
 	public function update_marks($data) {
 			$query = 'UPDATE sessionals SET marks = '. $data['marks'];
 			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND  student_id = '. $data['student_id'] . ' AND
-			current_year = '. $data['current_year'] . ' AND type = ' . $data['type'] . ' AND total_marks = ' . $data['total_marks'] ;
+			current_year = '. $data['current_year'] .  ' AND total_marks = ' . $data['total_marks'] ;
 			$q = $this->db->query($query);
 			/*if($this->db->affected_rows()) {
 				return TRUE;
