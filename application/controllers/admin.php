@@ -54,7 +54,7 @@ class Admin extends Admin_Controller {
     	$this->load->view('admin/components/admin_header', $this->data);
     	$this->load->view('admin/view_marks_layout');
     }
-    
+
     public function edit_subject() {
         $this->data['page'] = 3;
         $this->data['name'] = $this->session->userdata('name');
@@ -527,6 +527,27 @@ class Admin extends Admin_Controller {
         $this->data['rows'] = $this->admin_m->get_view_attendance($this->data);
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/view_attendance_layout');
+    }
+
+    public function edit_attendance() {
+        $this->data['confirmation'] = "";
+        $this->data['page'] = 0;
+        $this->data['name'] = $this->session->userdata('name');
+        if($this->input->post('submit')) {
+            $student_id = $this->input->post('student_id');
+            $from_date = $this->input->post('from_date');
+            $to_date = $this->input->post('to_date');
+            $subject_code = $this->input->post('subject_code');
+            $total_classes = $this->input->post('total_classes');
+            $array= array('student_id'=>$student_id,'subject_code' => $subject_code,'from_date' =>$from_date,'to_date' =>$to_date ,'total_classes' =>$total_classes, 'attendance' => $this->input->post('attendance'));
+            if($this->attendance_m->update_attendance($array)) {
+                $this->data['confirmation'] = 1;
+            } else {
+                $this->data['confirmation'] = 2;
+            }
+        }
+        $this->load->view('admin/components/admin_header', $this->data);
+        $this->load->view('admin/edit_attendance_layout');
     }
 
     public function teachers() {
