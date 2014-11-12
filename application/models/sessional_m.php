@@ -64,7 +64,7 @@ class Sessional_m extends MY_Model {
 			return $q;
 		}
 
-	//TODO: Disabled feed button for marks feed. Too complicated. Batch will have to
+	// TODO Disabled feed button for marks feed. Too complicated. Batch will have to
 	//      included as well
 	public function done_marks($id) {
 		$query = "SELECT subject_code from subject WHERE teacher_id = {$id}";

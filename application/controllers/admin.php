@@ -51,6 +51,23 @@ class Admin extends Admin_Controller {
     public function view_marks() {
     	$this->data['page'] = 4;
     	$this->data['name'] = $this->session->userdata('name');
+    	$this->data['show'] = 0;
+    	$this->data['code'] = $this->input->post('subject_code');
+    	$this->load->model('sessional_m');
+    	$this->data['years'] = $this->sessional_m->get_year();
+    	if($this->input->post('view_submit')) {
+    		$this->data['show'] = 1;
+    		$this->data['subject_code'] = $this->input->post('subject_code');
+    		$this->data['subject_name'] = $this->subject_m->get_subject_name($this->data['subject_code']);
+    		$this->data['sessional'] = $this->input->post('view_type');
+    		$this->data['year'] = $this->input->post('view_year');
+    		$array = array(
+    				'subject_code' => $this->data['subject_code'],
+    				'sessional' => $this->data['sessional'],
+    				'year' => $this->data['year']
+    		);
+    		$this->data['values'] = $this->sessional_m->get_values($array);
+    	}
     	$this->load->view('admin/components/admin_header', $this->data);
     	$this->load->view('admin/view_marks_layout');
     }

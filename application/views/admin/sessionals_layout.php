@@ -2,32 +2,32 @@
         <div class="row">
             <!-- Main column -->
             <div class="col-md-8 col-md-offset-2"> 
-				<form action="#" method="post" role="form" class="form-inline">
-					<div class="col-md-5 col-md-offset-3">
-						<fieldset>
-							<legend>Total Marks</legend>
-							<table class="table no_border_top">
-								<tr>
-									<td>
-										Year: 
-										<select class="form-control" name="total_year">
+<!-- 				<form action="#" method="post" role="form" class="form-inline"> -->
+<!-- 					<div class="col-md-5 col-md-offset-3"> -->
+<!-- 						<fieldset> -->
+<!-- 							<legend>Total Marks</legend> -->
+<!-- 							<table class="table no_border_top"> -->
+<!-- 								<tr> -->
+<!-- 									<td> -->
+<!-- 										Year:  -->
+<!-- 										<select class="form-control" name="total_year"> -->
 											<?php 
-												foreach ($years as $y) {
-													echo '<option value="' . $y->current_year .'">' . $y->current_year;
-													echo '</option>';
-												}
-											?>
-										</select>
-									</td>
-									<td>
-										<input type="submit" class="btn btn-success" name="total_submit" value="Submit">
-									</td>
-								</tr>
-							</table>
-						</fieldset>
-					</div>
-				</form>
-				<section class="room_above">
+// 												foreach ($years as $y) {
+// 													echo '<option value="' . $y->current_year .'">' . $y->current_year;
+// 													echo '</option>';
+// 												}
+// 											?>
+<!-- 										</select> -->
+<!-- 									</td> -->
+<!-- 									<td> -->
+<!-- 										<input type="submit" class="btn btn-success" name="total_submit" value="Submit"> -->
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 							</table> -->
+<!-- 						</fieldset> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+				<section class="room-above-7">
 					<table class="table table-striped">
 						<thead><tr><th>S.no.</th><th>Subject Code</th><th>Subject Name</th><th>View</th></tr></thead>
 						<tbody>
