@@ -23,7 +23,6 @@
 								<input type="hidden" name="<?php echo $fcounter ?>" value="<?php echo $$next; ?>">
 								<?php  
 							}
-
 						?>
 						<div class="form-group">
 							<input type="submit" name="submit_filter" class="btn btn-default" value="Go">

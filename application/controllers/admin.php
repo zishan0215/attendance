@@ -288,6 +288,7 @@ class Admin extends Admin_Controller {
         $check = 1;
         for ($i=0; $i < 50; $i++) {
             $val = $this->input->post($i);
+            //echo $val;
             if($val){
                 //echo $val;
                 $this->data["a{$i}"] = $val;
