@@ -54,7 +54,7 @@ class Admin extends Admin_Controller {
     	$this->load->view('admin/components/admin_header', $this->data);
     	$this->load->view('admin/view_marks_layout');
     }
-    
+
     public function edit_subject() {
         $this->data['page'] = 3;
         $this->data['name'] = $this->session->userdata('name');
@@ -88,32 +88,182 @@ class Admin extends Admin_Controller {
         $this->load->model('student_m');
         $this->data['period'] = $this->period_m->get();
         $this->data['confirmation'] = "";
-        if(!($this->input->post('submit'))) {
+        echo !($this->input->post('submit'));
+        echo "hi";
+        
+        if(($this->input->post('submit'))) {
             /*if($this->student_m->update_semester()) {
                 $this->data['confirmation'] = 1;
             } else {
                 $this->data['confirmation'] = 2;
             }*/
             $this->load->model('period_m');
+            $this->load->model('studies_m');
             $this->load->model('attendance_m');
-            //$this->load->model('total_attendance_m');
+            $this->load->model('total_attendance_m');
             $start = $this->input->post('start_date');
+            $temp = explode('-',$start);
+            $month = $temp[1];
+            $year = $temp[0];
+            //$time=strtotime($start);
+            //$month=date("F",$time);
+            //echo $month;
             $end = $this->input->post('end_date');
             while(TRUE){
-                //echo 'still here' . '<br/>';
                 $array = array("from_date" => $start);
                 $this->data['dates'] = $this->period_m->get_by($array);
                 foreach ($this->data['dates'] as $key) {
-                    $endDate = $key->to_date;
+                    $endDate = $key->to_date;   
                 }
-                //echo $endDate;
+                $all [] = [
+                    "from_date" => $start,
+                    "to_date" => $endDate
+                ];
                 if($endDate === $end)
-                    break;
+                        break;
+                $start = $endDate;
             }
-            //echo $start . '<br/>' . $end;
+
+
+            if($month >= 07){
+                $sem = 3;
+            }
+            else{
+                $sem = 4;
+            }
+            for($i=0; $i<3; $i++){
+                //$start = $this->input->post('start_date');
+                //$end = $this->input->post('end_date');
+                //while(TRUE){
+                    //echo 'still here' . '<br/>';
+                //$array = array("from_date" => $start);
+                //$this->data['dates'] = $this->period_m->get_by($array);
+                //foreach ($this->data['dates'] as $key) {
+                //    $endDate = $key->to_date;   
+                //}
+
+                $this->data['ids'] = $this->student_m->get_distinct_student_id($sem);
+                foreach ($this->data['ids']->result() as $val) {
+                    //echo $val->student_id;
+                    //echo '<br/>';
+                    $st_ids [] = [
+                        "id_s" => $val->student_id
+                    ];
+                }
+
+                $this->data['subs_code'] = $this->subject_m->get_distinct_subject_code($sem);
+                foreach ($this->data['subs_code']->result() as $code) {
+                    foreach ($st_ids as $id) {
+                        $cur_at = 0;
+                        $cur_to = 0;
+                        foreach ($all as $al){
+                            $array = array('student_id' => $id["id_s"],'subject_code' => $code->subject_code, 'from_date' => $al["from_date"], 'to_date' => $al["to_date"]);
+                            $this->data['atten'] = $this->attendance_m->get_by($array);
+                            foreach ($this->data['atten'] as $attend) {
+                                if ($attend->attendance != NULL) {
+                                    $cur_at += $attend->attendance;
+                                    $cur_to += $attend->total_classes;
+                                }
+                            }
+                        }
+                        $batch = floor($id["id_s"] / 10000);
+                        /*
+                        query to appear here
+                        student_id => $id["id_s"]
+                        subject_code => $code->subject_code
+                        attendance => $cur_at
+                        semester => $sem
+                        batch => $batch
+                        total_classes => $cur_to
+                        year => $year
+                        */
+                        $array2 = array('student_id' => $id["id_s"], 'subject_code' => $code->subject_code, 'attendance' => $cur_at, 'semester' => $sem, 'batch' => $batch, 'total_classes' => $cur_to, 'year' => $year);
+                        $this->total_attendance_m->insert($array2);
+                    }
+                    //$array2 = array('student_id' => $id["id_s"], 'subject_code' => $code->subject_code, 'attendance' => $cur_at, 'semester' => $sem, 'batch' => $batch, 'total_classes' => $cur_to, 'year' => $year);
+                    //$this->total_attendance_m->insert($array2);
+                    //echo $batch;
+                    //echo $cur_at . " for " . $code->subject_code;
+                    //echo '<br/>';
+                }
+
+                    //echo $endDate;
+                    
+                    //$start = $endDate;
+                //}
+                $sem += 2;
+                unset($st_ids);
+                //echo $start . '<br/>' . $end;
+            }
         }
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/main_layout');
+    }
+
+    public function archiveAtt(){
+        $this->data['page'] = 5;
+        $this->data['name'] = $this->session->userdata('name');
+
+        $this->load->model('subject_m');
+        $this->load->model('total_attendance_m');
+        $this->data['sems'] = $this->subject_m->get();
+        foreach ($this->data['sems'] as $sem) {
+            //echo $sem->subject_code;
+            //echo '<br/>';
+        }
+        $this->data['years'] = $this->total_attendance_m->get_distinct_year();
+        foreach ($this->data['years']->result() as $y) {
+            //echo $y->year;
+        }
+
+        $this->load->view('admin/components/admin_header',$this->data);
+        $this->load->view('admin/archive_options');
+    }
+
+    public function archive(){
+        $this->data['page'] = 0;
+        $this->data['name'] = $this->session->userdata('name');
+        $code = $this->input->post('subject');
+        $year = $this->input->post('year');
+        //echo $code . '<br/>' . $year;
+        $temp = explode('-', $code);
+        $sem = floor($temp[1]/100);
+        //echo $sem;
+
+        $this->load->model('student_m');
+        $this->load->model('total_attendance_m');
+
+        $array = array("semester" => $sem);
+        $this->data['ids'] = $this->student_m->get_by($array);
+        foreach ($this->data['ids'] as $value) {
+            //echo $value->student_id;
+            //echo '<br/>';
+        }
+
+        $this->data['subject_code'] = $code;
+        $this->data['year'] = $year;
+
+        $array1 = array("subject_code" => $code, "year" => $year);
+        $this->data['attend'] = $this->total_attendance_m->get_by($array1);
+        foreach ($this->data['attend'] as $att) {
+            //echo $att->attendance;
+            //echo '<br/>';
+            foreach ($this->data['ids'] as $value) {
+                if($att->student_id == $value->student_id){
+                    $this->data['table'] [] = [
+                        "roll_number" => $value->roll_number,
+                        "student_id" => $value->student_id,
+                        "name" => $value->student_name,
+                        "attendance" => $att->attendance,
+                        "total_classes" => $att->total_classes
+                    ];
+                }
+            }
+        }
+        asort($this->data['table']);
+
+        $this->load->view('admin/components/admin_header',$this->data);
+        $this->load->view('admin/archive_layout');
     }
 
     public function students() {
@@ -528,6 +678,27 @@ class Admin extends Admin_Controller {
         $this->data['rows'] = $this->admin_m->get_view_attendance($this->data);
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/view_attendance_layout');
+    }
+
+    public function edit_attendance() {
+        $this->data['confirmation'] = "";
+        $this->data['page'] = 0;
+        $this->data['name'] = $this->session->userdata('name');
+        if($this->input->post('submit')) {
+            $student_id = $this->input->post('student_id');
+            $from_date = $this->input->post('from_date');
+            $to_date = $this->input->post('to_date');
+            $subject_code = $this->input->post('subject_code');
+            $total_classes = $this->input->post('total_classes');
+            $array= array('student_id'=>$student_id,'subject_code' => $subject_code,'from_date' =>$from_date,'to_date' =>$to_date ,'total_classes' =>$total_classes, 'attendance' => $this->input->post('attendance'));
+            if($this->attendance_m->update_attendance($array)) {
+                $this->data['confirmation'] = 1;
+            } else {
+                $this->data['confirmation'] = 2;
+            }
+        }
+        $this->load->view('admin/components/admin_header', $this->data);
+        $this->load->view('admin/edit_attendance_layout');
     }
 
     public function teachers() {
