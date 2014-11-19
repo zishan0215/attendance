@@ -289,6 +289,11 @@ class Teacher extends Teacher_Controller {
 				$val = $this->input->post('num:' . $i);
 				$s_id = $this->input->post('student_id:' . $i);
 				$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total);
+				if($this->input->post('submit')) {
+					$array['submit'] = 1;
+				} elseif ($this->input->post('save')) {
+					$array['submit'] = 0;
+				}
 				$this->attendance_m->insert($array);
 			}
 			$id = $this->session->userdata('id');

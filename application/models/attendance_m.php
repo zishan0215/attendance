@@ -33,11 +33,30 @@ class Attendance_m extends MY_Model {
 			return $q;
 		}
 		
+		public function submit_update($data) {
+			$query = 'UPDATE attendance SET submit = 1';
+			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."'";
+			// 			echo $query;
+			$q = $this->db->query($query);
+			return $q;
+		}
+		
 		public function check_final_submission($data) {
 			$query = 'SELECT final_submit FROM attendance';
 			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."' LIMIT 1";
 			$q = $this->db->query($query);
 			if($q->result()[0]->final_submit) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		
+		public function check_submission($data) {
+			$query = 'SELECT submit FROM attendance';
+			$query .= ' WHERE subject_code = '."'" . $data['subject_code'] . "'" .' AND from_date = '."'".$data['from_date']."'".' AND to_date = '."'".$data['to_date']."' LIMIT 1";
+			$q = $this->db->query($query);
+			if($q->result()[0]->submit) {
 				return 1;
 			} else {
 				return 0;
@@ -75,12 +94,13 @@ class Attendance_m extends MY_Model {
 		public function insert($data){
 			$query = 'INSERT INTO attendance VALUES(';
 			$query .= $data['student_id'] . ", '" . $data['subject_code'] . "', '" . $data['from_date'] . "', '";
-			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ", 0);";
-			$this->db->query($query);
+			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ", 0, " . $data['submit'] .")";
+			echo $query;
+			/*$this->db->query($query);
 			if($this->db->affected_rows()) {
 				return TRUE;
 			}
-			return FALSE;
+			return FALSE;*/
 		}
 
 		public function get_total_classes($data){
