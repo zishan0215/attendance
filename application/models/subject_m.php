@@ -68,7 +68,7 @@ class Subject_m extends MY_Model {
 	}
 
 	public function get_subject_code_for_teacher($id) {
-		$query = "SELECT subject_code FROM subject WHERE subject_code NOT IN (SELECT subject_code from subject WHERE teacher_id = " . $id .")";
+		$query = "SELECT subject_code,subject_name FROM subject WHERE subject_code NOT IN (SELECT subject_code from subject WHERE teacher_id = " . $id .")";
 		$q = $this->db->query($query);
 		return $q;
 	}
