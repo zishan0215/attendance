@@ -84,7 +84,7 @@ function finalSubmit(subject_code, from_date, to_date) {
 			xmlhttp.onreadystatechange = function() {
 				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 					obj.innerHTML = xmlhttp.responseText;
-					alert('Final Attendance Submitted!');
+					alert('Final Attendance Submitted! For any other changes please contact the administrator');
 				} else if(xmlhttp.status == 404) {
 					alert('Page not found');
 				}
