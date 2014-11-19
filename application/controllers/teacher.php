@@ -261,6 +261,7 @@ class Teacher extends Teacher_Controller {
 		$this->data['sem'] = $sem;
 		$this->data['s_code'] = $code;
 		$this->data['per'] = $this->period_m->get(NULL,TRUE);
+		$this->data['subject_name'] = $this->subject_m->get_subject_name($code);
 		$array = array('semester' => $sem);
 		$this->data['list'] = $this->student_m->get_by($array);
 		if($this->input->post('submit')) {
