@@ -262,6 +262,16 @@ class Teacher extends Teacher_Controller {
 		$this->data['s_code'] = $code;
 		$this->data['per'] = $this->period_m->get(NULL,TRUE);
 		$this->data['subject_name'] = $this->subject_m->get_subject_name($code);
+		$this->data['prev'] = 0;
+		$data = array(
+				'from_date' => $this->data['per']->from_date,
+				'to_date' => $this->data['per']->to_date,
+				'subject_code' => $code
+			);
+		$prev = $this->attendance_m->check_saved($data); 
+		if($prev) {
+			$this->data['prev'] = $prev;
+		}
 		$array = array('semester' => $sem);
 		$this->data['list'] = $this->student_m->get_by($array);
 		if($this->input->post('submit')) {
@@ -282,17 +292,29 @@ class Teacher extends Teacher_Controller {
 		$total = $this->input->post('num:0');
 		$values = $this->input->post('total_values');
 		$this->load->model('attendance_m');
+		$pdata = array(
+				'from_date' => $from_date,
+				'to_date' => $to_date,
+				'subject_code' => $code
+		);
 		/*if($this->input->post('total') < $this->input->post('num:0')) {
 			redirect('/teacher/feed_attendance?subject_code='.$code.'&semester='.$sem);
 		} else {*/
+		$prev = $this->attendance_m->check_saved($pdata);
+		if($prev) {
+			//delete previous data
+			$this->attendance_m->delete_previous_data($pdata);
+		}
 			for ($i=1;$i<=$values; $i++) {
 				$val = $this->input->post('num:' . $i);
 				$s_id = $this->input->post('student_id:' . $i);
 				
 				if($this->input->post('submit')) {
-					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 1);
+					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 1, 'saved' => 0);
+				} elseif ($this->input->post('save')) {
+					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 0, 'saved' => 1);
 				} else {
-					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 0);
+					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 0, 'saved' => 0);
 				}
 				$this->attendance_m->insert($array);
 			}

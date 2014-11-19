@@ -38,7 +38,9 @@ class Period_m extends MY_Model {
 
 		public function done_attendance() {
 			$period = $this->get_latest_period();
-			$query = "SELECT DISTINCT subject_code from attendance WHERE from_date='{$period->from_date}' and to_date='{$period->to_date}'";
+			$query = "SELECT DISTINCT subject_code from attendance WHERE ";
+			$query .= "from_date='{$period->from_date}' and to_date='{$period->to_date}' ";
+			$query .= "and submit = 1";
 			$q = $this->db->query($query);
 			$codes = array();
 			foreach($q->result() as $code) {

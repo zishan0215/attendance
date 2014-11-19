@@ -62,6 +62,24 @@ class Attendance_m extends MY_Model {
 				return 0;
 			}
 		}
+		
+		public function check_saved($data) {
+			$query = "SELECT * FROM attendance WHERE from_date = '".$data['from_date']."' ";
+			$query .= "and to_date = '" . $data['to_date'] . "' and saved = 1 ";
+			$query .= "and subject_code = '" . $data['subject_code'] . "'";
+// 			if($this->db->query($query)) {
+// 				return true;
+// 			}
+			$q = $this->db->query($query);
+			return $q->result();
+		}
+		
+		public function delete_previous_data($data) {
+			$query = "DELETE FROM attendance WHERE from_date = '".$data['from_date']."' ";
+			$query .= "and to_date = '" . $data['to_date'] . "' and saved = 1 ";
+			$query .= "and subject_code = '" . $data['subject_code'] . "'";
+			return $this->db->query($query);
+		}
 
 		public function get_distinct_select($data){
 			$query = 'SELECT DISTINCT subject_code, from_date, to_date, total_classes FROM attendance ';
@@ -94,7 +112,7 @@ class Attendance_m extends MY_Model {
 		public function insert($data){
 			$query = 'INSERT INTO attendance VALUES(';
 			$query .= $data['student_id'] . ", '" . $data['subject_code'] . "', '" . $data['from_date'] . "', '";
-			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ", 0, " . $data['submit'] .")";
+			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ", 0, " . $data['submit'] . ", " . $data['saved'] .")";
 			$this->db->query($query);
 			if($this->db->affected_rows()) {
 				return TRUE;
