@@ -73,27 +73,29 @@ function finalSubmit(subject_code, from_date, to_date) {
 		}
 	});
 */
-	var xmlhttp = getXmlResponseObject();
-	if(xmlhttp) {
-		//alert('Got the object');
-		var obj = document.getElementById('success');
-		var page = "/jmiams/index.php/teacher/final_submit?subject_code=" + subject_code +"&from_date=" +from_date+"&to_date="+to_date;
-		xmlhttp.open("GET", page);
-		xmlhttp.onreadystatechange = function() {
-			if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				obj.innerHTML = xmlhttp.responseText;
-				alert('Final Attendance Submitted!');
-			} else if(xmlhttp.status == 404) {
-				alert('Page not found');
+	var confirm = window.confirm("Do you want to submit the final attendance ?");
+	if(confirm == true) {
+		var xmlhttp = getXmlResponseObject();
+		if(xmlhttp) {
+			//alert('Got the object');
+			var obj = document.getElementById('success');
+			var page = "/jmiams/index.php/teacher/final_submit?subject_code=" + subject_code +"&from_date=" +from_date+"&to_date="+to_date;
+			xmlhttp.open("GET", page);
+			xmlhttp.onreadystatechange = function() {
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					obj.innerHTML = xmlhttp.responseText;
+					alert('Final Attendance Submitted!');
+				} else if(xmlhttp.status == 404) {
+					alert('Page not found');
+				}
 			}
+			xmlhttp.send(null);
 		}
-		xmlhttp.send(null);
-	}
-	ebtn = document.getElementsByClassName('Ebtn');
-	for (var i = 0; i < ebtn.length; i++) {
-		ebtn[i].disabled = true;
-	}
-	
+		ebtn = document.getElementsByClassName('Ebtn');
+		for (var i = 0; i < ebtn.length; i++) {
+			ebtn[i].disabled = true;
+		}
+	} 
 }
 
 function confirmIncrement() {

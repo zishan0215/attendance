@@ -121,11 +121,19 @@
 										if($key["id"] == $d["student_id"]){
 											echo '<td>';
 											echo '&nbsp;';
-											if($key["val_in"])
+											if(($this->data['sem']!=7) && ($this->data['sem']!=8)) {
+												if($key["val_in"])
 												echo $key["val_in"];
-											else
-												echo ' -';
-											echo '</td>';
+												else
+													echo ' 0';
+												echo '</td>';	
+											} else {
+												if($key["val_in"])
+													echo $key["val_in"];
+												else
+													echo ' -';
+												echo '</td>';
+											}
 										}
 									}
 									echo '<td>' . $d["total_attendance"];
