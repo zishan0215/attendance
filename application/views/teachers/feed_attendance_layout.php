@@ -51,8 +51,8 @@
 					</tbody>
 				</table>
 				<div class="form-group col-md-8 col-md-offset-3">
-					<button type="submit" name = "submit" class="col-md-offset-1 btn btn-success">Submit</button>
-					<button type="submit" name = "save" class="col-md-offset-1 btn btn-warning">Save</button>
+					<input type="submit" name = "submit" class="col-md-offset-1 btn btn-success" value="Submit">
+					<input type="submit" name = "save" class="col-md-offset-1 btn btn-warning" value="Save">
 				</div>
 			</form>
 			</div>

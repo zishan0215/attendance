@@ -95,12 +95,11 @@ class Attendance_m extends MY_Model {
 			$query = 'INSERT INTO attendance VALUES(';
 			$query .= $data['student_id'] . ", '" . $data['subject_code'] . "', '" . $data['from_date'] . "', '";
 			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ", 0, " . $data['submit'] .")";
-			echo $query;
-			/*$this->db->query($query);
+			$this->db->query($query);
 			if($this->db->affected_rows()) {
 				return TRUE;
 			}
-			return FALSE;*/
+			return FALSE;
 		}
 
 		public function get_total_classes($data){
