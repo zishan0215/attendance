@@ -67,7 +67,7 @@
                             <div class="col-sm-offset-3 col-sm-7">
                                 <br>
                                 <input type="submit" class="btn btn-success" name="submit" value="Submit">&nbsp;&nbsp;
-                                <a href="http://localhost/jmiams/index.php/admin/students" class="btn btn-danger">Cancel</a>
+                                <a href="/jmiams/index.php/admin/students" class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </form>

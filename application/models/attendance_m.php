@@ -98,6 +98,17 @@ class Attendance_m extends MY_Model {
 			$q=$this->db->query($query);
 			return $q;
 		}
+		
+		public function prev_get_list($data){
+			$query = 'SELECT * FROM attendance a, student s ';
+			$query .= 'WHERE (a.from_date = ' . "'" . $data['from_date'] . "'" . ') AND (a.to_date = ';
+			$query .= "'" . $data['to_date'] . "'" . ') AND (a.subject_code = ';
+			$query .= "'" . $data['subject_code'] . "'" . ') AND (s.student_id = a.student_id)';
+			$query .= ' AND a.saved=1 ORDER BY s.roll_number';
+			//$query .= "'" . $data['subject_code'] . "'" . ')';
+			$q=$this->db->query($query);
+			return $q->result();
+		}
 
 		public function get_distinct_period(){
 			$q=$this->db->query("SELECT DISTINCT from_date, to_date FROM attendance");
@@ -113,6 +124,7 @@ class Attendance_m extends MY_Model {
 			$query = 'INSERT INTO attendance VALUES(';
 			$query .= $data['student_id'] . ", '" . $data['subject_code'] . "', '" . $data['from_date'] . "', '";
 			$query .= $data['to_date'] . "', " . $data['attendance'] . ", " . $data['total_classes'] . ", 0, " . $data['submit'] . ", " . $data['saved'] .")";
+			//echo $query;
 			$this->db->query($query);
 			if($this->db->affected_rows()) {
 				return TRUE;

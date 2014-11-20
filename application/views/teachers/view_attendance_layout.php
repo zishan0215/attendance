@@ -61,7 +61,7 @@ if(isset($rows)) {
 									echo '</td><td>' . $r->semester;
 									echo '</td><td>' . $r->attendance . '</td><td>' . $r->total_classes;
 									echo '</td><td>' .
-									'<form action="http://localhost/jmiams/index.php/teacher/edit_attendance" method="post">
+									'<form action="/jmiams/index.php/teacher/edit_attendance" method="post">
 									<input type="hidden" value="' . $r->student_name .'" name="student_name" />
 									<input type="hidden" value="' . $r->student_id .'" name="student_id" />
 									<input type="hidden" value="' . $subject->subject_code .'" name="subject_code" />

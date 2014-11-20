@@ -270,10 +270,11 @@ class Teacher extends Teacher_Controller {
 			);
 		$prev = $this->attendance_m->check_saved($data); 
 		if($prev) {
-			$this->data['prev'] = $prev;
+			$this->data['prev'] = $this->attendance_m->prev_get_list($data); ;
 		}
 		$array = array('semester' => $sem);
 		$this->data['list'] = $this->student_m->get_by($array);
+		
 		if($this->input->post('submit')) {
 			 if($this->input->post('num:0') > $this->input->post('total')) {
 			 	$this->data['confirmation'] = 1;
@@ -316,6 +317,7 @@ class Teacher extends Teacher_Controller {
 				} else {
 					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 0, 'saved' => 0);
 				}
+				//print_r($array);
 				$this->attendance_m->insert($array);
 			}
 			$id = $this->session->userdata('id');

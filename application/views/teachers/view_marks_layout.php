@@ -56,7 +56,7 @@
 								echo "<td>$v->student_name</td>";
 								echo "<td>$v->marks</td>";
 								echo "<td>".
-								'<form action="http://localhost/jmiams/index.php/teacher/edit_marks" method="post">
+								'<form action="/jmiams/index.php/teacher/edit_marks" method="post">
 								<input type="hidden" value="' . $v->student_name .'" name="student_name" />
 								<input type="hidden" value="' . $v->student_id .'" name="student_id" />
 								<input type="hidden" value="' . $v->total_marks .'" name="total_marks" />

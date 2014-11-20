@@ -3,7 +3,7 @@
 	$from_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
 	$date = DateTime::createFromFormat('Y-m-d', $this->data['per']->to_date);
 	$to_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
-	if($prev) print_r($prev);
+	//if($prev) print_r($prev);
 ?>
 
 	<div class="container">
@@ -29,13 +29,13 @@
 					<thead><tr><th>Roll Number</th><th>Student Name</th><th>Attendance</th></tr></thead>
 					<tbody>
 				<?php
-					$count = 1;
+					/*$count = 1;
 					if ($prev) {
 						foreach ($list as $n) {
 							echo '<div';
-							echo '<tr><td>' . $n->roll_number . '</td>';
-							echo '<td>' . $n->student_name . '</td>';
-							echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
+							echo '<tr><td>' . $prev[$count-1]->roll_number . '</td>';
+							echo '<td>' . $prev[$count-1]->student_name . '</td>';
+							echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $prev[$count-1]->student_id . '"/>';
 							echo '<input type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count;
 							echo '" class="form-control input-sm" value="' . $prev[$count-1]->attendance . '">';
 							echo '</td></tr>';
@@ -51,6 +51,30 @@
 							echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
 							echo '<input type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" value="0">
 												';
+							echo '</td></tr>';
+							echo '</div>';
+							//echo '<br/>';
+							$count++;
+						}
+					}*/
+					$count = 1;
+					foreach ($list as $n) {
+						echo '<div>';
+						echo '<tr><td>' . $n->roll_number . '</td>';
+						echo '<td>' . $n->student_name . '</td>';
+						echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
+						if($prev){
+							echo '<input type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count;
+							echo '" class="form-control input-sm" value="' . $prev[$count-1]->attendance . '">';
+							echo '</td></tr>';
+							echo '</div>';
+							//echo '<br/>';
+							$count++;
+						}
+						else{
+							echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
+							echo '<input type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" value="0">
+																			';
 							echo '</td></tr>';
 							echo '</div>';
 							//echo '<br/>';
