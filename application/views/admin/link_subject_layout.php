@@ -36,12 +36,12 @@
 						<select class="form-control" name="subject_code">
 							<?php
 								foreach($rows->result() as $s) {
-									echo '<option value="' . $s->subject_code . '">' . $s->subject_code . '</option>';
+									echo '<option value="' . $s->subject_code . '">' . $s->subject_code . ' - ' . $s->subject_name .'</option>';
 								}
 							 ?>
 						</select>&nbsp;&nbsp;
 						<input type="hidden" name="teacher_id" value="<?php echo $teacher_id; ?>">
-						
+
 					</div>
 					<input type="submit" name="submit" value="Submit" class="btn btn-success" />
 				</form>
