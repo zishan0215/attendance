@@ -43,7 +43,16 @@
 							?>
 							<br>
 							<div class="col-md-5">
-								<input type="text" name="semester" class="form-control" placeholder="Semester" autofocus />	
+								<!-- <input type="text" name="semester" class="form-control" placeholder="Semester" autofocus /> -->	
+								
+							 	     <select class="form-control" name="semester"> 
+								<?php 
+										    foreach($sem as $s){
+										    	echo "<option>$s</option>";
+									 	    }
+								?>
+								     </select>
+								
 							</div>
 							<input type="submit" name="submit" value="Submit" class="btn btn-success" />
 						</form>

@@ -12,7 +12,7 @@
 					<p class="pull-right"><a href="javascript:window.print();">Print</a></p>
 					<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
 					<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
-					<form role="form" class="form-inline" method="post" action="/jmiams/index.php/admin/total_attendance">
+					<!-- form role="form" class="form-inline" method="post" action="/jmiams/index.php/admin/total_attendance">
 						<input type="text" name="filter" placeholder="Apply filter" <?php if($filter !=101) echo "value=\"{$filter}\""; ?> class="form-control">
 						<input type="hidden" name="semester" value="<?php echo $fsemester; ?>">
 						<?php //$i=1; $next='a'.$i; echo "<p>".$$next."</p>"; ?>
@@ -27,7 +27,7 @@
 						<div class="form-group">
 							<input type="submit" name="submit_filter" class="btn btn-default" value="Go">
 						</div>
-					</form>
+					</form -->
 					<br>
 				</section>
 

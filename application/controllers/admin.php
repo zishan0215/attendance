@@ -679,6 +679,13 @@ class Admin extends Admin_Controller {
         $this->data['name'] = $this->session->userdata('name');
         $this->load->model('period_m');
         $this->data['period'] = $this->period_m->get();
+        $code=date('m');
+        if($code%2==0){
+        	$this->data['sem']=array(2,4,6,8);
+        }
+        else{
+        	$this->data['sem']=array(1,3,5,7);
+        }
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/total_attendance_options_layout');
     }
