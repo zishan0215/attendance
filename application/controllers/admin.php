@@ -298,9 +298,9 @@ class Admin extends Admin_Controller {
                 $this->data['confirmation'] = 2;
             }
         }
-        $semester = $this->input->post('semester');
-        if($semester) {
-            $array = array('semester' => $semester);
+        $this->data['semester'] = $this->input->post('semester');
+        if($this->data['semester']) {
+            $array = array('semester' => $this->data['semester']);
             $this->data['rows'] = $this->student_m->get_by($array);
         }
         $this->load->view('admin/components/admin_header', $this->data);

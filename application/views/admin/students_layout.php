@@ -52,7 +52,9 @@
 							<select class="form-control" name="semester">
 								<?php
 									foreach($semesters->result() as $s) {
-										echo '<option value="' . $s->semester . '">' . $s->semester . '</option>';
+										echo '<option value="' . $s->semester . '" ';
+										if($semester && $semester == $s->semester) echo 'selected';
+										echo '>' . $s->semester . '</option>';
 									}
 								 ?>
 							</select>&nbsp;&nbsp;
