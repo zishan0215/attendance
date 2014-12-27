@@ -20,7 +20,9 @@
 										$from_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
 										$date = DateTime::createFromFormat('Y-m-d', $p->to_date);
 										$to_date = htmlspecialchars($date->format('j M Y'), ENT_QUOTES, "UTF-8");
-										echo '<option value="' . $p->from_date . '#' . $p->to_date . '">' . $from_date . ' - ' . $to_date . '</option>';
+										echo '<option value="' . $p->from_date . '#' . $p->to_date . '" '; 
+										if($speriod) if(strcmp($speriod, $p->from_date.'#'.$p->to_date) == 0)echo 'selected';
+										echo '>' . $from_date . ' - ' . $to_date . '</option>';
 									}
 								 ?>
 							</select>&nbsp;&nbsp;

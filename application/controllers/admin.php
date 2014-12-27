@@ -14,9 +14,9 @@ class Admin extends Admin_Controller {
         $this->data['rows'] = $this->attendance_m->get_distinct();
         $this->load->model('period_m');
         $this->data['period'] = $this->period_m->get();
-        $period = $this->input->post('period');
-        if($period) {
-            $temp = explode('#', $period);
+        $this->data['speriod'] = $this->input->post('period');
+        if($this->data['speriod']) {
+            $temp = explode('#', $this->data['speriod']);
             $array = array('from_date' => $temp[0], 'to_date' => $temp[1]);
             $this->data['rows2'] = $this->attendance_m->get_distinct_select($array);
         }
@@ -680,7 +680,8 @@ class Admin extends Admin_Controller {
         $this->load->model('period_m');
         $this->data['period'] = $this->period_m->get();
         $code=date('m');
-        if($code%2==0){
+        //echo $code;
+        if($code >= 1 && $code <= 6){
         	$this->data['sem']=array(2,4,6,8);
         }
         else{
