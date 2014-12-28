@@ -35,11 +35,11 @@ class Teacher extends Teacher_Controller {
 					$new_password = $this->input->post('username').$key;
 					$email_to = $this->teacher_m->email_id($array);
 					$email_subject = "Mail from test form";
+					//Enter email..
 					$email_from = "nkmittal4994@gmail.com";
 					$email_message = "Your Password is: ";
 					$email_message .= $new_password."\n";
 					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password))){
-						echo $email_message;
 	        			$headers = 'From: '.$email_from."\r\n".
 	        			'Reply-To: '.$email_from."\r\n" .
 	        			'X-Mailer: PHP/' . phpversion();
