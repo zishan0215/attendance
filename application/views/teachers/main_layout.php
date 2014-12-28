@@ -8,7 +8,7 @@
 				<table class="table table-striped">
 					<thead><tr><th>S.no.</th><th>Subject Code</th><th>Subject Name</th><th>Semester</th><th>View</th><th>Attendance</th></tr></thead>
 					<tbody>
-						<?php 	
+						<?php
 							$counter = 1;
 							foreach($rows as $r){
 								echo '<tr><td>' . $counter++ . '</td><td>' . $r->subject_code . '</td><td>' . $r->subject_name . '</td><td>';

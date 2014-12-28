@@ -107,7 +107,7 @@ class Admin extends Admin_Controller {
         $this->data['confirmation'] = "";
         echo !($this->input->post('submit'));
         echo "hi";
-        
+
         if(($this->input->post('submit'))) {
             /*if($this->student_m->update_semester()) {
                 $this->data['confirmation'] = 1;
@@ -130,7 +130,7 @@ class Admin extends Admin_Controller {
                 $array = array("from_date" => $start);
                 $this->data['dates'] = $this->period_m->get_by($array);
                 foreach ($this->data['dates'] as $key) {
-                    $endDate = $key->to_date;   
+                    $endDate = $key->to_date;
                 }
                 $all [] = [
                     "from_date" => $start,
@@ -156,7 +156,7 @@ class Admin extends Admin_Controller {
                 //$array = array("from_date" => $start);
                 //$this->data['dates'] = $this->period_m->get_by($array);
                 //foreach ($this->data['dates'] as $key) {
-                //    $endDate = $key->to_date;   
+                //    $endDate = $key->to_date;
                 //}
 
                 $this->data['ids'] = $this->student_m->get_distinct_student_id($sem);
@@ -205,7 +205,7 @@ class Admin extends Admin_Controller {
                 }
 
                     //echo $endDate;
-                    
+
                     //$start = $endDate;
                 //}
                 $sem += 2;

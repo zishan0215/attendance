@@ -14,8 +14,9 @@ class Teacher_Controller extends MY_Controller
 
 		// Login check
 		$exception_uris = array(
-			'teacher/login', 
-			'teacher/logout'
+			'teacher/login',
+			'teacher/logout',
+			'teacher/forgot'
 		);
 		if (in_array(uri_string(), $exception_uris) == FALSE) {
 			if ($this->teacher_m->loggedin() == FALSE) {
