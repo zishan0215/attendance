@@ -49,6 +49,8 @@ class Teacher extends Teacher_Controller {
 						else
 							$this->data['confirmation'] = 2;
 					}
+					else
+						$this->data['confirmation'] = 2;
 				}
 			}
 		}
