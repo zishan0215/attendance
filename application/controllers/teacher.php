@@ -22,9 +22,45 @@ class Teacher extends Teacher_Controller {
 		$this->load->view('teachers/main_layout');
 	}
 
+	public function forgot() {
+		$this->data['confirmation'] = "";
+		$this->data['meta_title'] = 'Attendance Management System';
+		if($this->input->post('submit')) {
+			if($this->input->post('username')) {
+				if($this->teacher_m->username_exists($this->input->post('username'))){
+					$this->data['confirmation'] = 1;
+					$array =array(
+					'username'	=> $this->input->post('username'));
+					$key = 1234;
+					$new_password = $this->input->post('username').$key;
+					$email_to = $this->teacher_m->email_id($array);
+					$email_subject = "Mail from test form";
+					//Enter email..
+					$email_from = "nkmittal4994@gmail.com";
+					$email_message = "Your Password is: ";
+					$email_message .= $new_password."\n";
+					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password))){
+	        			$headers = 'From: '.$email_from."\r\n".
+	        			'Reply-To: '.$email_from."\r\n" .
+	        			'X-Mailer: PHP/' . phpversion();
+						if(mail($email_to, $email_subject, $email_message, $headers)){
+							$this->data['confirmation'] = 1;
+						}
+						else
+							$this->data['confirmation'] = 2;
+					}
+					else
+						$this->data['confirmation'] = 2;
+				}
+			}
+		}
+		$this->load->view('bootstrap/header_login', $this->data);
+		$this->load->view('teachers/forgot_layout',$this->data);
+	}
+
 	public function students() {
 		$this->data['page'] = 2;
-		$this->data['name'] = $this->session->userdata('name');
+		$this->data['name'] = $this->session->data('name');
 		$this->data['rows'] = array();
 		$this->data['semesters'] = $this->subject_m->get_distinct_semester($this->session->userdata('id'));
 		$semester = $this->input->post('semester');
@@ -268,13 +304,13 @@ class Teacher extends Teacher_Controller {
 				'to_date' => $this->data['per']->to_date,
 				'subject_code' => $code
 			);
-		$prev = $this->attendance_m->check_saved($data); 
+		$prev = $this->attendance_m->check_saved($data);
 		if($prev) {
 			$this->data['prev'] = $this->attendance_m->prev_get_list($data); ;
 		}
 		$array = array('semester' => $sem);
 		$this->data['list'] = $this->student_m->get_by($array);
-		
+
 		if($this->input->post('submit')) {
 			 if($this->input->post('num:0') > $this->input->post('total')) {
 			 	$this->data['confirmation'] = 1;
@@ -309,7 +345,7 @@ class Teacher extends Teacher_Controller {
 			for ($i=1;$i<=$values; $i++) {
 				$val = $this->input->post('num:' . $i);
 				$s_id = $this->input->post('student_id:' . $i);
-				
+
 				if($this->input->post('submit')) {
 					$array = array('student_id' => $s_id, 'subject_code' => $code, 'from_date' => $from_date, 'to_date' => $to_date, 'attendance' => $val, 'total_classes' => $total, 'submit' => 1, 'saved' => 0);
 				} elseif ($this->input->post('save')) {

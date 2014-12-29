@@ -138,7 +138,7 @@ class Teacher_m extends MY_Model {
 	}
 
 	public function username_exists($data) {
-		$query = 'SELECT username FROM teacher WHERE username = ' . "'" . $data['username'] . "'" ;
+		$query = 'SELECT username FROM teacher WHERE username = ' . "'" . $data . "'" ;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0) {
 			return TRUE;
@@ -146,6 +146,16 @@ class Teacher_m extends MY_Model {
 		return FALSE;
 	}
 
+	public function reset_pass($data){
+		$query = "UPDATE teacher SET password = " . "'" .$data."'" ;
+		$q = $this->db->query($query);
+		return $q;
+	}
+
+	public function email_id($data){
+		$row = $this->get_by($data);
+		return $row[0]->email;
+	}
 	public function get_username($data) {
 		$row = $this->get_by($data);
 		return $row[0]->username;
