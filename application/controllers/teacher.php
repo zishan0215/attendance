@@ -27,19 +27,20 @@ class Teacher extends Teacher_Controller {
 		$this->data['meta_title'] = 'Attendance Management System';
 		if($this->input->post('submit')) {
 			if($this->input->post('username')) {
-				if($this->teacher_m->username_exists($this->input->post('username'))){
+				$username = $this->input->post('username');
+				if($this->teacher_m->username_exists($username)){
 					$this->data['confirmation'] = 1;
-					$array =array(
-					'username'	=> $this->input->post('username'));
+					$array =array('username' => $username);
 					$key = 1234;
 					$new_password = $this->input->post('username').$key;
-					$email_to = $this->teacher_m->email_id($array);
-					$email_subject = "Mail from test form";
+					//$email_to = $this->teacher_m->email_id($array);
+					$email_to = 'zishanrbp@gmail.com';
+					$email_subject = "[JMIAMS] Mail from test form";
 					//Enter email..
 					$email_from = "nkmittal4994@gmail.com";
 					$email_message = "Your Password is: ";
 					$email_message .= $new_password."\n";
-					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password))){
+					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password), $username)){
 	        			$headers = 'From: '.$email_from."\r\n".
 	        			'Reply-To: '.$email_from."\r\n" .
 	        			'X-Mailer: PHP/' . phpversion();
