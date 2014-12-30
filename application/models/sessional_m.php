@@ -92,6 +92,33 @@ class Sessional_m extends MY_Model {
 		}
 	}
 
+    public function get_student_data($data) {
+        $query  = "SELECT d.roll_number,s.student_id, d.student_name,s.marks ";
+        $query .= "FROM sessionals AS s, student AS d ";
+        $query .= "WHERE s.student_id = d.student_id AND d.semester = ". $data;
+        $query .= " order by d.roll_number";
+        $q = $this->db->query($query);
+        return $q;
+    }
+
+    public function get_first_studentid($data) {
+        $query  = "SELECT s.student_id ";
+        $query .= "FROM sessionals AS s, student AS d ";
+        $query .= "WHERE s.student_id = d.student_id AND d.semester = ". $data;
+        $query .= " order by d.roll_number LIMIT 1";
+        $q = $this->db->query($query);
+        return $q;
+    }
+    /*
+    public function y($data) {
+        $query  = "SELECT count(distinct subject_code) as total_subjects ";
+        $query .= "FROM sessionals AS s, student AS d ";
+        $query .= "WHERE s.student_id = d.student_id AND d.semester = ". $data;
+        $q = $this->db->query($query);
+        return $q;
+    }
+    */
+
 }
 
 ?>

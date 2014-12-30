@@ -41,6 +41,7 @@ class Admin extends Admin_Controller {
     public function sessionals() {
     	$this->data['page'] = 4;
     	$this->data['name'] = $this->session->userdata('name');
+        $this->data['semesters'] = $this->subject_m->get_distinct_semester_all();
     	$this->load->model('sessional_m');
     	$this->data['years'] = $this->sessional_m->get_year();
     	$this->data['rows'] = $this->sessional_m->admin_values();
@@ -48,6 +49,18 @@ class Admin extends Admin_Controller {
     	$this->load->view('admin/sessionals_layout');
     }
 
+    public function total_marks() { 
+        $this->data['page'] = 0;
+        $this->data['name'] = $this->session->userdata('name');
+        $this->data['semester']=$this->input->post('semester');
+        $this->load->model('sessional_m');
+        $this->data['sub_codes']=$this->subject_m->get_distinct_subject_code($this->input->post('semester'));
+        $this->data['sub_abbr']=$this->subject_m->get_distinct_subject_abbr($this->input->post('semester'));
+        $this->data['rows']=$this->sessional_m->get_student_data($this->input->post('semester'));
+        $this->data['firstid']=$this->sessional_m->get_first_studentid($this->input->post('semester'));
+        $this->load->view('admin/components/admin_header', $this->data);
+        $this->load->view('admin/total_marks_layout',$this->data);
+    }
     public function view_marks() {
     	$this->data['page'] = 4;
     	$this->data['name'] = $this->session->userdata('name');
