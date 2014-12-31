@@ -146,9 +146,8 @@ class Teacher_m extends MY_Model {
 		return FALSE;
 	}
 
-	public function reset_pass($data, $username){
-		$query = "UPDATE teacher SET password = " . "'" .$data."' ";
-		$query .= 'WHERE username = ' . "'{$username}'";
+	public function reset_pass($data,$user){
+		$query = "UPDATE teacher SET password = " . "'" .$data."'" .' where username = ' . "'". $user . "'";
 		$q = $this->db->query($query);
 		return $q;
 	}

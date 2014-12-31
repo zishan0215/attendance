@@ -40,7 +40,7 @@ class Teacher extends Teacher_Controller {
 					$email_from = "nkmittal4994@gmail.com";
 					$email_message = "Your Password is: ";
 					$email_message .= $new_password."\n";
-					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password), $username)){
+					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password),$this->input->post('username'))){
 	        			$headers = 'From: '.$email_from."\r\n".
 	        			'Reply-To: '.$email_from."\r\n" .
 	        			'X-Mailer: PHP/' . phpversion();
@@ -48,7 +48,7 @@ class Teacher extends Teacher_Controller {
 							$this->data['confirmation'] = 1;
 						}
 						else
-							$this->data['confirmation'] = 2;
+							$this->data['confirmation'] = 3;
 					}
 					else
 						$this->data['confirmation'] = 2;
