@@ -121,7 +121,7 @@
 					}
 					echo '<td> ' . $d["total_attendance"];
 					if(($this->data['sem'] == 7) || ($this->data['sem'] == 8))
-						echo '</td><td>' . $d["total_classes"];
+						echo '</td><td> ' . $d["total_classes"];
 					echo '</td><td> ' . number_format($d["percentage"],2) . '%';
 					echo '</td></tr>'."\n";
 				}
