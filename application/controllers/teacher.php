@@ -48,12 +48,13 @@ class Teacher extends Teacher_Controller {
 							'username' => $crendentials['email'],
 							'password' => $crendentials['password'],
 							'secure' => 'tls' //SSL or TLS
-					
+								
 					);
 					
+					
 					/* TO, SUBJECT, CONTENT */
-					$to         = 'nkmittal4994@gmail.com'; //The 'To' field
-					$subject    = '[JMIAMS] Mail from test form';
+					$to         = 'zishanrbp@gmail.com'; //The 'To' field
+					$subject    = '[JMIAMS] Your new password';
 					$content    = 'Your new password is: ' . $new_password;
 					
 					
