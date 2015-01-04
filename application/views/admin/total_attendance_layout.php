@@ -9,7 +9,18 @@
 			<!-- Main column -->
 			<div class="col-md-12">
 				<section>
-					<p class="pull-right"><a href="javascript:window.print();">Print</a></p>
+					<form action="/jmiams/admin/total_attendance_pdf" method="post" class="pull-right">
+						<input type="hidden" name="semester" value="<?php echo $fsemester;?>">
+						<?php 
+							for($fcounter=1; $fcounter <= $fcount; $fcounter++) {
+								$next='a'.$fcounter;
+								?>
+								<input type="hidden" name="<?php echo $fcounter ?>" value="<?php echo $$next; ?>">
+								<?php  
+							}
+						?>
+						<input type="submit" name="pdf_generate" class="btn btn-success" value="Generate PDF" target="_blank">
+					</form>
 					<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
 					<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
 					<!-- form role="form" class="form-inline" method="post" action="/jmiams/index.php/admin/total_attendance">
@@ -140,7 +151,7 @@
 									if(($this->data['sem'] == 7) || ($this->data['sem'] == 8))
 										echo '</td><td>' . $d["total_classes"];
 									echo '</td><td>' . number_format($d["percentage"],2) . '%';
-									echo '</td></tr>';
+									echo '</td></tr>'."\n";
 								}
 							}
 						?>
