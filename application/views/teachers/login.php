@@ -14,6 +14,6 @@
         <input type="submit" name="submit" class="btn btn-lg btn-primary btn-block" value="Sign In" />
     </form>
     <form method="post" action="/jmiams/index.php/teacher/forgot">
-    <input type="submit" class="btn btn-warning" value="Forgot Password">
+    <input type="submit" name="forgot" class="btn btn-warning" value="Forgot Password">
     </form>
 </div>

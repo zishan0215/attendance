@@ -23,6 +23,7 @@ class Teacher extends Teacher_Controller {
 	}
 
 	public function forgot() {
+		$this->load->helper('mailer_helper');
 		$this->data['confirmation'] = "";
 		$this->data['meta_title'] = 'Attendance Management System';
 		if($this->input->post('submit')) {
@@ -31,20 +32,58 @@ class Teacher extends Teacher_Controller {
 				if($this->teacher_m->username_exists($username)){
 					$this->data['confirmation'] = 1;
 					$array =array('username' => $username);
-					$key = 1234;
+					$key = rand(1111, 2222);
 					$new_password = $this->input->post('username').$key;
+					
+					/* CONFIGURATION */
+					$crendentials = array(
+							'email'     => 'jmi.attendance@gmail.com',    //Your GMail adress
+							'password'  => 'Attendance@#Jamia'               //Your GMail password
+					);
+					
+					/* SPECIFIC TO GMAIL SMTP */
+					$smtp = array(
+							'host' => 'smtp.gmail.com',
+							'port' => 587,
+							'username' => $crendentials['email'],
+							'password' => $crendentials['password'],
+							'secure' => 'tls' //SSL or TLS
+					
+					);
+					
+					/* TO, SUBJECT, CONTENT */
+					$to         = 'zishanrbp@gmail.com'; //The 'To' field
+					$subject    = '[JMIAMS] Mail from test form';
+					$content    = 'Your new password is: ' . $new_password;
+					
+					
 					//$email_to = $this->teacher_m->email_id($array);
-					$email_to = 'zishanrbp@gmail.com';
-					$email_subject = "[JMIAMS] Mail from test form";
-					//Enter email..
-					$email_from = "nkmittal4994@gmail.com";
-					$email_message = "Your Password is: ";
-					$email_message .= $new_password."\n";
 					if($this->teacher_m->reset_pass($this->teacher_m->hash($new_password),$this->input->post('username'))){
-	        			$headers = 'From: '.$email_from."\r\n".
-	        			'Reply-To: '.$email_from."\r\n" .
-	        			'X-Mailer: PHP/' . phpversion();
-						if(mail($email_to, $email_subject, $email_message, $headers)){
+						$mailer = new PHPMailer();
+						
+						//SMTP Configuration
+						$mailer->isSMTP();
+						$mailer->SMTPAuth   = true; //We need to authenticate
+						$mailer->Host       = $smtp['host'];
+						$mailer->Port       = $smtp['port'];
+						$mailer->Username   = $smtp['username'];
+						$mailer->Password   = $smtp['password'];
+						$mailer->SMTPSecure = $smtp['secure'];
+						
+						//Now, send mail :
+						//From - To :
+						$mailer->From       = $crendentials['email'];
+						$mailer->FromName   = 'Your Name'; //Optional
+						$mailer->addAddress($to);  // Add a recipient
+						
+						//Subject - Body :
+						$mailer->Subject        = $subject;
+						$mailer->Body           = $content;
+						$mailer->isHTML(true); //Mail body contains HTML tags
+						
+						//Check if mail is sent :
+						if($mailer->send()) {
+							//echo 'Error sending mail : ' . $mailer->ErrorInfo;
 							$this->data['confirmation'] = 1;
 						}
 						else
@@ -55,7 +94,7 @@ class Teacher extends Teacher_Controller {
 				}
 			}
 		}
-		$this->load->view('bootstrap/header_login', $this->data);
+		$this->load->view('bootstrap/header_login');
 		$this->load->view('teachers/forgot_layout',$this->data);
 	}
 
