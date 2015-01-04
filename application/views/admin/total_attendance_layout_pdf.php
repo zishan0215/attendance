@@ -26,10 +26,26 @@
 	$obj_pdf->AddPage();
 	ob_start();
 ?>
-	<h1><small>Semester: <?php echo $this->data['sem']; ?></small></h1>
-	<h1><small>Duration: <?php echo $from_date . " - " . $to_date; ?></small></h1>
+<style>
+	table, th, td {
+	    border: 1px solid black;
+	    padding: 0.5px;
+	}
+	td {
+		padding-left: 2px;
+	}
+	table {
+	    border-spacing: 1.5px;
+	}
+</style>
+
+	<div style="text-align: center;">
+		<h1>BTECH COMPUTER ENGGINEERING</h1>
+		<h2>SEMESTER: <?php echo $this->data['sem']; ?></h2>
+		<h2>ATTENDANCE FROM: <?php echo $from_date . " - " . $to_date; ?></h2>
+	</div>
 	<table>
-		<thead><tr><th>S.No.</th><th>Roll Number</th><th>Student Id</th><th>Name</th>
+		<thead><tr><th>S.No.</th><th>Roll Number</th><th>Student Id</th><th colspan="2">Name</th>
 			<?php
 				foreach ($subjects as $subj) {
 					echo '<th>';
@@ -53,18 +69,18 @@
 		<th>Percentage</th></tr></thead>
 		<thead>
 			<tr>
-				<th></th><th></th><th></th><th></th>
+				<th></th><th></th><th></th><th colspan="2"></th>
 				<th>
 					<?php
 						foreach ($head_class as $head) {
-							echo $head["total"];
+							echo ' '.$head["total"];
 							echo '</th><th>';
 						}
 					?>
 				
 				<?php
 					if(($this->data['sem'] != 7) && ($this->data['sem'] != 8))
-						echo $this->data['head_total'];
+						echo ' '.$this->data['head_total'];
 				?></th>
 				<th></th>
 				<?php
@@ -81,7 +97,7 @@
 			foreach($table as $d){
 				if($d["percentage"] <= $filter) {
 					echo '<tr><td>' . $counter++ .'</td><td>' . $d["roll_number"];
-					echo '</td><td>' . $d["student_id"] . '</td><td>' . $d["name"];
+					echo '</td><td> ' . $d["student_id"] . '</td><td colspan="2"> ' . $d["name"];
 					echo '</td>';
 					//echo  $d["attendance"];
 					foreach ($d["attendance"] as $key) {
@@ -103,10 +119,10 @@
 							}
 						}
 					}
-					echo '<td>' . $d["total_attendance"];
+					echo '<td> ' . $d["total_attendance"];
 					if(($this->data['sem'] == 7) || ($this->data['sem'] == 8))
 						echo '</td><td>' . $d["total_classes"];
-					echo '</td><td>' . number_format($d["percentage"],2) . '%';
+					echo '</td><td> ' . number_format($d["percentage"],2) . '%';
 					echo '</td></tr>'."\n";
 				}
 			}
