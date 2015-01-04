@@ -52,7 +52,7 @@ class Teacher extends Teacher_Controller {
 					);
 					
 					/* TO, SUBJECT, CONTENT */
-					$to         = 'zishanrbp@gmail.com'; //The 'To' field
+					$to         = 'nkmittal4994@gmail.com'; //The 'To' field
 					$subject    = '[JMIAMS] Mail from test form';
 					$content    = 'Your new password is: ' . $new_password;
 					
@@ -94,7 +94,7 @@ class Teacher extends Teacher_Controller {
 				}
 			}
 		}
-		$this->load->view('bootstrap/header_login');
+		$this->load->view('bootstrap/header_login',$this->data);
 		$this->load->view('teachers/forgot_layout',$this->data);
 	}
 
