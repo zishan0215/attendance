@@ -138,7 +138,7 @@ class Teacher_m extends MY_Model {
 	}
 
 	public function username_exists($data) {
-		$query = 'SELECT username FROM teacher WHERE username = ' . "'" . $data . "'" ;
+		$query = 'SELECT username FROM teacher WHERE username = ' . "'" . $data['teacher_name'] . "'" ;
 		$q = $this->db->query($query);
 		if($q->num_rows()>0) {
 			return TRUE;

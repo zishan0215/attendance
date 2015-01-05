@@ -35,7 +35,7 @@
 									echo "<td>{$students[$i]->roll_number}</td>";
 									echo "<td>{$students[$i]->student_name}</td>";
 									echo '<td class="col-md-2">';
-										echo '<input class="form-control" type="text" name="m' . $i . '" placeholder="0">';
+										echo '<input class="form-control in_marks" type="text" name="m' . $i . '" value="0">';
 										echo '<input type="hidden" name="semester" value="' . $semester . '">';
 										echo '<input type="hidden" name="subject_code" value="' . $subject_code . '">';
 									echo '</td></tr>';
@@ -45,8 +45,13 @@
 					</table>
 					<div class="col-md-offset-5 feed_space">
 						<input type="submit" name="submit_marks" class="btn btn-success" value="Submit">
+						<button class="btn btn-warning" style="margin-left: 15px" onclick="reset();">Reset</button>
 					</div>
 				</form>	
 			</div>
 		</div>
 	</div>
+	<script>
+		function reset() {
+			$(".in_marks").value = 0;
+	</script>
