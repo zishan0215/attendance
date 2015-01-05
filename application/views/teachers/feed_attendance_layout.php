@@ -73,7 +73,7 @@
 						}
 						else{
 							echo '<td><input type="hidden" name="student_id:' . $count . '" value="' . $n->student_id . '"/>';
-							echo '<input type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm" value="0">
+							echo '<input type="text" name="num:' . $count . '" placeholder="Attendance" id="'.$count.'" class="form-control input-sm in_attendance" value="0">
 																			';
 							echo '</td></tr>';
 							echo '</div>';
@@ -94,11 +94,15 @@
 				<div class="form-group col-md-8 col-md-offset-3">
 					<input type="submit" name = "submit" class="col-md-offset-1 btn btn-success" value="Submit">
 					<input type="submit" name = "save" class="col-md-offset-1 btn btn-warning" value="Save">
+					<button class="btn btn-warning" style="margin-left: 15px" onclick="reset();">Reset</button>
 				</div>
 			</form>
 			</div>
 		</div>
 	</div>
-
+	<script>
+		function reset() {
+			$(".in_attendance").value = 0;
+	</script>
 
 <?php $this->load->view('teachers/components/teacher_footer'); ?>
