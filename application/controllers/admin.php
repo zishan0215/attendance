@@ -222,7 +222,7 @@ class Admin extends Admin_Controller {
                 //echo $start . '<br/>' . $end;
             }
         }
-        //$this->student_m->update_semester();
+        $this->student_m->update_semester();
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/main_layout');
     }
