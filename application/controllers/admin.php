@@ -117,11 +117,13 @@ class Admin extends Admin_Controller {
         $this->load->model('period_m');
         $this->load->model('student_m');
         $this->data['period'] = $this->period_m->get();
+        $this->data['speriod'] = "";
         $this->data['confirmation'] = "";
-        echo !($this->input->post('submit'));
-        echo "hi";
+        //echo ($this->input->post('increment'));
+        //if(!($this->input->post('increment')))
+            //echo "hi";
 
-        if(($this->input->post('submit'))) {
+        if(!($this->input->post('increment'))) {
             /*if($this->student_m->update_semester()) {
                 $this->data['confirmation'] = 1;
             } else {
@@ -129,6 +131,7 @@ class Admin extends Admin_Controller {
             }*/
             $this->load->model('period_m');
             $this->load->model('studies_m');
+            $this->load->model('student_m');
             $this->load->model('attendance_m');
             $this->load->model('total_attendance_m');
             $start = $this->input->post('start_date');
@@ -143,7 +146,7 @@ class Admin extends Admin_Controller {
                 $array = array("from_date" => $start);
                 $this->data['dates'] = $this->period_m->get_by($array);
                 foreach ($this->data['dates'] as $key) {
-                    $endDate = $key->to_date;
+                    $endDate = $key->to_date;   
                 }
                 $all [] = [
                     "from_date" => $start,
@@ -151,7 +154,8 @@ class Admin extends Admin_Controller {
                 ];
                 if($endDate === $end)
                         break;
-                $start = $endDate;
+                //$start = $endDate;
+                $start = date("Y-m-d",strtotime("+1 day",strtotime($endDate)));
             }
 
 
@@ -162,16 +166,6 @@ class Admin extends Admin_Controller {
                 $sem = 4;
             }
             for($i=0; $i<3; $i++){
-                //$start = $this->input->post('start_date');
-                //$end = $this->input->post('end_date');
-                //while(TRUE){
-                    //echo 'still here' . '<br/>';
-                //$array = array("from_date" => $start);
-                //$this->data['dates'] = $this->period_m->get_by($array);
-                //foreach ($this->data['dates'] as $key) {
-                //    $endDate = $key->to_date;
-                //}
-
                 $this->data['ids'] = $this->student_m->get_distinct_student_id($sem);
                 foreach ($this->data['ids']->result() as $val) {
                     //echo $val->student_id;
@@ -207,6 +201,8 @@ class Admin extends Admin_Controller {
                         total_classes => $cur_to
                         year => $year
                         */
+                        ///echo "inserting";
+                        //echo "<br/>";
                         $array2 = array('student_id' => $id["id_s"], 'subject_code' => $code->subject_code, 'attendance' => $cur_at, 'semester' => $sem, 'batch' => $batch, 'total_classes' => $cur_to, 'year' => $year);
                         $this->total_attendance_m->insert($array2);
                     }
@@ -218,7 +214,7 @@ class Admin extends Admin_Controller {
                 }
 
                     //echo $endDate;
-
+                    
                     //$start = $endDate;
                 //}
                 $sem += 2;
@@ -226,6 +222,7 @@ class Admin extends Admin_Controller {
                 //echo $start . '<br/>' . $end;
             }
         }
+        //$this->student_m->update_semester();
         $this->load->view('admin/components/admin_header', $this->data);
         $this->load->view('admin/main_layout');
     }
